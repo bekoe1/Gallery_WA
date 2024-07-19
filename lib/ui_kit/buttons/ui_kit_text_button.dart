@@ -10,14 +10,12 @@ class BaseUiKitButton extends StatefulWidget {
     required this.type,
     this.onPressed,
     required this.isLoading,
-    this.text,
     required this.child,
   });
 
   final ButtonType type;
   final bool isLoading;
   final String child;
-  final String? text;
   final VoidCallback? onPressed;
 
   @override

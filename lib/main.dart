@@ -77,16 +77,6 @@ class MyHomePage extends StatelessWidget {
       appBar: UiKitSearchAppBar(
         controller: controller,
         isSearchFieldEnabled: true,
-        rightCancelButton: Text(
-          "Cancel", // Исправлено на content
-          overflow: TextOverflow.ellipsis,
-          maxLines: 4,
-          textAlign: TextAlign.center,
-          style: UiKitTextStyle.h4MediumStyle(
-            color: UiKitColors.blue,
-            fontSize: 17,
-          ),
-        ),
       ),
       body: const Column(
         mainAxisAlignment: MainAxisAlignment.center,

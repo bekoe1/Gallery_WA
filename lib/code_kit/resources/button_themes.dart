@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:imagegalery/ui_kit/constants/const_colors.dart';
-import 'package:imagegalery/ui_kit/constants/sizes.dart';
 
 class ButtonThemes {
   static final filledButtonTheme = FilledButtonThemeData(
     style: ButtonStyle(
       minimumSize: WidgetStateProperty.all(
-        ConstSizes.uiKitButtonSize,
+        const Size(115, 40),
       ),
       foregroundColor: WidgetStateProperty.resolveWith(
         (states) {
@@ -38,7 +37,7 @@ class ButtonThemes {
   static final outlinedButtonTheme = OutlinedButtonThemeData(
     style: ButtonStyle(
       minimumSize: WidgetStateProperty.all(
-        ConstSizes.uiKitButtonSize,
+        const Size(115, 40),
       ),
       backgroundColor: WidgetStateProperty.all(
         Colors.white,
@@ -85,7 +84,7 @@ class ButtonThemes {
   static final textButtonTheme = TextButtonThemeData(
     style: ButtonStyle(
       minimumSize: WidgetStateProperty.all(
-        ConstSizes.uiKitButtonSize,
+        const Size(115, 40),
       ),
       backgroundColor: WidgetStateProperty.all(
         Colors.transparent,
