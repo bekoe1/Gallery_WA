@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:imagegalery/code_kit/resources/button_themes.dart';
+import 'package:imagegalery/ui_kit/buttons/ui_kit_text_button.dart';
 import 'package:imagegalery/ui_kit/constants/const_colors.dart';
 import 'package:imagegalery/ui_kit/constants/text_styles.dart';
+import 'package:imagegalery/ui_kit/constants/ui_kit_button_types.dart';
 import 'package:imagegalery/ui_kit/text_form/ui_kit_text_form.dart';
 
 void main() {
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ConstColors.disabledButtonTextColor,
+              color: UiKitColors.gray,
             ),
           ),
           enabledBorder: OutlineInputBorder(
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(
-              color: ConstColors.disabledFilledButtonColor,
+              color: UiKitColors.grayLight,
             ),
           ),
           errorBorder: OutlineInputBorder(
@@ -83,7 +85,14 @@ class MyHomePage extends StatelessWidget {
               controller: controller,
               hintText: "Hello",
               isEnabled: true,
+              errorText: "sdsd",
             ),
+          ),
+          BaseUiKitButton(
+            type: ButtonType.text,
+            isLoading: false,
+            child: "asdvf",
+            onPressed: () {},
           ),
         ],
       ),

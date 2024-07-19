@@ -6,13 +6,10 @@ class AddButton extends StatefulWidget {
     super.key,
     this.onPressed,
     required this.child,
-    this.buttonWidth,
-    this.buttonHeight,
   });
 
   final Widget child;
-  final double? buttonWidth;
-  final double? buttonHeight;
+
   final VoidCallback? onPressed;
 
   @override
@@ -37,8 +34,6 @@ class _AddButtonState extends State<AddButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.buttonWidth ?? 64,
-      height: widget.buttonHeight ?? 64,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
       ),
@@ -49,12 +44,11 @@ class _AddButtonState extends State<AddButton> {
           elevation: widget.onPressed == null ? 0 : _elevation,
           onPressed: widget.onPressed,
           backgroundColor: widget.onPressed == null
-              ? ConstColors.disabledFilledButtonColor
-              : ConstColors.enabledFilledButtonColor,
-          foregroundColor: widget.onPressed == null
-              ? ConstColors.disabledButtonTextColor
-              : Colors.white,
-          splashColor: ConstColors.pressedFilledButtonColor,
+              ? UiKitColors.grayLight
+              : UiKitColors.black,
+          foregroundColor:
+              widget.onPressed == null ? UiKitColors.grayLight : Colors.white,
+          splashColor: UiKitColors.main,
           child: Center(
             child: widget.child,
           ),

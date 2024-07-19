@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imagegalery/ui_kit/constants/const_colors.dart';
 import 'package:imagegalery/ui_kit/constants/sizes.dart';
-import 'package:imagegalery/ui_kit/constants/text_styles.dart';
 
 class ButtonThemes {
   static final filledButtonTheme = FilledButtonThemeData(
@@ -9,36 +8,29 @@ class ButtonThemes {
       minimumSize: WidgetStateProperty.all(
         ConstSizes.uiKitButtonSize,
       ),
-      foregroundColor: WidgetStateProperty.all(
-        Colors.white,
+      foregroundColor: WidgetStateProperty.resolveWith(
+        (states) {
+          if (states.contains(WidgetState.disabled)) {
+            return UiKitColors.gray;
+          }
+          return Colors.white;
+        },
       ),
       backgroundColor: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.pressed)) {
-            return ConstColors.pressedFilledButtonColor;
+            return UiKitColors.main;
           }
           if (states.contains(WidgetState.disabled)) {
-            return ConstColors.disabledFilledButtonColor;
+            return UiKitColors.grayLight;
           }
-          return ConstColors.enabledFilledButtonColor;
+          return UiKitColors.black;
         },
       ),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-      ),
-      textStyle: WidgetStateProperty.resolveWith(
-        (states) {
-          if (states.contains(WidgetState.disabled)) {
-            return UiKitTextStyle.h4MediumStyle(
-              color: ConstColors.disabledButtonTextColor,
-            );
-          }
-          return UiKitTextStyle.h4MediumStyle(
-            color: Colors.white,
-          );
-        },
       ),
     ),
   );
@@ -48,28 +40,19 @@ class ButtonThemes {
       minimumSize: WidgetStateProperty.all(
         ConstSizes.uiKitButtonSize,
       ),
-      textStyle: WidgetStateProperty.resolveWith(
-        (states) {
-          if (states.contains(WidgetState.disabled)) {
-            return UiKitTextStyle.h4MediumStyle(
-              color: ConstColors.disabledButtonTextColor,
-            );
-          }
-          if (states.contains(WidgetState.pressed)) {
-            return UiKitTextStyle.h4MediumStyle(
-              color: ConstColors.buttonPinkColor,
-            );
-          }
-          return UiKitTextStyle.h4MediumStyle(
-            color: Colors.black,
-          );
-        },
-      ),
       backgroundColor: WidgetStateProperty.all(
         Colors.white,
       ),
-      foregroundColor: WidgetStateProperty.all(
-        Colors.black,
+      foregroundColor: WidgetStateProperty.resolveWith(
+        (states) {
+          if (states.contains(WidgetState.disabled)) {
+            return UiKitColors.grayLight;
+          }
+          if (states.contains(WidgetState.pressed)) {
+            return UiKitColors.main;
+          }
+          return Colors.black;
+        },
       ),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
@@ -80,13 +63,13 @@ class ButtonThemes {
         (states) {
           if (states.contains(WidgetState.pressed)) {
             return const BorderSide(
-              color: ConstColors.buttonPinkColor,
+              color: UiKitColors.main,
               width: 1,
             );
           }
           if (states.contains(WidgetState.disabled)) {
             return const BorderSide(
-              color: ConstColors.disabledOutlinedButtonColor,
+              color: UiKitColors.white,
               width: 1,
             );
           }
@@ -105,32 +88,23 @@ class ButtonThemes {
         ConstSizes.uiKitButtonSize,
       ),
       backgroundColor: WidgetStateProperty.all(
-        Colors.white,
+        Colors.transparent,
       ),
-      foregroundColor: WidgetStateProperty.all(
-        Colors.black,
+      foregroundColor: WidgetStateProperty.resolveWith(
+        (states) {
+          if (states.contains(WidgetState.disabled)) {
+            return UiKitColors.grayLight;
+          }
+          if (states.contains(WidgetState.pressed)) {
+            return UiKitColors.main;
+          }
+          return Colors.black;
+        },
       ),
       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-      ),
-      textStyle: WidgetStateProperty.resolveWith(
-        (states) {
-          if (states.contains(WidgetState.disabled)) {
-            return UiKitTextStyle.h4MediumStyle(
-              color: ConstColors.disabledButtonTextColor,
-            );
-          }
-          if (states.contains(WidgetState.pressed)) {
-            return UiKitTextStyle.h4MediumStyle(
-              color: ConstColors.buttonPinkColor,
-            );
-          }
-          return UiKitTextStyle.h4MediumStyle(
-            color: Colors.black,
-          );
-        },
       ),
     ),
   );

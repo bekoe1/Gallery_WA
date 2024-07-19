@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ConstColors {
-  static const disabledButtonTextColor = Color.fromRGBO(179, 179, 179, 1);
-  static const disabledFilledButtonColor = Color.fromRGBO(238, 238, 239, 1);
-  static const pressedFilledButtonColor = Color.fromRGBO(207, 73, 126, 1);
-  static const enabledFilledButtonColor = Color.fromRGBO(29, 29, 29, 1);
-
-  static const buttonPinkColor = Color.fromRGBO(207, 73, 126, 1);
-  static const disabledOutlinedButtonColor = Color.fromRGBO(242, 242, 243, 1);
+class UiKitColors {
+  static const Color black = Color(0xFF1D1D1D);
+  static const Color gray = Color(0xFFBCBCBC);
+  static const Color grayLight = Color(0xFFEEEEEF);
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color main = Color(0xFFCF497E);
+  static const Color errorRed = Color(0xFFED3E3E);
+  static const Color blue = Color(0xFF409EFF);
 }
