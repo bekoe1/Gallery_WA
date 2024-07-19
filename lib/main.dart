@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imagegalery/code_kit/resources/button_themes.dart';
-import 'package:imagegalery/ui_kit/buttons/ui_kit_text_button.dart';
+import 'package:imagegalery/ui_kit/app_bar/ui_kit_app_bar.dart';
 import 'package:imagegalery/ui_kit/constants/const_colors.dart';
 import 'package:imagegalery/ui_kit/constants/text_styles.dart';
-import 'package:imagegalery/ui_kit/constants/ui_kit_button_types.dart';
-import 'package:imagegalery/ui_kit/text_form/ui_kit_text_form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -76,25 +74,23 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      appBar: UiKitSearchAppBar(
+        controller: controller,
+        isSearchFieldEnabled: true,
+        rightCancelButton: Text(
+          "Cancel", // Исправлено на content
+          overflow: TextOverflow.ellipsis,
+          maxLines: 4,
+          textAlign: TextAlign.center,
+          style: UiKitTextStyle.h4MediumStyle(
+            color: UiKitColors.blue,
+            fontSize: 17,
+          ),
+        ),
+      ),
+      body: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            ///Example
-            child: UiKitTextFormField(
-              controller: controller,
-              hintText: "Hello",
-              isEnabled: true,
-              errorText: "sdsd",
-            ),
-          ),
-          BaseUiKitButton(
-            type: ButtonType.text,
-            isLoading: false,
-            child: "asdvf",
-            onPressed: () {},
-          ),
-        ],
+        children: [],
       ),
     );
   }
