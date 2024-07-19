@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:imagegalery/code_kit/resources/button_themes.dart';
-import 'package:imagegalery/ui_kit/buttons/ui_kit_add_button.dart';
-import 'package:imagegalery/ui_kit/buttons/ui_kit_text_button.dart';
-import 'package:imagegalery/ui_kit/constants/ui_kit_button_types.dart';
+import 'package:imagegalery/ui_kit/constants/const_colors.dart';
+import 'package:imagegalery/ui_kit/constants/text_styles.dart';
+import 'package:imagegalery/ui_kit/text_form/ui_kit_text_form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,39 +17,75 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'Roboto',
+        inputDecorationTheme: InputDecorationTheme(
+          errorMaxLines: 1,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: ConstColors.disabledButtonTextColor,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Color(0xffbb3b3b3),
+            ),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: ConstColors.disabledFilledButtonColor,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Color(0xffbed3e3e),
+            ),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+              color: Color(0xffbed3e3e),
+            ),
+          ),
+          errorStyle: UiKitTextStyle.h4MediumStyle(
+            color: const Color(0xffbed3e3e),
+            fontSize: 12,
+          ),
+          contentPadding: const EdgeInsets.fromLTRB(9, 10, 9, 10),
+        ),
         filledButtonTheme: ButtonThemes.filledButtonTheme,
         outlinedButtonTheme: ButtonThemes.outlinedButtonTheme,
         textButtonTheme: ButtonThemes.textButtonTheme,
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  MyHomePage({super.key});
+
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 200),
-            BaseUiKitButton(
-              type: ButtonType.outlined,
-              isLoading: false,
-              onPressed: () {},
-              child: const Text("ggggggggggggggg"),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            ///Example
+            child: UiKitTextFormField(
+              controller: controller,
+              hintText: "Hello",
+              isEnabled: true,
             ),
-            const SizedBox(height: 20),
-            AddButton(
-              onPressed: () {},
-              child: const Icon(CupertinoIcons.plus),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

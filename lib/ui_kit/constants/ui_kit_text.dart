@@ -6,10 +6,12 @@ class UiKitText extends StatelessWidget {
     this.text,
     required this.color,
     this.align,
+    this.fontWeight,
   });
 
   final String? text;
   final Color? color;
+  final FontWeight? fontWeight;
   final TextAlign? align;
 
   @override

@@ -31,12 +31,12 @@ class ButtonThemes {
       textStyle: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.disabled)) {
-            return ButtonTextStyle.h4MediumStyle(
-              ConstColors.disabledButtonTextColor,
+            return UiKitTextStyle.h4MediumStyle(
+              color: ConstColors.disabledButtonTextColor,
             );
           }
-          return ButtonTextStyle.h4MediumStyle(
-            Colors.white,
+          return UiKitTextStyle.h4MediumStyle(
+            color: Colors.white,
           );
         },
       ),
@@ -51,17 +51,17 @@ class ButtonThemes {
       textStyle: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.disabled)) {
-            return ButtonTextStyle.h4MediumStyle(
-              ConstColors.disabledButtonTextColor,
+            return UiKitTextStyle.h4MediumStyle(
+              color: ConstColors.disabledButtonTextColor,
             );
           }
           if (states.contains(WidgetState.pressed)) {
-            return ButtonTextStyle.h4MediumStyle(
-              ConstColors.buttonPinkColor,
+            return UiKitTextStyle.h4MediumStyle(
+              color: ConstColors.buttonPinkColor,
             );
           }
-          return ButtonTextStyle.h4MediumStyle(
-            Colors.black,
+          return UiKitTextStyle.h4MediumStyle(
+            color: Colors.black,
           );
         },
       ),
@@ -118,17 +118,17 @@ class ButtonThemes {
       textStyle: WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.disabled)) {
-            return ButtonTextStyle.h4MediumStyle(
-              ConstColors.disabledButtonTextColor,
+            return UiKitTextStyle.h4MediumStyle(
+              color: ConstColors.disabledButtonTextColor,
             );
           }
           if (states.contains(WidgetState.pressed)) {
-            return ButtonTextStyle.h4MediumStyle(
-              ConstColors.buttonPinkColor,
+            return UiKitTextStyle.h4MediumStyle(
+              color: ConstColors.buttonPinkColor,
             );
           }
-          return ButtonTextStyle.h4MediumStyle(
-            Colors.black,
+          return UiKitTextStyle.h4MediumStyle(
+            color: Colors.black,
           );
         },
       ),
