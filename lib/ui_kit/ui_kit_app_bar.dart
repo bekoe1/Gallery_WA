@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:imagegalery/code_kit/resources/app_text_styles.dart';
-import 'package:imagegalery/ui_kit/search/ui_kit_search.dart';
+part of 'module/ui_kit_widgets_module.dart';
 
 class UiKitSearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   const UiKitSearchAppBar({

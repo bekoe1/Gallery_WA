@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:imagegalery/code_kit/resources/app_colors.dart';
+part of 'module/ui_kit_widgets_module.dart';
 
 class AddButton extends StatefulWidget {
   const AddButton({

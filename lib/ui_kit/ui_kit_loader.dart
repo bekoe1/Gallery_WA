@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:imagegalery/code_kit/resources/app_text_styles.dart';
+part of 'module/ui_kit_widgets_module.dart';
 
 class UiKitLoader extends StatelessWidget {
   const UiKitLoader({
     super.key,
-    required this.indicatorColor,
+    this.indicatorColor = UiKitColors.grayLight,
   });
   final Color indicatorColor;
   @override
@@ -25,7 +24,7 @@ class UiKitLoader extends StatelessWidget {
           Text(
             "Loading...",
             style: AppTextStyles.h4.copyWith(
-              color: const Color(0xFFB3B3B3),
+              color: UiKitColors.grayLight,
               fontSize: 16,
             ),
           ),

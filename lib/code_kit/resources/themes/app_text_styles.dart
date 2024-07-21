@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'module/theme_module.dart';
 
 class AppTextStyles {
   static TextStyle h1 = const TextStyle(

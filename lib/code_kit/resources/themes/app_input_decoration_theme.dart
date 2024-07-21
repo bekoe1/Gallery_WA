@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:imagegalery/code_kit/resources/app_colors.dart';
-import 'package:imagegalery/code_kit/resources/app_text_styles.dart';
+part of 'module/theme_module.dart';
 
 class AppInputDecorationTheme {
   static dynamic inputDecorationTheme = InputDecorationTheme(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:imagegalery/code_kit/resources/enums.dart';
-import 'package:imagegalery/code_kit/resources/main_themes/app_main_themes.dart';
-import 'package:imagegalery/ui_kit/app_bar/ui_kit_app_bar.dart';
-import 'package:imagegalery/ui_kit/buttons/ui_kit_text_button.dart';
+import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
+import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,19 +31,6 @@ class MyHomePage extends StatelessWidget {
       appBar: UiKitSearchAppBar(
         controller: controller,
         isSearchFieldEnabled: true,
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: BaseUiKitButton(
-              type: ButtonType.text,
-              isLoading: false,
-              child: "Data",
-              onPressed: () {},
-            ),
-          ),
-        ],
       ),
     );
   }

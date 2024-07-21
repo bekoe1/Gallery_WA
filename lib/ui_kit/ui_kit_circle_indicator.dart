@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+part of 'module/ui_kit_widgets_module.dart';
 
-class CircleLoadingIndicator extends StatelessWidget {
-  const CircleLoadingIndicator({
+class UiKitCircleLoadingIndicator extends StatelessWidget {
+  const UiKitCircleLoadingIndicator({
     super.key,
     this.color,
   });

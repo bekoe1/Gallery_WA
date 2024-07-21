@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:imagegalery/code_kit/resources/app_colors.dart';
+part of 'module/theme_module.dart';
 
 class ButtonThemes {
   static final filledButtonTheme = FilledButtonThemeData(
