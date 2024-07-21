@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imagegalery/ui_kit/constants/const_colors.dart';
+import 'package:imagegalery/code_kit/resources/app_colors.dart';
 
 class AddButton extends StatefulWidget {
   const AddButton({
@@ -46,8 +46,9 @@ class _AddButtonState extends State<AddButton> {
           backgroundColor: widget.onPressed == null
               ? UiKitColors.grayLight
               : UiKitColors.black,
-          foregroundColor:
-              widget.onPressed == null ? UiKitColors.grayLight : Colors.white,
+          foregroundColor: widget.onPressed == null
+              ? UiKitColors.grayLight
+              : UiKitColors.white,
           splashColor: UiKitColors.main,
           child: Center(
             child: widget.child,

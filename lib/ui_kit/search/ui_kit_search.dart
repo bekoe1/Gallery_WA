@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:imagegalery/ui_kit/constants/const_colors.dart';
+import 'package:imagegalery/code_kit/resources/app_colors.dart';
 
 class UiKitSearchField extends StatefulWidget {
   const UiKitSearchField({

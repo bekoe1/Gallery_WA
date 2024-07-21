@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:imagegalery/code_kit/resources/app_colors.dart';
 import 'package:imagegalery/code_kit/resources/app_icons.dart';
-import 'package:imagegalery/ui_kit/constants/const_colors.dart';
-import 'package:imagegalery/ui_kit/constants/text_styles.dart';
+import 'package:imagegalery/code_kit/resources/app_text_styles.dart';
 
 class UiKitTextFormField extends StatefulWidget {
   const UiKitTextFormField({
@@ -46,10 +46,11 @@ class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
     }
 
     return InputDecoration(
-      hintStyle: UiKitTextStyle.h4MediumStyle(color: hintAndIconColor),
+      hintStyle: AppTextStyles.h4.copyWith(color: hintAndIconColor),
       hintText: widget.hintText,
-      suffixIconColor:
-          widget.errorText != null ? hintAndIconColor : Color(0xffbed3e3e),
+      suffixIconColor: widget.errorText != null
+          ? hintAndIconColor
+          : const Color(0xffbed3e3e),
       suffixIconConstraints: const BoxConstraints(
         minHeight: 22,
         minWidth: 22,

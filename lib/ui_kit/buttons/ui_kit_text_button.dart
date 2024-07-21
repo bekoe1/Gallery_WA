@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:imagegalery/ui_kit/constants/circle_indicator.dart';
-import 'package:imagegalery/ui_kit/constants/const_colors.dart';
-import 'package:imagegalery/ui_kit/constants/text_styles.dart';
-import 'package:imagegalery/ui_kit/constants/ui_kit_button_types.dart';
+import 'package:imagegalery/code_kit/resources/app_colors.dart';
+import 'package:imagegalery/code_kit/resources/app_text_styles.dart';
+import 'package:imagegalery/code_kit/resources/enums.dart';
+import 'package:imagegalery/ui_kit/circle_indicator/circle_indicator.dart';
 
 class BaseUiKitButton extends StatefulWidget {
   const BaseUiKitButton({
@@ -29,15 +29,17 @@ class _BaseUiKitButtonState extends State<BaseUiKitButton> {
       return FilledButton(
         style: (widget.isLoading && widget.onPressed != null)
             ? ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.black),
+                backgroundColor: WidgetStateProperty.all(UiKitColors.black),
                 textStyle: WidgetStateProperty.resolveWith(
                   (states) {
                     if (states.contains(WidgetState.disabled)) {
-                      return UiKitTextStyle.h4MediumStyle(
-                          color: UiKitColors.gray);
+                      return AppTextStyles.h4.copyWith(
+                        color: UiKitColors.gray,
+                      );
                     } else {
-                      return UiKitTextStyle.h4MediumStyle(
-                          color: UiKitColors.white);
+                      return AppTextStyles.h4.copyWith(
+                        color: UiKitColors.white,
+                      );
                     }
                   },
                 ),
@@ -56,12 +58,18 @@ class _BaseUiKitButtonState extends State<BaseUiKitButton> {
       WidgetStateProperty.resolveWith(
         (states) {
           if (states.contains(WidgetState.disabled)) {
-            UiKitTextStyle.h4MediumStyle(color: UiKitColors.gray);
+            AppTextStyles.h4.copyWith(
+              color: UiKitColors.gray,
+            );
           }
           if (states.contains(WidgetState.pressed)) {
-            UiKitTextStyle.h4MediumStyle(color: UiKitColors.main);
+            AppTextStyles.h4.copyWith(
+              color: UiKitColors.main,
+            );
           } else {
-            UiKitTextStyle.h4MediumStyle(color: Colors.black);
+            AppTextStyles.h4.copyWith(
+              color: UiKitColors.black,
+            );
           }
         },
       );
@@ -69,14 +77,14 @@ class _BaseUiKitButtonState extends State<BaseUiKitButton> {
         style: (widget.isLoading && widget.onPressed != null)
             ? ButtonStyle(
                 backgroundColor: WidgetStateProperty.all(
-                  Colors.white,
+                  UiKitColors.white,
                 ),
                 foregroundColor: WidgetStateProperty.all(
-                  Colors.black,
+                  UiKitColors.black,
                 ),
                 side: WidgetStateProperty.all(
                   const BorderSide(
-                    color: Colors.black,
+                    color: UiKitColors.black,
                     width: 1,
                   ),
                 ),
@@ -85,7 +93,7 @@ class _BaseUiKitButtonState extends State<BaseUiKitButton> {
         onPressed: widget.isLoading ? null : widget.onPressed,
         child: widget.isLoading
             ? const CircleLoadingIndicator(
-                color: Colors.black,
+                color: UiKitColors.black,
               )
             : Text(widget.child),
       );
@@ -93,13 +101,13 @@ class _BaseUiKitButtonState extends State<BaseUiKitButton> {
       return TextButton(
         style: (widget.isLoading && widget.onPressed != null)
             ? ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.white),
+                backgroundColor: WidgetStateProperty.all(UiKitColors.white),
               )
             : null,
         onPressed: widget.isLoading ? null : widget.onPressed,
         child: widget.isLoading
             ? const CircleLoadingIndicator(
-                color: Colors.black,
+                color: UiKitColors.black,
               )
             : Text(widget.child),
       );

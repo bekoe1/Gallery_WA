@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imagegalery/ui_kit/constants/text_styles.dart';
+import 'package:imagegalery/code_kit/resources/app_text_styles.dart';
 import 'package:imagegalery/ui_kit/search/ui_kit_search.dart';
 
 class UiKitSearchAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -46,7 +46,7 @@ class _UiKitSearchAppBarState extends State<UiKitSearchAppBar> {
             },
             child: Text(
               "Cancel",
-              style: UiKitTextStyle.h4MediumStyle(
+              style: AppTextStyles.caption.copyWith(
                 color: Colors.blue,
                 fontSize: 17,
               ),
