@@ -4,7 +4,7 @@ class UiKitSearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   const UiKitSearchAppBar({
     super.key,
     required this.controller,
-    required this.isSearchFieldEnabled,
+    this.isSearchFieldEnabled = true,
   });
 
   final TextEditingController controller;
@@ -37,7 +37,7 @@ class _UiKitSearchAppBarState extends State<UiKitSearchAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       actions: [
-        if (_focusNode.hasFocus)
+        if (_focusNode.hasFocus) ...[
           TextButton(
             onPressed: () {
               _focusNode.unfocus();
@@ -50,6 +50,7 @@ class _UiKitSearchAppBarState extends State<UiKitSearchAppBar> {
               ),
             ),
           ),
+        ]
       ],
       title: UiKitSearchField(
         controller: widget.controller,

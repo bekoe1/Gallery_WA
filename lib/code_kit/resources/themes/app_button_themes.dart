@@ -106,4 +106,13 @@ class ButtonThemes {
       ),
     ),
   );
+
+  static final floatingButtonTheme = FloatingActionButtonThemeData(
+    disabledElevation: 0,
+    focusElevation: 0,
+    elevation: 4,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+  );
 }

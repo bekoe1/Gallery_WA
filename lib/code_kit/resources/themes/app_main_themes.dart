@@ -8,5 +8,6 @@ class AppMainThemes {
     outlinedButtonTheme: ButtonThemes.outlinedButtonTheme,
     textButtonTheme: ButtonThemes.textButtonTheme,
     useMaterial3: true,
+    floatingActionButtonTheme: ButtonThemes.floatingButtonTheme,
   );
 }
