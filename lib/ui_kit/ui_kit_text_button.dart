@@ -16,7 +16,9 @@ class UiKitTextButton extends StatelessWidget {
     return TextButton(
       style: (isLoading && onPressed != null)
           ? ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(UiKitColors.white),
+              backgroundColor: WidgetStateProperty.all(
+                UiKitColors.white,
+              ),
             )
           : null,
       onPressed: isLoading ? null : onPressed,

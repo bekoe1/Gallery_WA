@@ -5,7 +5,9 @@ class UiKitLoader extends StatelessWidget {
     super.key,
     this.indicatorColor = UiKitColors.grayLight,
   });
+
   final Color indicatorColor;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,11 +18,15 @@ class UiKitLoader extends StatelessWidget {
       ),
       child: Column(
         children: [
-          CircularProgressIndicator(
-            color: indicatorColor,
-            strokeWidth: 2,
+          Padding(
+            padding: const EdgeInsets.only(
+              bottom: 10,
+            ),
+            child: CircularProgressIndicator(
+              color: indicatorColor,
+              strokeWidth: 2,
+            ),
           ),
-          const SizedBox(height: 10),
           Text(
             "Loading...",
             style: AppTextStyles.h4.copyWith(

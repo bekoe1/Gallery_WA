@@ -1,7 +1,7 @@
 part of 'module/theme_module.dart';
 
 class AppInputDecorationTheme {
-  static dynamic inputDecorationTheme = InputDecorationTheme(
+  static InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 1,
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),

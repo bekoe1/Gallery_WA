@@ -37,9 +37,7 @@ class UiKitFilledButton extends StatelessWidget {
           ? const UiKitCircleLoadingIndicator(
               color: Colors.white,
             )
-          : Text(
-              text,
-            ),
+          : Text(text),
     );
   }
 }

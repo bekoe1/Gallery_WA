@@ -32,6 +32,15 @@ class MyHomePage extends StatelessWidget {
         controller: controller,
         isSearchFieldEnabled: true,
       ),
+      body: Column(
+        children: [
+          Center(
+            child: UiKitOutlinedButton(
+              text: 'blabla',
+            ),
+          )
+        ],
+      ),
     );
   }
 }
