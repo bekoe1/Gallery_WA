@@ -12,6 +12,7 @@ import 'package:imagegalery/code_kit/di/injection.dart';
 import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
 import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';
 import 'package:imagegalery/code_kit/routing/app_router.gr.dart';
+import 'package:imagegalery/extensions/localization_extension.dart';
 import 'package:imagegalery/features/onboarding_feature/bloc/onboarding_bloc.dart';
 import 'package:imagegalery/features/onboarding_feature/repo/user_token_repo.dart';
 import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';

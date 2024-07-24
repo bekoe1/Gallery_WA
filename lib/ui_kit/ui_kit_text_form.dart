@@ -48,7 +48,6 @@ class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
       cursorErrorColor: UiKitColors.black,
       decoration: buildInputDecoration(),
       keyboardType: widget.keyboardType,
-      maxLines: 120,
     );
   }
 

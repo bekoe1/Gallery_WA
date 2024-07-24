@@ -16,6 +16,7 @@ class ApiConstants {
   static const refreshTokenStorageName = "refreshToken";
   static const rolesValue = '/roles/default';
   static const empty = "";
+  static const confirmPas = "confirm password";
   static const phone = "phone";
   static const signUpEndPoint = "/users";
   static const contentType = "application/ld+json";

@@ -9,6 +9,7 @@ import 'package:imagegalery/generated/l10n.dart';
 final _appRouter = AppRouter();
 
 void main() {
+  getIt.init();
   runApp(const MyApp());
 }
 
@@ -18,7 +19,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    getIt.init();
     return MaterialApp.router(
       localizationsDelegates: const [
         S.delegate,
