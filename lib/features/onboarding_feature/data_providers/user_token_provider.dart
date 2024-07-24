@@ -23,4 +23,46 @@ class UserTokenProvider implements UserTokenRepo {
           )
         : null;
   }
+
+  @override
+  Future<void> deleteTokens() async {
+    await deleteAccessToken();
+    await deleteRefreshToken();
+  }
+
+  @override
+  Future<void> saveTokens(TokenModel token) async {
+    await saveRefreshToken(token.refreshToken);
+    await saveAccessToken(token.accessToken);
+  }
+
+  @override
+  Future<void> deleteAccessToken() async {
+    _storage.delete(
+      key: ApiConstants.accessTokenStorageName,
+    );
+  }
+
+  @override
+  Future<void> deleteRefreshToken() async {
+    _storage.delete(
+      key: ApiConstants.refreshTokenStorageName,
+    );
+  }
+
+  @override
+  Future<void> saveAccessToken(String accessToken) async {
+    _storage.write(
+      key: ApiConstants.accessTokenStorageName,
+      value: accessToken,
+    );
+  }
+
+  @override
+  Future<void> saveRefreshToken(String refreshToken) async {
+    _storage.write(
+      key: ApiConstants.accessTokenStorageName,
+      value: refreshToken,
+    );
+  }
 }
