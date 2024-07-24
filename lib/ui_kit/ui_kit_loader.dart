@@ -28,7 +28,7 @@ class UiKitLoader extends StatelessWidget {
             ),
           ),
           Text(
-            "Loading...",
+            S.of(context).loading,
             style: AppTextStyles.h4.copyWith(
               color: UiKitColors.grayLight,
               fontSize: 16,

@@ -43,7 +43,7 @@ class _UiKitSearchAppBarState extends State<UiKitSearchAppBar> {
               _focusNode.unfocus();
             },
             child: Text(
-              "Cancel",
+              S.of(context).cancel,
               style: AppTextStyles.caption.copyWith(
                 color: Colors.blue,
                 fontSize: 17,

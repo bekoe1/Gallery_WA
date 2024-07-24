@@ -18,7 +18,7 @@ class UiKitBackButton extends StatelessWidget {
           ),
           const SizedBox(width: 5),
           Text(
-            "Cancel",
+            S.of(context).cancel,
             style: AppTextStyles.h3.copyWith(
               color: UiKitColors.blue,
             ),

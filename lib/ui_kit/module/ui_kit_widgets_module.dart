@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
 import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';
+import 'package:imagegalery/generated/l10n.dart';
 
 import '../../code_kit/resources/themes_data/app_colors.dart';
 

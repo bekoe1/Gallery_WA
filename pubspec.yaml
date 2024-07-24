@@ -17,6 +17,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
+  build_runner: ^2.4.11
 
 dev_dependencies:
   flutter_test:
@@ -33,3 +34,4 @@ flutter:
     - assets/icons/
 flutter_intl:
   enabled: true
+  generated: true
