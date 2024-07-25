@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "incorrectUsername": MessageLookupByLibrary.simpleMessage(
             "имя пользователя некорректно"),
         "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),
+        "lostConnection": MessageLookupByLibrary.simpleMessage(
+            "Вы не подключены к сети или у вас слабый интернет"),
         "passwordsAreNotEqual":
             MessageLookupByLibrary.simpleMessage("пароли не совпадают"),
         "shortPas":
@@ -53,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "someError": MessageLookupByLibrary.simpleMessage("Возникла ошибка"),
         "successSignIn": MessageLookupByLibrary.simpleMessage(
             "Вы успешно зарегестрировались"),
+        "tokenExpired": MessageLookupByLibrary.simpleMessage("Ваш токен истек"),
         "welcomeText":
             MessageLookupByLibrary.simpleMessage("Добро пожаловать в галерею!")
       };

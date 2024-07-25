@@ -2,9 +2,11 @@ part of '../onboarding_feature_module.dart';
 
 class UserTokenProvider implements UserTokenRepo {
   final FlutterSecureStorage _storage;
+  final Dio dio;
 
   UserTokenProvider({
     required FlutterSecureStorage storage,
+    required this.dio,
   }) : _storage = storage;
 
   @override
@@ -64,5 +66,31 @@ class UserTokenProvider implements UserTokenRepo {
       key: ApiConstants.accessTokenStorageName,
       value: refreshToken,
     );
+  }
+
+  @override
+  Future<TokenModel?> refreshAccessToken() async {
+    final token = await getTokenFromStorage();
+    final refreshToken = token?.accessToken;
+    if (refreshToken == null) return null;
+    final response = await dio.post(
+      "${ApiConstants.baseUrl}/token",
+      data: {
+        RequestRefreshTokenDto(
+          grantType: ApiConstants.refreshTokenQueryValue,
+          refreshToken: refreshToken,
+          clientId: ApiConstants.clientIdValue,
+          clientSecret: ApiConstants.clientSecretValue,
+        ).toJson()
+      },
+    );
+
+    if (response.data != null) {
+      final newToken = TokenDto.fromJson(response.data).toModel();
+      await saveTokens(newToken);
+      return newToken;
+    } else {
+      return null;
+    }
   }
 }

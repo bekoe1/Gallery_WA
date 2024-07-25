@@ -7,6 +7,7 @@ class UiKitFilledButton extends StatelessWidget {
     this.onPressed,
     this.isLoading = false,
   });
+
   final VoidCallback? onPressed;
   final bool isLoading;
   final String text;
@@ -14,7 +15,7 @@ class UiKitFilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      style: (isLoading && onPressed != null)
+      style: (onPressed != null)
           ? ButtonStyle(
               backgroundColor: WidgetStateProperty.all(UiKitColors.black),
               textStyle: WidgetStateProperty.resolveWith(

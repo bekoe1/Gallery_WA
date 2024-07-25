@@ -17,5 +17,8 @@
   "successSignIn": "Sign in success",
   "welcomeText": "Welcome to Gallery!",
   "alreadyHaveAcc": "I already have an account",
-  "createAccount": "Create an account"
+  "createAccount": "Create an account",
+  "tokenExpired" : "Your token expired",
+  "lostConnection": "You are not connected to the network or your internet is weak"
+
 }

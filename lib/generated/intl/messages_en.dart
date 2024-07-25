@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "incorrectUsername":
             MessageLookupByLibrary.simpleMessage("username is incorrect"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
+        "lostConnection": MessageLookupByLibrary.simpleMessage(
+            "You are not connected to the network or your internet is weak"),
         "passwordsAreNotEqual":
             MessageLookupByLibrary.simpleMessage("passwords do not match"),
         "shortPas":
@@ -53,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "someError": MessageLookupByLibrary.simpleMessage("Error occupied"),
         "successSignIn":
             MessageLookupByLibrary.simpleMessage("Sign in success"),
+        "tokenExpired":
+            MessageLookupByLibrary.simpleMessage("Your token expired"),
         "welcomeText":
             MessageLookupByLibrary.simpleMessage("Welcome to Gallery!")
       };

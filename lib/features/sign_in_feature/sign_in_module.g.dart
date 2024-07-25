@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_up_feature.dart';
+part of 'sign_in_module.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,19 +8,19 @@ part of 'sign_up_feature.dart';
 
 _$RequestUserDtoImpl _$$RequestUserDtoImplFromJson(Map<String, dynamic> json) =>
     _$RequestUserDtoImpl(
-      email: json['email'] as String,
-      birthday: DateTime.parse(json['birthday'] as String),
-      displayName: json['displayName'] as String,
-      phone: json['phone'] as String?,
+      grantType: json['grant_type'] as String,
+      username: json['username'] as String,
       password: json['password'] as String,
+      clientId: json['client_id'] as String,
+      clientSecret: json['client_secret'] as String,
     );
 
 Map<String, dynamic> _$$RequestUserDtoImplToJson(
         _$RequestUserDtoImpl instance) =>
     <String, dynamic>{
-      'email': instance.email,
-      'birthday': instance.birthday.toIso8601String(),
-      'displayName': instance.displayName,
-      'phone': instance.phone,
+      'grant_type': instance.grantType,
+      'username': instance.username,
       'password': instance.password,
+      'client_id': instance.clientId,
+      'client_secret': instance.clientSecret,
     };

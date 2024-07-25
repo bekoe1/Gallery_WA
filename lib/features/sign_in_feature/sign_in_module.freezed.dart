@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'sign_in_bloc.dart';
+part of 'sign_in_module.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -323,7 +323,7 @@ abstract class _SignIn implements SignInEvent {
 
 /// @nodoc
 mixin _$SignInState {
-  SignInStates get currentState => throw _privateConstructorUsedError;
+  BlocStatesEnum get currentState => throw _privateConstructorUsedError;
   String? get requestError => throw _privateConstructorUsedError;
   Map<FieldTypesEnum, FieldErrorEnum> get validationError =>
       throw _privateConstructorUsedError;
@@ -340,7 +340,7 @@ abstract class $SignInStateCopyWith<$Res> {
       _$SignInStateCopyWithImpl<$Res, SignInState>;
   @useResult
   $Res call(
-      {SignInStates currentState,
+      {BlocStatesEnum currentState,
       String? requestError,
       Map<FieldTypesEnum, FieldErrorEnum> validationError});
 }
@@ -366,7 +366,7 @@ class _$SignInStateCopyWithImpl<$Res, $Val extends SignInState>
       currentState: null == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
-              as SignInStates,
+              as BlocStatesEnum,
       requestError: freezed == requestError
           ? _value.requestError
           : requestError // ignore: cast_nullable_to_non_nullable
@@ -388,7 +388,7 @@ abstract class _$$SignInStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {SignInStates currentState,
+      {BlocStatesEnum currentState,
       String? requestError,
       Map<FieldTypesEnum, FieldErrorEnum> validationError});
 }
@@ -412,7 +412,7 @@ class __$$SignInStateImplCopyWithImpl<$Res>
       currentState: null == currentState
           ? _value.currentState
           : currentState // ignore: cast_nullable_to_non_nullable
-              as SignInStates,
+              as BlocStatesEnum,
       requestError: freezed == requestError
           ? _value.requestError
           : requestError // ignore: cast_nullable_to_non_nullable
@@ -429,14 +429,14 @@ class __$$SignInStateImplCopyWithImpl<$Res>
 
 class _$SignInStateImpl implements _SignInState {
   const _$SignInStateImpl(
-      {this.currentState = SignInStates.initial,
+      {this.currentState = BlocStatesEnum.initial,
       this.requestError = null,
       final Map<FieldTypesEnum, FieldErrorEnum> validationError = const {}})
       : _validationError = validationError;
 
   @override
   @JsonKey()
-  final SignInStates currentState;
+  final BlocStatesEnum currentState;
   @override
   @JsonKey()
   final String? requestError;
@@ -480,13 +480,13 @@ class _$SignInStateImpl implements _SignInState {
 
 abstract class _SignInState implements SignInState {
   const factory _SignInState(
-          {final SignInStates currentState,
+          {final BlocStatesEnum currentState,
           final String? requestError,
           final Map<FieldTypesEnum, FieldErrorEnum> validationError}) =
       _$SignInStateImpl;
 
   @override
-  SignInStates get currentState;
+  BlocStatesEnum get currentState;
   @override
   String? get requestError;
   @override
@@ -494,5 +494,242 @@ abstract class _SignInState implements SignInState {
   @override
   @JsonKey(ignore: true)
   _$$SignInStateImplCopyWith<_$SignInStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RequestUserDto _$RequestUserDtoFromJson(Map<String, dynamic> json) {
+  return _RequestUserDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RequestUserDto {
+  @JsonKey(name: "grant_type")
+  String get grantType => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  @JsonKey(name: "client_id")
+  String get clientId => throw _privateConstructorUsedError;
+  @JsonKey(name: "client_secret")
+  String get clientSecret => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RequestUserDtoCopyWith<RequestUserDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RequestUserDtoCopyWith<$Res> {
+  factory $RequestUserDtoCopyWith(
+          RequestUserDto value, $Res Function(RequestUserDto) then) =
+      _$RequestUserDtoCopyWithImpl<$Res, RequestUserDto>;
+  @useResult
+  $Res call(
+      {@JsonKey(name: "grant_type") String grantType,
+      String username,
+      String password,
+      @JsonKey(name: "client_id") String clientId,
+      @JsonKey(name: "client_secret") String clientSecret});
+}
+
+/// @nodoc
+class _$RequestUserDtoCopyWithImpl<$Res, $Val extends RequestUserDto>
+    implements $RequestUserDtoCopyWith<$Res> {
+  _$RequestUserDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? grantType = null,
+    Object? username = null,
+    Object? password = null,
+    Object? clientId = null,
+    Object? clientSecret = null,
+  }) {
+    return _then(_value.copyWith(
+      grantType: null == grantType
+          ? _value.grantType
+          : grantType // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      clientId: null == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
+              as String,
+      clientSecret: null == clientSecret
+          ? _value.clientSecret
+          : clientSecret // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RequestUserDtoImplCopyWith<$Res>
+    implements $RequestUserDtoCopyWith<$Res> {
+  factory _$$RequestUserDtoImplCopyWith(_$RequestUserDtoImpl value,
+          $Res Function(_$RequestUserDtoImpl) then) =
+      __$$RequestUserDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: "grant_type") String grantType,
+      String username,
+      String password,
+      @JsonKey(name: "client_id") String clientId,
+      @JsonKey(name: "client_secret") String clientSecret});
+}
+
+/// @nodoc
+class __$$RequestUserDtoImplCopyWithImpl<$Res>
+    extends _$RequestUserDtoCopyWithImpl<$Res, _$RequestUserDtoImpl>
+    implements _$$RequestUserDtoImplCopyWith<$Res> {
+  __$$RequestUserDtoImplCopyWithImpl(
+      _$RequestUserDtoImpl _value, $Res Function(_$RequestUserDtoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? grantType = null,
+    Object? username = null,
+    Object? password = null,
+    Object? clientId = null,
+    Object? clientSecret = null,
+  }) {
+    return _then(_$RequestUserDtoImpl(
+      grantType: null == grantType
+          ? _value.grantType
+          : grantType // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      clientId: null == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
+              as String,
+      clientSecret: null == clientSecret
+          ? _value.clientSecret
+          : clientSecret // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RequestUserDtoImpl implements _RequestUserDto {
+  const _$RequestUserDtoImpl(
+      {@JsonKey(name: "grant_type") required this.grantType,
+      required this.username,
+      required this.password,
+      @JsonKey(name: "client_id") required this.clientId,
+      @JsonKey(name: "client_secret") required this.clientSecret});
+
+  factory _$RequestUserDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RequestUserDtoImplFromJson(json);
+
+  @override
+  @JsonKey(name: "grant_type")
+  final String grantType;
+  @override
+  final String username;
+  @override
+  final String password;
+  @override
+  @JsonKey(name: "client_id")
+  final String clientId;
+  @override
+  @JsonKey(name: "client_secret")
+  final String clientSecret;
+
+  @override
+  String toString() {
+    return 'RequestUserDto(grantType: $grantType, username: $username, password: $password, clientId: $clientId, clientSecret: $clientSecret)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RequestUserDtoImpl &&
+            (identical(other.grantType, grantType) ||
+                other.grantType == grantType) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.clientId, clientId) ||
+                other.clientId == clientId) &&
+            (identical(other.clientSecret, clientSecret) ||
+                other.clientSecret == clientSecret));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, grantType, username, password, clientId, clientSecret);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RequestUserDtoImplCopyWith<_$RequestUserDtoImpl> get copyWith =>
+      __$$RequestUserDtoImplCopyWithImpl<_$RequestUserDtoImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RequestUserDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RequestUserDto implements RequestUserDto {
+  const factory _RequestUserDto(
+          {@JsonKey(name: "grant_type") required final String grantType,
+          required final String username,
+          required final String password,
+          @JsonKey(name: "client_id") required final String clientId,
+          @JsonKey(name: "client_secret") required final String clientSecret}) =
+      _$RequestUserDtoImpl;
+
+  factory _RequestUserDto.fromJson(Map<String, dynamic> json) =
+      _$RequestUserDtoImpl.fromJson;
+
+  @override
+  @JsonKey(name: "grant_type")
+  String get grantType;
+  @override
+  String get username;
+  @override
+  String get password;
+  @override
+  @JsonKey(name: "client_id")
+  String get clientId;
+  @override
+  @JsonKey(name: "client_secret")
+  String get clientSecret;
+  @override
+  @JsonKey(ignore: true)
+  _$$RequestUserDtoImplCopyWith<_$RequestUserDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

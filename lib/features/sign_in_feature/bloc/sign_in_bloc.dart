@@ -1,27 +1,55 @@
-import 'dart:async';
-
-import 'package:bloc/bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:imagegalery/features/helpers/validation_helper.dart';
-
-import '../../../code_kit/resources/enums.dart';
-
-part 'sign_in_bloc.freezed.dart';
-part 'sign_in_event.dart';
-part 'sign_in_state.dart';
+part of "../sign_in_module.dart";
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  SignInBloc() : super(const SignInState()) {
+  final SignInRepo _signInRepo;
+  final UserTokenRepo _tokenRepo;
+
+  SignInBloc(this._signInRepo, this._tokenRepo) : super(const SignInState()) {
     on<_SignIn>(_onSignInPressed);
   }
+
   FutureOr<void> _onSignInPressed(_SignIn event, Emitter<SignInState> emit) async {
+    emit(
+      state.copyWith(
+        validationError: {},
+        currentState: BlocStatesEnum.loading,
+      ),
+    );
+
     final errors = {
       ...ValidationHelper.validateEmail(event.email),
       ...ValidationHelper.validatePassword(event.password),
     };
     if (errors.isNotEmpty) {
       return emit(
-        state.copyWith(validationError: errors),
+        state.copyWith(
+          validationError: errors,
+          currentState: BlocStatesEnum.validationError,
+        ),
+      );
+    }
+    try {
+      final tokenModel = await _signInRepo.signIn(
+        email: event.email,
+        password: event.password,
+      );
+
+      if (tokenModel != null) {
+        _tokenRepo.saveTokens(tokenModel);
+        emit(
+          state.copyWith(currentState: BlocStatesEnum.success),
+        );
+      } else {
+        emit(
+          state.copyWith(currentState: BlocStatesEnum.requestError),
+        );
+      }
+    } catch (e) {
+      emit(
+        state.copyWith(
+          currentState: BlocStatesEnum.requestError,
+          requestError: e.toString(),
+        ),
       );
     }
   }

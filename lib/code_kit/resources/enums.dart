@@ -17,3 +17,18 @@ enum FieldErrorEnum {
   shortPas,
   incorrectBirthday,
 }
+
+enum BlocStatesEnum {
+  initial,
+  success,
+  loading,
+  loaded,
+  error,
+  validationError,
+  requestError,
+}
+
+enum ApiExceptionTypes {
+  lostConnection,
+  tokenExpired,
+}

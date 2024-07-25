@@ -1,8 +1,8 @@
-part of '../../sign_up_feature.dart';
+part of '../../sign_up_module.dart';
 
 @freezed
-class UserDto with _$UserDto {
-  const factory UserDto({
+class SignUpUserDto with _$SignUpUserDto {
+  const factory SignUpUserDto({
     required String email,
     required String userProfilePhoto,
     required DateTime birthday,
@@ -10,5 +10,5 @@ class UserDto with _$UserDto {
     required List<String> roles,
     required String phone,
     required String password,
-  }) = _UserDto;
+  }) = _SignUpUserDto;
 }

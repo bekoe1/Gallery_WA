@@ -1,10 +1,4 @@
-import 'package:bloc/bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:imagegalery/features/onboarding_feature/repo/user_token_repo.dart';
-
-part 'onboarding_bloc.freezed.dart';
-part 'onboarding_event.dart';
-part 'onboarding_state.dart';
+part of '../onboarding_feature_module.dart';
 
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   final UserTokenRepo tokenRepo;
@@ -17,13 +11,13 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     if (tokenExists == null) {
       emit(
         state.copyWith(
-          currentState: OnboardingStates.tokenDoesNotExist,
+          currentState: BlocStatesEnum.error,
         ),
       );
     } else {
       emit(
         state.copyWith(
-          currentState: OnboardingStates.tokenExistsState,
+          currentState: BlocStatesEnum.success,
         ),
       );
     }

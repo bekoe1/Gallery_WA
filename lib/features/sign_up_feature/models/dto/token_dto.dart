@@ -1,4 +1,4 @@
-part of '../../sign_up_feature.dart';
+part of '../../sign_up_module.dart';
 
 @freezed
 class TokenDto with _$TokenDto {
@@ -6,4 +6,6 @@ class TokenDto with _$TokenDto {
     @JsonKey(name: 'refresh_token') required String refreshToken,
     @JsonKey(name: 'access_token') required String accessToken,
   }) = _TokenDto;
+
+  factory TokenDto.fromJson(Map<String, dynamic> json) => _$TokenDtoFromJson(json);
 }

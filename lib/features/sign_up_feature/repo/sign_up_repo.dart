@@ -1,7 +1,7 @@
-import '../sign_up_feature.dart';
+import '../sign_up_module.dart';
 
 abstract class SignUpRepo {
   Future<String?> createNewUser({
-    required RequestUserDto dto,
+    required RequestUserSignUpDto dto,
   });
 }

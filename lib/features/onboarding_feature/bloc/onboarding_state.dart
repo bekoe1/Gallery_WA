@@ -1,14 +1,8 @@
-part of 'onboarding_bloc.dart';
-
-enum OnboardingStates {
-  initial,
-  tokenExistsState,
-  tokenDoesNotExist,
-}
+part of '../onboarding_feature_module.dart';
 
 @freezed
 class OnboardingState with _$OnboardingState {
   const factory OnboardingState({
-    @Default(OnboardingStates.initial) OnboardingStates currentState,
+    @Default(BlocStatesEnum.initial) BlocStatesEnum currentState,
   }) = _OnboardingState;
 }

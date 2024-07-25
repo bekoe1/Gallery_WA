@@ -1,14 +1,14 @@
-part of '../../../sign_up_feature.dart';
+part of '../../../sign_up_module.dart';
 
 @freezed
-class RequestUserDto with _$RequestUserDto {
-  const factory RequestUserDto({
+class RequestUserSignUpDto with _$RequestUserSignUpDto {
+  const factory RequestUserSignUpDto({
     required String email,
     required DateTime birthday,
     required String displayName,
-    String? phone,
+    required String phone,
     required String password,
   }) = _RequestUserDto;
 
-  factory RequestUserDto.fromJson(Map<String, dynamic> json) => _$RequestUserDtoFromJson(json);
+  factory RequestUserSignUpDto.fromJson(Map<String, dynamic> json) => _$RequestUserSignUpDtoFromJson(json);
 }

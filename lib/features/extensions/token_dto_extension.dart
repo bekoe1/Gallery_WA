@@ -1,12 +1,11 @@
-import 'package:imagegalery/features/sign_up_feature/models/model/token_model.dart';
+import '../onboarding_feature/onboarding_feature_module.dart';
+import '../sign_up_feature/sign_up_module.dart';
 
-import '../sign_up_feature/sign_up_feature.dart';
-
-extension on TokenDto {
-  TokenModel toModel(TokenDto token) {
+extension ToModel on TokenDto {
+  toModel() {
     return TokenModel(
-      refreshToken: token.refreshToken,
-      accessToken: token.accessToken,
+      refreshToken: refreshToken,
+      accessToken: accessToken,
     );
   }
 }

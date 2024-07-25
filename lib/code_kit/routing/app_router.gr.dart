@@ -11,9 +11,9 @@
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart'
     as _i1;
-import 'package:imagegalery/features/sign_in_feature/screens/sign_in_screen.dart'
+import 'package:imagegalery/features/sign_in_feature/sign_in_module.dart'
     as _i2;
-import 'package:imagegalery/features/sign_up_feature/screens/sign_up_screen.dart'
+import 'package:imagegalery/features/sign_up_feature/sign_up_module.dart'
     as _i3;
 
 abstract class $AppRouter extends _i4.RootStackRouter {

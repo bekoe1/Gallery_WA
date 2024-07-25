@@ -239,6 +239,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Your token expired`
+  String get tokenExpired {
+    return Intl.message(
+      'Your token expired',
+      name: 'tokenExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are not connected to the network or your internet is weak`
+  String get lostConnection {
+    return Intl.message(
+      'You are not connected to the network or your internet is weak',
+      name: 'lostConnection',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

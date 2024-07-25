@@ -1,20 +1,4 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:imagegalery/code_kit/di/injection.dart';
-import 'package:imagegalery/code_kit/resources/constants/api_constants.dart';
-import 'package:imagegalery/code_kit/resources/enums.dart';
-import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
-import 'package:imagegalery/code_kit/resources/themes_data/app_colors.dart';
-import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';
-import 'package:imagegalery/code_kit/routing/app_router.gr.dart';
-import 'package:imagegalery/extensions/localization_extension.dart';
-import 'package:imagegalery/features/extensions/errors_enum_extension.dart';
-import 'package:imagegalery/features/sign_up_feature/repo/sign_up_repo.dart';
-import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';
-
-import '../bloc/auth_freezed/sign_up_bloc.dart';
+part of '../sign_up_module.dart';
 
 @RoutePage()
 class SignUpScreen extends StatefulWidget implements AutoRouteWrapper {
@@ -60,7 +44,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
       builder: (context, state) {
         return BlocListener<SignUpBloc, SignUpState>(
           listener: (context, state) {
-            if (state.currentState == SignUpStates.requestError) {
+            if (state.currentState == BlocStatesEnum.success) {
+              context.router.push(const SignInRoute());
+            }
+            if (state.currentState == BlocStatesEnum.requestError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
@@ -69,23 +56,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               );
             }
-
-            if (state.currentState == SignUpStates.signUpDone) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    context.localization.successSignIn,
-                  ),
-                ),
-              );
-
-              context.router.push(
-                const SignInRoute(),
-              );
-            }
           },
           child: Scaffold(
             appBar: AppBar(
+              backgroundColor: UiKitColors.white,
               leadingWidth: 100,
               toolbarHeight: 50,
               leading: UiKitBackButton(
@@ -128,7 +102,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     width: 343,
                     child: UiKitTextFormField(
-                      // errorText: state.validationError[FieldTypesEnum.usernameField]?.currentError,
                       errorText: state.validationError[FieldTypesEnum.usernameField]?.currentError(context),
                       controller: _usernameController,
                       keyboardType: TextInputType.name,
@@ -225,6 +198,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     width: 163,
                     child: UiKitFilledButton(
+                      isLoading: state.currentState == BlocStatesEnum.loading ? true : false,
                       text: context.localization.SignUp,
                       onPressed: () {
                         context.read<SignUpBloc>().add(
@@ -243,6 +217,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     width: 163,
                     child: UiKitTextButton(
+                      isLoading: state.currentState == BlocStatesEnum.loading ? true : false,
                       text: context.localization.SignIn,
                       onPressed: () {
                         context.router.push(
