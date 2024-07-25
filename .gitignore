@@ -42,11 +42,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-lib/generated
-lib/code_kit/di/injection.config.dart
-lib/code_kit/routing/app_router.gr.dart
-lib/features/onboarding_feature/bloc/onboarding_bloc.freezed.dart
-lib/features/onboarding_feature/onboarding_feature_module.freezed.dart
-lib/features/onboarding_feature/onboarding_feature_module.g.dart
-lib/features/sign_up_feature/sign_up_module.freezed.dart
-lib/features/sign_up_feature/sign_up_module.g.dart
+
+*.config.dart
+*.gr.dart
+*.freezed.dart
+*.g.dart

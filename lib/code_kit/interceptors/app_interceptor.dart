@@ -4,6 +4,8 @@ class AppInterceptor extends Interceptor {
   final UserTokenRepo tokenRepo;
   final options = RequestOptions(
     baseUrl: ApiConstants.baseUrl,
+    connectTimeout: const Duration(milliseconds: 2000),
+    receiveTimeout: const Duration(milliseconds: 2000),
   );
 
   Future<bool> _hasNetwork() async {
