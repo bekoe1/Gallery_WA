@@ -56,18 +56,21 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         );
       }
     } on DioException catch (e) {
-      final String errorText;
       if (e.response?.statusCode == 400) {
-        errorText = e.response!.data[AppConstants.responseDescription].toString();
+        emit(
+          state.copyWith(
+            status: BlocStatesEnum.requestError,
+            requestError: e.response?.data[AppConstants.responseDescription],
+          ),
+        );
       } else {
-        errorText = e.response?.data;
+        emit(
+          state.copyWith(
+            status: BlocStatesEnum.requestError,
+            requestError: e.error.toString(),
+          ),
+        );
       }
-      emit(
-        state.copyWith(
-          status: BlocStatesEnum.requestError,
-          requestError: errorText,
-        ),
-      );
     } catch (e) {
       emit(
         state.copyWith(

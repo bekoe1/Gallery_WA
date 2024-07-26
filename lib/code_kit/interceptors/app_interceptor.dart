@@ -3,6 +3,7 @@ part of 'interceptors_module.dart';
 class AppInterceptor extends Interceptor {
   final UserTokenRepo tokenRepo;
 
+  // TODO: Вынести в Helper
   Future<bool> _hasNetwork() async {
     try {
       final foo = await InternetAddress.lookup('google.com');
@@ -23,19 +24,23 @@ class AppInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     final connectedToNetwork = await _hasNetwork();
+
     if (connectedToNetwork) {
       final token = await tokenRepo.getTokenFromStorage();
-      options.headers['Authorization'] = "Bearer ${token?.accessToken}";
+
+      if (token?.accessToken != null) {
+        options.headers['Authorization'] = "Bearer ${token?.accessToken}";
+      }
+
       return handler.next(options);
     } else {
-      handler.reject(
+      return handler.reject(
         ApiExceptions(
           requestOptions: options,
           errorMessage: AppConstants.lostConnection,
         ),
       );
     }
-    return handler.next(options);
   }
 
   @override
@@ -53,8 +58,8 @@ class AppInterceptor extends Interceptor {
     switch (err.response?.statusCode) {
       case 401:
         try {
+          log("401 --  ${err.response.toString()}");
           final newToken = await _refreshToken();
-          log(newToken?.accessToken ?? "NO TOKEN");
           options.headers['Authorization'] = "Bearer ${newToken?.accessToken}";
           final request = await Dio().fetch(options);
 
@@ -68,6 +73,8 @@ class AppInterceptor extends Interceptor {
           );
         }
       case 400:
+        log("400 --  ${err.response.toString()}");
+
         final responseData = err.response!.data;
         final error = responseData['error'];
         if (error == "invalid_grant") {

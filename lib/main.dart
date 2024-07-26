@@ -2,11 +2,13 @@ part of 'main_module.dart';
 
 void main() {
   getIt.init();
+
   getIt<Dio>().interceptors.add(
         AppInterceptor(
           tokenRepo: getIt<UserTokenRepo>(),
         ),
       );
+
   runApp(MyApp());
 }
 
