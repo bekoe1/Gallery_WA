@@ -34,20 +34,23 @@ class UiKitTextFormField extends StatefulWidget {
 class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      textInputAction: widget.textInputAction,
-      controller: widget.controller,
-      onFieldSubmitted: (text) {},
-      focusNode: widget.focusNode,
-      cursorWidth: 1,
-      readOnly: widget.readonly!,
-      enabled: widget.isEnabled ?? true,
-      onTap: widget.onTap,
-      cursorColor: Colors.black,
-      obscureText: widget.obscuringText ?? false,
-      cursorErrorColor: UiKitColors.black,
-      decoration: buildInputDecoration(),
-      keyboardType: widget.keyboardType,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: TextFormField(
+        textInputAction: widget.textInputAction,
+        controller: widget.controller,
+        onFieldSubmitted: (text) {},
+        focusNode: widget.focusNode,
+        cursorWidth: 1,
+        readOnly: widget.readonly!,
+        enabled: widget.isEnabled ?? true,
+        onTap: widget.onTap,
+        cursorColor: Colors.black,
+        obscureText: widget.obscuringText ?? false,
+        cursorErrorColor: UiKitColors.black,
+        decoration: buildInputDecoration(),
+        keyboardType: widget.keyboardType,
+      ),
     );
   }
 

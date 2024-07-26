@@ -7,6 +7,7 @@ enum FieldTypesEnum {
 }
 
 enum FieldErrorEnum {
+  tooYoungUser,
   emptyPas,
   emptyEmail,
   emptyData,
@@ -26,9 +27,4 @@ enum BlocStatesEnum {
   error,
   validationError,
   requestError,
-}
-
-enum ApiExceptionTypes {
-  lostConnection,
-  tokenExpired,
 }

@@ -44,6 +44,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           state.copyWith(currentState: BlocStatesEnum.requestError),
         );
       }
+    } on ApiExceptions catch (e) {
+      emit(
+        state.copyWith(
+          currentState: BlocStatesEnum.requestError,
+          requestError: e.message,
+        ),
+      );
     } catch (e) {
       emit(
         state.copyWith(

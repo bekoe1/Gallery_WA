@@ -32,64 +32,64 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignInBloc, SignInState>(
-      builder: (context, state) {
-        return BlocListener<SignInBloc, SignInState>(
-          listener: (context, state) {
-            if (state.currentState == BlocStatesEnum.requestError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    state.requestError ?? context.localization.someError,
-                  ),
-                ),
-              );
-            }
-            if (state.currentState == BlocStatesEnum.success) {
-              //TODO in next feature - Route to the main screen
-            }
-          },
-          child: Scaffold(
-            appBar: AppBar(
-              leadingWidth: 100,
-              toolbarHeight: 50,
-              leading: UiKitBackButton(
-                onTap: () {
-                  context.router.maybePop();
-                },
-              ),
-              bottom: const PreferredSize(
-                preferredSize: Size.fromHeight(
-                  5.0,
-                ),
-                child: Divider(
-                  height: 1,
-                  color: UiKitColors.gray,
-                ),
+    return BlocConsumer<SignInBloc, SignInState>(
+      listener: (context, state) {
+        if (state.currentState == BlocStatesEnum.requestError) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                state.requestError ?? context.localization.someError,
               ),
             ),
-            body: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 112),
-                  Center(
-                    child: Text(
-                      context.localization.SignIn,
-                      style: AppTextStyles.h1.copyWith(
-                        color: UiKitColors.black,
-                      ),
+          );
+        }
+        if (state.currentState == BlocStatesEnum.success) {
+          //TODO in next feature - Route to the main screen
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            leadingWidth: 100,
+            toolbarHeight: 50,
+            leading: UiKitBackButton(
+              onTap: () {
+                context.router.maybePop();
+              },
+            ),
+            bottom: const PreferredSize(
+              preferredSize: Size.fromHeight(
+                5.0,
+              ),
+              child: Divider(
+                height: 1,
+                color: UiKitColors.gray,
+              ),
+            ),
+          ),
+          body: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 112),
+                Center(
+                  child: Text(
+                    context.localization.signIn,
+                    style: AppTextStyles.h1.copyWith(
+                      color: UiKitColors.black,
                     ),
                   ),
-                  const Divider(
-                    indent: 150,
-                    endIndent: 145,
-                    thickness: 3,
-                    color: UiKitColors.main,
-                  ),
-                  const SizedBox(height: 60),
-                  SizedBox(
+                ),
+                const Divider(
+                  indent: 150,
+                  endIndent: 145,
+                  thickness: 3,
+                  color: UiKitColors.main,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 60),
+                  child: SizedBox(
                     width: 343,
                     child: UiKitTextFormField(
                       controller: _emailController,
@@ -100,30 +100,31 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    width: 343,
-                    child: UiKitTextFormField(
-                      controller: _passController,
-                      errorText: state.validationError[FieldTypesEnum.passwordField]?.currentError(context),
-                      obscuringText: _obscuringPass,
-                      hintText: ApiConstants.passwordQuery,
-                      icon: GestureDetector(
-                        child: SvgPicture.asset(
-                          _obscuringPass ? AppIcons.visibleOffIcon : AppIcons.visibleOnIcon,
-                        ),
-                        onTap: () {
-                          _changingFlag();
-                        },
+                ),
+                SizedBox(
+                  width: 343,
+                  child: UiKitTextFormField(
+                    controller: _passController,
+                    errorText: state.validationError[FieldTypesEnum.passwordField]?.currentError(context),
+                    obscuringText: _obscuringPass,
+                    hintText: ApiConstants.passwordQuery,
+                    icon: GestureDetector(
+                      child: SvgPicture.asset(
+                        _obscuringPass ? AppIcons.visibleOffIcon : AppIcons.visibleOnIcon,
                       ),
+                      onTap: () {
+                        _changingFlag();
+                      },
                     ),
                   ),
-                  const SizedBox(height: 60),
-                  SizedBox(
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: SizedBox(
                     width: 163,
                     child: UiKitFilledButton(
-                      isLoading: state.currentState == BlocStatesEnum.loading ? true : false,
-                      text: context.localization.SignIn,
+                      isLoading: state.currentState == BlocStatesEnum.loading,
+                      text: context.localization.signIn,
                       onPressed: () {
                         context.read<SignInBloc>().add(
                               SignInEvent.signIn(
@@ -134,21 +135,20 @@ class _SignInScreenState extends State<SignInScreen> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  SizedBox(
-                    width: 163,
-                    child: UiKitTextButton(
-                      isLoading: state.currentState == BlocStatesEnum.loading ? true : false,
-                      text: context.localization.SignUp,
-                      onPressed: () {
-                        context.router.push(
-                          const SignUpRoute(),
-                        );
-                      },
-                    ),
+                ),
+                SizedBox(
+                  width: 163,
+                  child: UiKitTextButton(
+                    isLoading: state.currentState == BlocStatesEnum.loading,
+                    text: context.localization.signUp,
+                    onPressed: () {
+                      context.router.push(
+                        const SignUpRoute(),
+                      );
+                    },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

@@ -10,23 +10,19 @@ class SignInDataProvider implements SignInRepo {
     required String email,
     required String password,
   }) async {
-    try {
-      final requestDto = RequestUserDto(
-        grantType: ApiConstants.passwordQuery,
-        username: email,
-        password: password,
-        clientId: ApiConstants.clientIdValue,
-        clientSecret: ApiConstants.clientSecretValue,
-      );
-      final response = await _dio.post(
-        "${ApiConstants.baseUrl}/token",
-        data: requestDto.toJson(),
-      );
+    final requestDto = RequestUserDto(
+      grantType: ApiConstants.passwordQuery,
+      username: email,
+      password: password,
+      clientId: ApiConstants.clientIdValue,
+      clientSecret: ApiConstants.clientSecretValue,
+    );
+    final response = await _dio.post(
+      "${ApiConstants.baseUrl}/token",
+      data: requestDto.toJson(),
+    );
 
-      final tokenModel = TokenDto.fromJson(response.data).toModel();
-      return tokenModel;
-    } catch (e) {
-      return null;
-    }
+    final tokenModel = TokenDto.fromJson(response.data).toModel();
+    return tokenModel;
   }
 }

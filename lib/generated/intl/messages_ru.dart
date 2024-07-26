@@ -22,8 +22,6 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "SignIn": MessageLookupByLibrary.simpleMessage("Войти"),
-        "SignUp": MessageLookupByLibrary.simpleMessage("Зарегестрироваться"),
         "alreadyHaveAcc":
             MessageLookupByLibrary.simpleMessage("У меня уже есть аккаунт"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
@@ -52,10 +50,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("пароль слишком короткий"),
         "shortUsername": MessageLookupByLibrary.simpleMessage(
             "имя пользователя не может быть меньше 6 символов"),
+        "signIn": MessageLookupByLibrary.simpleMessage("Войти"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Зарегестрироваться"),
         "someError": MessageLookupByLibrary.simpleMessage("Возникла ошибка"),
         "successSignIn": MessageLookupByLibrary.simpleMessage(
             "Вы успешно зарегестрировались"),
         "tokenExpired": MessageLookupByLibrary.simpleMessage("Ваш токен истек"),
+        "userIsTooYoung": MessageLookupByLibrary.simpleMessage(
+            "Возрастные ограничения - не моложе 10 лет"),
         "welcomeText":
             MessageLookupByLibrary.simpleMessage("Добро пожаловать в галерею!")
       };

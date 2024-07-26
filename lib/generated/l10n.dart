@@ -171,20 +171,20 @@ class S {
   }
 
   /// `Sign In`
-  String get SignIn {
+  String get signIn {
     return Intl.message(
       'Sign In',
-      name: 'SignIn',
+      name: 'signIn',
       desc: '',
       args: [],
     );
   }
 
   /// `Sign Up`
-  String get SignUp {
+  String get signUp {
     return Intl.message(
       'Sign Up',
-      name: 'SignUp',
+      name: 'signUp',
       desc: '',
       args: [],
     );
@@ -255,6 +255,16 @@ class S {
     return Intl.message(
       'You are not connected to the network or your internet is weak',
       name: 'lostConnection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Age restrictions - at least 10 years old`
+  String get userIsTooYoung {
+    return Intl.message(
+      'Age restrictions - at least 10 years old',
+      name: 'userIsTooYoung',
       desc: '',
       args: [],
     );

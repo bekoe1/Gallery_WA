@@ -11,14 +11,14 @@
   "incorrectEmail": "email is incorrect",
   "emptyDate": "date cannot be empty",
   "shortUsername": "username is too short",
-  "SignIn": "Sign In",
-  "SignUp": "Sign Up",
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
   "someError": "Error occupied",
   "successSignIn": "Sign in success",
   "welcomeText": "Welcome to Gallery!",
   "alreadyHaveAcc": "I already have an account",
   "createAccount": "Create an account",
   "tokenExpired" : "Your token expired",
-  "lostConnection": "You are not connected to the network or your internet is weak"
-
+  "lostConnection": "You are not connected to the network or your internet is weak",
+  "userIsTooYoung": "Age restrictions - at least 10 years old"
 }

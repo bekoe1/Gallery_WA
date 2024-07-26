@@ -11,7 +11,7 @@ class AppInputDecorationTheme {
     ),
     enabledBorder: OutlineInputBorder(
       borderSide: const BorderSide(
-        color: Color(0xffbb3b3b3),
+        color: UiKitColors.gray,
       ),
       borderRadius: BorderRadius.circular(10),
     ),
@@ -24,17 +24,17 @@ class AppInputDecorationTheme {
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
-        color: Color(0xffbed3e3e),
+        color: UiKitColors.errorRed,
       ),
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
-        color: Color(0xffbed3e3e),
+        color: UiKitColors.errorRed,
       ),
     ),
     errorStyle: AppTextStyles.caption.copyWith(
-      color: const Color(0xffbed3e3e),
+      color: UiKitColors.errorRed,
       fontSize: 12,
     ),
     contentPadding: const EdgeInsets.fromLTRB(9, 10, 9, 10),

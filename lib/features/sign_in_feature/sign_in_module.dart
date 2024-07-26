@@ -11,6 +11,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:imagegalery/code_kit/di/injection.dart';
 import 'package:imagegalery/code_kit/resources/constants/api_constants.dart';
 import 'package:imagegalery/code_kit/resources/enums.dart';
+import 'package:imagegalery/code_kit/resources/exceptions/api_exceptions.dart';
 import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
 import 'package:imagegalery/code_kit/resources/themes_data/app_colors.dart';
 import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';

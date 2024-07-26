@@ -10,8 +10,8 @@ class AppInterceptor extends Interceptor {
 
   Future<bool> _hasNetwork() async {
     try {
-      final result = await InternetAddress.lookup('example.com');
-      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+      final result = await InternetAddress.lookup(ApiConstants.baseUrl);
+      return result.isNotEmpty;
     } on SocketException catch (_) {
       return false;
     }
@@ -21,20 +21,25 @@ class AppInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    super.onRequest(options, handler);
     final connectedToNetwork = await _hasNetwork();
     if (connectedToNetwork) {
       final token = await tokenRepo.getTokenFromStorage();
       options.headers['Authorization'] = "Bearer ${token?.accessToken}";
-      handler.next(options);
+      return handler.next(options);
     } else {
       return handler.reject(
         ApiExceptions(
           requestOptions: options,
-          exceptionType: ApiExceptionTypes.lostConnection,
+          errorMessage: ApiConstants.lostConnection,
         ),
       );
     }
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    // TODO: implement onResponse
+    super.onResponse(response, handler);
   }
 
   @override
@@ -52,10 +57,22 @@ class AppInterceptor extends Interceptor {
           return handler.reject(
             ApiExceptions(
               requestOptions: options,
-              exceptionType: ApiExceptionTypes.tokenExpired,
+              errorMessage: ApiConstants.tokenExpired,
+            ),
+          );
+        }
+      case (400):
+        final responseData = err.response!.data;
+        final error = responseData['error'];
+        if (error == "invalid_grant") {
+          return handler.reject(
+            ApiExceptions(
+              requestOptions: options,
+              errorMessage: responseData["message"].toString(),
             ),
           );
         }
     }
+    return handler.next(err);
   }
 }

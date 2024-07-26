@@ -17,7 +17,7 @@ class UiKitFilledButton extends StatelessWidget {
     return FilledButton(
       style: (onPressed != null)
           ? ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(UiKitColors.black),
+              backgroundColor: isLoading ? const WidgetStatePropertyAll(UiKitColors.black) : null,
               textStyle: WidgetStateProperty.resolveWith(
                 (states) {
                   if (states.contains(WidgetState.disabled)) {

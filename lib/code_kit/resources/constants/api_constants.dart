@@ -16,10 +16,12 @@ class ApiConstants {
   static const accessTokenStorageName = "accessToken";
   static const refreshTokenQueryValue = "refresh_token";
   static const refreshTokenStorageName = "refreshToken";
+  static const invalidGrantError = "Email or password entered incorrectly";
   static const rolesValue = '/roles/default';
   static const empty = "";
   static const confirmPas = "confirm password";
   static const phone = "phone";
+  static const dateOnScreenRegExp = r'^.{0,10}';
   static const signUpEndPoint = "/users";
   static const lostConnection = "Lost connection to network";
   static const tokenExpired = "Token expired";

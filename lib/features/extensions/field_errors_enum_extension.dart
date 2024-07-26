@@ -24,6 +24,8 @@ extension FieldErrorExtension on FieldErrorEnum {
         return context.localization.incorrectEmail;
       case FieldErrorEnum.emptyData:
         return context.localization.emptyDate;
+      case FieldErrorEnum.tooYoungUser:
+        return context.localization.userIsTooYoung;
     }
   }
 }

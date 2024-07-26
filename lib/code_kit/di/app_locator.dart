@@ -28,12 +28,14 @@ abstract class AppModule {
     );
   }
 
+  @Singleton()
   SignInRepo signInRepo() {
     return SignInDataProvider(
       dio: getIt<Dio>(),
     );
   }
 
+  @Singleton()
   SignUpRepo signUpRepo() {
     return SignUpDataProvider(
       dio: getIt<Dio>(),

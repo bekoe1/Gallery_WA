@@ -69,7 +69,7 @@ class ValidationHelper {
 
     if (value.isAfter(minDate)) {
       return {
-        FieldTypesEnum.birthdayField: FieldErrorEnum.incorrectBirthday,
+        FieldTypesEnum.birthdayField: FieldErrorEnum.tooYoungUser,
       };
     }
     return {};

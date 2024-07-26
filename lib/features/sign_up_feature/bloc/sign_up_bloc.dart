@@ -8,50 +8,65 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   }
 
   FutureOr<void> _onSignUpPressed(_SignUp event, Emitter<SignUpState> emit) async {
-    emit(
-      state.copyWith(
-        currentState: BlocStatesEnum.loading,
-        validationError: {},
-        requestError: null,
-      ),
-    );
-    final errors = {
-      ...ValidationHelper.validateEmail(event.email),
-      ...ValidationHelper.validateBirthday(event.birthday),
-      ...ValidationHelper.validateConfirmedPas(event.password, event.confirmedPas),
-      ...ValidationHelper.validatePassword(event.password),
-      ...ValidationHelper.validateUsername(event.username),
-    };
-    if (errors.isNotEmpty) {
-      return emit(
-        state.copyWith(
-          validationError: errors,
-          currentState: BlocStatesEnum.validationError,
-        ),
-      );
-    }
-    int nextInt(int min, int max) => min + Random().nextInt((max + 1) - min);
-    final date = DateTime.parse(event.birthday);
-    final requestDto = RequestUserSignUpDto(
-      email: event.email,
-      birthday: date,
-      displayName: event.username,
-      password: event.password,
-      phone: nextInt(100, 1000).toString(),
-    );
-
-    final response = await signUpRepo.createNewUser(dto: requestDto);
-    if (response == null) {
+    try {
       emit(
         state.copyWith(
-          currentState: BlocStatesEnum.success,
+          currentState: BlocStatesEnum.loading,
+          validationError: {},
+          requestError: null,
         ),
       );
-    } else {
+      final errors = {
+        ...ValidationHelper.validateEmail(event.email),
+        ...ValidationHelper.validateBirthday(event.birthday),
+        ...ValidationHelper.validateConfirmedPas(event.password, event.confirmedPas),
+        ...ValidationHelper.validatePassword(event.password),
+        ...ValidationHelper.validateUsername(event.username),
+      };
+      if (errors.isNotEmpty) {
+        return emit(
+          state.copyWith(
+            validationError: errors,
+            currentState: BlocStatesEnum.validationError,
+          ),
+        );
+      }
+      int nextInt(int min, int max) => min + Random().nextInt((max + 1) - min);
+      final date = DateTime.parse(event.birthday);
+      final requestDto = RequestUserSignUpDto(
+        email: event.email,
+        birthday: date,
+        displayName: event.username,
+        password: event.password,
+        phone: nextInt(100, 1000).toString(),
+      );
+
+      final response = await signUpRepo.createNewUser(dto: requestDto);
+      if (response == null) {
+        emit(
+          state.copyWith(
+            currentState: BlocStatesEnum.success,
+          ),
+        );
+      } else {
+        emit(
+          state.copyWith(
+            currentState: BlocStatesEnum.requestError,
+          ),
+        );
+      }
+    } on DioException catch (e) {
       emit(
         state.copyWith(
           currentState: BlocStatesEnum.requestError,
-          requestError: response,
+          requestError: e.response?.data[ApiConstants.responseDescription].toString() ?? ApiConstants.someError,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          currentState: BlocStatesEnum.requestError,
+          requestError: e.toString(),
         ),
       );
     }
