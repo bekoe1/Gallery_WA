@@ -49,24 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            leadingWidth: 100,
-            toolbarHeight: 50,
-            leading: UiKitBackButton(
-              onTap: () {
-                context.router.maybePop();
-              },
-            ),
-            bottom: const PreferredSize(
-              preferredSize: Size.fromHeight(
-                5.0,
-              ),
-              child: Divider(
-                height: 1,
-                color: UiKitColors.gray,
-              ),
-            ),
-          ),
+          appBar: const AuthAppBar(),
           body: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(

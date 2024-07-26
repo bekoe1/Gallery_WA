@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: const SignUpAppBar(),
+          appBar: const AuthAppBar(),
           body: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(

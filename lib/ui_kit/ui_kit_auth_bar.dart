@@ -1,7 +1,7 @@
-part of '../sign_up_module.dart';
+part of '../features/sign_up_feature/sign_up_module.dart';
 
-class SignUpAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const SignUpAppBar({
+class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const AuthAppBar({
     super.key,
   });
 
@@ -11,6 +11,7 @@ class SignUpAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      surfaceTintColor: UiKitColors.white,
       backgroundColor: UiKitColors.white,
       leadingWidth: 100,
       toolbarHeight: 50,
