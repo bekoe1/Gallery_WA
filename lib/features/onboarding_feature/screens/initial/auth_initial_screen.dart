@@ -8,6 +8,7 @@ class AuthInitialScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 170),
           Center(
@@ -18,9 +19,11 @@ class AuthInitialScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 36),
-          Text(
-            context.localization.welcomeText,
-            style: AppTextStyles.h1,
+          Center(
+            child: Text(
+              context.localization.welcomeText,
+              style: AppTextStyles.h1,
+            ),
           ),
           const SizedBox(height: 80),
           SizedBox(

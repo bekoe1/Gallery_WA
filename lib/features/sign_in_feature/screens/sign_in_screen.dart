@@ -49,7 +49,9 @@ class _SignInScreenState extends State<SignInScreen> {
       },
       builder: (context, state) {
         return Scaffold(
-          appBar: const AuthAppBar(),
+          appBar: const AuthAppBar(
+            pageToPop: AuthInitialRoute(),
+          ),
           body: SingleChildScrollView(
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
@@ -103,8 +105,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
-                  child: SizedBox(
-                    width: 163,
+                  child: Container(
+                    constraints: const BoxConstraints(
+                      minWidth: 163,
+                    ),
                     child: UiKitFilledButton(
                       isLoading: state.status.isLoading(),
                       text: context.localization.signIn,
@@ -119,8 +123,10 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 163,
+                Container(
+                  constraints: const BoxConstraints(
+                    minWidth: 163,
+                  ),
                   child: UiKitTextButton(
                     isLoading: state.status.isLoading(),
                     text: context.localization.signUp,

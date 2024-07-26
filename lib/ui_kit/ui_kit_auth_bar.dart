@@ -3,8 +3,9 @@ part of '../features/sign_up_feature/sign_up_module.dart';
 class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AuthAppBar({
     super.key,
+    required this.pageToPop,
   });
-
+  final PageRouteInfo pageToPop;
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
@@ -18,7 +19,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: 50,
       leading: UiKitBackButton(
         onTap: () {
-          context.router.maybePop();
+          context.router.replaceAll([pageToPop]);
         },
       ),
       bottom: const PreferredSize(
