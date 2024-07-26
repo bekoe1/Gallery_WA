@@ -39,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("birthday is incorrect"),
         "incorrectEmail":
             MessageLookupByLibrary.simpleMessage("email is incorrect"),
+        "incorrectPhone":
+            MessageLookupByLibrary.simpleMessage("phone number is incorrect"),
         "incorrectUsername":
             MessageLookupByLibrary.simpleMessage("username is incorrect"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),

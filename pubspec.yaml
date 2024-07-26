@@ -57,4 +57,3 @@ flutter_native_splash:
   android_gravity: center
   android_12:
     image: assets/images/webant_logo.png
-    icon_background_color: "#ffffff"

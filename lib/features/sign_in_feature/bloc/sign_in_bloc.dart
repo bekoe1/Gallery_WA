@@ -51,6 +51,13 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           requestError: e.message,
         ),
       );
+    } on DioException catch (e) {
+      emit(
+        state.copyWith(
+          status: BlocStatesEnum.requestError,
+          requestError: e.response?.data.toString(),
+        ),
+      );
     } catch (e) {
       emit(
         state.copyWith(

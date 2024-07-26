@@ -22,6 +22,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         ...ValidationHelper.validateConfirmedPas(event.password, event.confirmedPas),
         ...ValidationHelper.validatePassword(event.password),
         ...ValidationHelper.validateUsername(event.username),
+        ...ValidationHelper.validatePhoneNumber(event.phone),
       };
       if (errors.isNotEmpty) {
         return emit(
@@ -31,18 +32,17 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           ),
         );
       }
-      int nextInt(int min, int max) => min + Random().nextInt((max + 1) - min);
       final date = DateTime.parse(event.birthday);
       final requestDto = RequestUserSignUpDto(
         email: event.email,
         birthday: date,
         displayName: event.username,
         password: event.password,
-        phone: nextInt(100, 1000).toString(),
+        phone: event.phone,
       );
 
       final response = await signUpRepo.createNewUser(dto: requestDto);
-      if (response == null) {
+      if (response != null) {
         emit(
           state.copyWith(
             status: BlocStatesEnum.success,
@@ -56,10 +56,16 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         );
       }
     } on DioException catch (e) {
+      final String errorText;
+      if (e.response?.statusCode == 400) {
+        errorText = e.response!.data[AppConstants.responseDescription].toString();
+      } else {
+        errorText = e.response?.data;
+      }
       emit(
         state.copyWith(
           status: BlocStatesEnum.requestError,
-          requestError: e.response?.data[AppConstants.responseDescription].toString() ?? AppConstants.someError,
+          requestError: errorText,
         ),
       );
     } catch (e) {

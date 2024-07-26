@@ -39,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("дата рождения некорректна"),
         "incorrectEmail": MessageLookupByLibrary.simpleMessage(
             "электронная почта некорректна"),
+        "incorrectPhone": MessageLookupByLibrary.simpleMessage(
+            "номер телефона введен некорректно"),
         "incorrectUsername": MessageLookupByLibrary.simpleMessage(
             "имя пользователя некорректно"),
         "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),

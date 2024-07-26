@@ -1,7 +1,6 @@
 library sign_up_feature;
 
 import 'dart:async';
-import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:imagegalery/code_kit/di/injection.dart';
+import 'package:imagegalery/code_kit/helpers/phone_formatter.dart';
 import 'package:imagegalery/code_kit/helpers/validation_helper.dart';
 import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
 import 'package:imagegalery/code_kit/resources/enums.dart';

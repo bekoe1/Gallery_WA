@@ -2,16 +2,11 @@ part of 'interceptors_module.dart';
 
 class AppInterceptor extends Interceptor {
   final UserTokenRepo tokenRepo;
-  final options = RequestOptions(
-    baseUrl: AppConstants.baseUrl,
-    connectTimeout: const Duration(milliseconds: 2000),
-    receiveTimeout: const Duration(milliseconds: 2000),
-  );
 
   Future<bool> _hasNetwork() async {
     try {
       final foo = await InternetAddress.lookup('google.com');
-      return foo.isNotEmpty && foo[0].rawAddress.isNotEmpty ? true : false;
+      return foo.isNotEmpty && foo[0].rawAddress.isNotEmpty;
     } on SocketException catch (_) {
       return false;
     }
@@ -33,13 +28,14 @@ class AppInterceptor extends Interceptor {
       options.headers['Authorization'] = "Bearer ${token?.accessToken}";
       return handler.next(options);
     } else {
-      return handler.reject(
+      handler.reject(
         ApiExceptions(
           requestOptions: options,
           errorMessage: AppConstants.lostConnection,
         ),
       );
     }
+    return handler.next(options);
   }
 
   @override
@@ -50,10 +46,15 @@ class AppInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
+    final options = RequestOptions(
+      baseUrl: AppConstants.baseUrl,
+    );
+
     switch (err.response?.statusCode) {
-      case (401):
+      case 401:
         try {
           final newToken = await _refreshToken();
+          log(newToken?.accessToken ?? "NO TOKEN");
           options.headers['Authorization'] = "Bearer ${newToken?.accessToken}";
           final request = await Dio().fetch(options);
 
@@ -66,7 +67,7 @@ class AppInterceptor extends Interceptor {
             ),
           );
         }
-      case (400):
+      case 400:
         final responseData = err.response!.data;
         final error = responseData['error'];
         if (error == "invalid_grant") {

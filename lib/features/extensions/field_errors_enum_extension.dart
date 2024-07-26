@@ -23,6 +23,8 @@ extension FieldErrorExtension on FieldErrorEnum {
         return context.localization.emptyDate;
       case FieldErrorEnum.tooYoungUser:
         return context.localization.userIsTooYoung;
+      case FieldErrorEnum.incorrectPhoneNumber:
+        return context.localization.incorrectPhone;
     }
   }
 }

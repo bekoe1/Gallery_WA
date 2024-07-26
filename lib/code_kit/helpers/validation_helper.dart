@@ -16,6 +16,16 @@ class ValidationHelper {
     return {};
   }
 
+  static Map<FieldTypesEnum, FieldErrorEnum> validatePhoneNumber(String value) {
+    if (value.isEmpty || !RegExp(AppConstants.phoneValidatingRegExp).hasMatch(value)) {
+      return {
+        FieldTypesEnum.phoneField: FieldErrorEnum.incorrectPhoneNumber,
+      };
+    } else {
+      return {};
+    }
+  }
+
   static Map<FieldTypesEnum, FieldErrorEnum> validatePassword(String value) {
     if (value.isEmpty) {
       return {

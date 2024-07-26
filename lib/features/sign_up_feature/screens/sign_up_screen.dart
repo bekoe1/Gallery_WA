@@ -27,6 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _usernameController = TextEditingController();
   final _passController = TextEditingController();
   final _confirmPassController = TextEditingController();
+  final _phoneController = TextEditingController();
 
   void _changingConfirmedPassVisibility() {
     setState(() {
@@ -140,6 +141,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     width: 343,
                     child: UiKitTextFormField(
+                      errorText: state.validationError[FieldTypesEnum.phoneField]?.currentError(context),
+                      controller: _phoneController,
+                      inputFormatters: [
+                        PhoneFormatter(),
+                      ],
+                      keyboardType: TextInputType.phone,
+                      textInputAction: TextInputAction.next,
+                      hintText: AppConstants.phone,
+                      icon: SvgPicture.asset(
+                        AppIcons.phoneIcon,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 343,
+                    child: UiKitTextFormField(
                       errorText: state.validationError[FieldTypesEnum.passwordField]?.currentError(context),
                       controller: _passController,
                       keyboardType: TextInputType.text,
@@ -187,6 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () {
                           context.read<SignUpBloc>().add(
                                 SignUpEvent.signUp(
+                                  phone: _phoneController.text.replaceAll(RegExp(AppConstants.symbolsRegExp), ""),
                                   birthday: _birthdayController.text,
                                   username: _usernameController.text,
                                   password: _passController.text,

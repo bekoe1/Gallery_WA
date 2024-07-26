@@ -14,6 +14,7 @@ class UiKitTextFormField extends StatefulWidget {
     this.focusNode,
     this.onTap,
     this.readonly = false,
+    this.inputFormatters,
   });
 
   final String? hintText;
@@ -23,6 +24,7 @@ class UiKitTextFormField extends StatefulWidget {
   final TextEditingController? controller;
   final Widget? icon;
   final bool? obscuringText;
+  final List<TextInputFormatter>? inputFormatters;
   final bool? readonly;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
@@ -37,6 +39,7 @@ class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: TextFormField(
+        inputFormatters: widget.inputFormatters,
         textInputAction: widget.textInputAction,
         controller: widget.controller,
         onFieldSubmitted: (text) {},

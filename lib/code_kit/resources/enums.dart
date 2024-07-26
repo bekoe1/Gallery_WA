@@ -1,10 +1,4 @@
-enum FieldTypesEnum {
-  emailField,
-  passwordField,
-  usernameField,
-  birthdayField,
-  confirmPasField,
-}
+enum FieldTypesEnum { emailField, passwordField, usernameField, birthdayField, confirmPasField, phoneField }
 
 enum FieldErrorEnum {
   tooYoungUser,
@@ -15,6 +9,7 @@ enum FieldErrorEnum {
   emptyUsername,
   incorrectUsername,
   passwordsAreNotEqual,
+  incorrectPhoneNumber,
   shortPas,
   incorrectBirthday,
 }

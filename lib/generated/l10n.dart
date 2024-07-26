@@ -269,6 +269,16 @@ class S {
       args: [],
     );
   }
+
+  /// `phone number is incorrect`
+  String get incorrectPhone {
+    return Intl.message(
+      'phone number is incorrect',
+      name: 'incorrectPhone',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

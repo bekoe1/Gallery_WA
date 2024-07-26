@@ -8,6 +8,7 @@ class SignUpEvent with _$SignUpEvent {
     required String password,
     required String username,
     required String birthday,
+    required String phone,
     required String confirmedPas,
   }) = _SignUp;
 }
