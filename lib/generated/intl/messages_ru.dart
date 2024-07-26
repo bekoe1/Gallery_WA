@@ -51,7 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shortUsername": MessageLookupByLibrary.simpleMessage(
             "имя пользователя не может быть меньше 6 символов"),
         "signIn": MessageLookupByLibrary.simpleMessage("Войти"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Зарегестрироваться"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
         "someError": MessageLookupByLibrary.simpleMessage("Возникла ошибка"),
         "successSignIn": MessageLookupByLibrary.simpleMessage(
             "Вы успешно зарегестрировались"),

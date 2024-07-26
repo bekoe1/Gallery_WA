@@ -23,6 +23,7 @@ class AuthInitialScreen extends StatelessWidget {
             child: Text(
               context.localization.welcomeText,
               style: AppTextStyles.h1,
+              textAlign: TextAlign.center,
             ),
           ),
           const SizedBox(height: 80),
