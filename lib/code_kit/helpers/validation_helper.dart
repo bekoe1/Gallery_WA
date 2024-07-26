@@ -1,8 +1,9 @@
+import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
 import 'package:imagegalery/code_kit/resources/enums.dart';
 
 class ValidationHelper {
   static Map<FieldTypesEnum, FieldErrorEnum> validateEmail(String email) {
-    String pattern = r'^[^@]+@[^@]+\.[^@]+$';
+    String pattern = AppConstants.validateEmailRegExp;
     RegExp regex = RegExp(pattern);
 
     if (email.isEmpty) {

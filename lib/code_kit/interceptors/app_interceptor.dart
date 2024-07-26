@@ -3,15 +3,15 @@ part of 'interceptors_module.dart';
 class AppInterceptor extends Interceptor {
   final UserTokenRepo tokenRepo;
   final options = RequestOptions(
-    baseUrl: ApiConstants.baseUrl,
+    baseUrl: AppConstants.baseUrl,
     connectTimeout: const Duration(milliseconds: 2000),
     receiveTimeout: const Duration(milliseconds: 2000),
   );
 
   Future<bool> _hasNetwork() async {
     try {
-      final result = await InternetAddress.lookup(ApiConstants.baseUrl);
-      return result.isNotEmpty;
+      final foo = await InternetAddress.lookup('google.com');
+      return foo.isNotEmpty && foo[0].rawAddress.isNotEmpty ? true : false;
     } on SocketException catch (_) {
       return false;
     }
@@ -30,7 +30,7 @@ class AppInterceptor extends Interceptor {
       return handler.reject(
         ApiExceptions(
           requestOptions: options,
-          errorMessage: ApiConstants.lostConnection,
+          errorMessage: AppConstants.lostConnection,
         ),
       );
     }
@@ -57,7 +57,7 @@ class AppInterceptor extends Interceptor {
           return handler.reject(
             ApiExceptions(
               requestOptions: options,
-              errorMessage: ApiConstants.tokenExpired,
+              errorMessage: AppConstants.tokenExpired,
             ),
           );
         }

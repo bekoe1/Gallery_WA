@@ -1,4 +1,4 @@
-class ApiConstants {
+class AppConstants {
   static const baseUrl = "https://gallery.prod2.webant.ru";
   static const clientIdValue = '123';
   static const clientSecretValue = '123';
@@ -18,6 +18,7 @@ class ApiConstants {
   static const refreshTokenStorageName = "refreshToken";
   static const invalidGrantError = "Email or password entered incorrectly";
   static const rolesValue = '/roles/default';
+  static const validateEmailRegExp = r'^[^@]+@[^@]+\.[^@]+$';
   static const empty = "";
   static const confirmPas = "confirm password";
   static const phone = "phone";

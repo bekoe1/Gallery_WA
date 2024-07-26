@@ -11,7 +11,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     try {
       emit(
         state.copyWith(
-          currentState: BlocStatesEnum.loading,
+          status: BlocStatesEnum.loading,
           validationError: {},
           requestError: null,
         ),
@@ -27,7 +27,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         return emit(
           state.copyWith(
             validationError: errors,
-            currentState: BlocStatesEnum.validationError,
+            status: BlocStatesEnum.validationError,
           ),
         );
       }
@@ -45,27 +45,27 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       if (response == null) {
         emit(
           state.copyWith(
-            currentState: BlocStatesEnum.success,
+            status: BlocStatesEnum.success,
           ),
         );
       } else {
         emit(
           state.copyWith(
-            currentState: BlocStatesEnum.requestError,
+            status: BlocStatesEnum.requestError,
           ),
         );
       }
     } on DioException catch (e) {
       emit(
         state.copyWith(
-          currentState: BlocStatesEnum.requestError,
-          requestError: e.response?.data[ApiConstants.responseDescription].toString() ?? ApiConstants.someError,
+          status: BlocStatesEnum.requestError,
+          requestError: e.response?.data[AppConstants.responseDescription].toString() ?? AppConstants.someError,
         ),
       );
     } catch (e) {
       emit(
         state.copyWith(
-          currentState: BlocStatesEnum.requestError,
+          status: BlocStatesEnum.requestError,
           requestError: e.toString(),
         ),
       );

@@ -11,13 +11,13 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     if (tokenExists == null) {
       emit(
         state.copyWith(
-          currentState: BlocStatesEnum.error,
+          status: BlocStatesEnum.error,
         ),
       );
     } else {
       emit(
         state.copyWith(
-          currentState: BlocStatesEnum.success,
+          status: BlocStatesEnum.success,
         ),
       );
     }

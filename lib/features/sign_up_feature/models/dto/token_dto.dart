@@ -8,4 +8,13 @@ class TokenDto with _$TokenDto {
   }) = _TokenDto;
 
   factory TokenDto.fromJson(Map<String, dynamic> json) => _$TokenDtoFromJson(json);
+
+  const TokenDto._();
+
+  toModel() {
+    return TokenModel(
+      refreshToken: refreshToken,
+      accessToken: accessToken,
+    );
+  }
 }

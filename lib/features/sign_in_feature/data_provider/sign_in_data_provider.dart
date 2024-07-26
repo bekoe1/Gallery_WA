@@ -11,14 +11,14 @@ class SignInDataProvider implements SignInRepo {
     required String password,
   }) async {
     final requestDto = RequestUserDto(
-      grantType: ApiConstants.passwordQuery,
+      grantType: AppConstants.passwordQuery,
       username: email,
       password: password,
-      clientId: ApiConstants.clientIdValue,
-      clientSecret: ApiConstants.clientSecretValue,
+      clientId: AppConstants.clientIdValue,
+      clientSecret: AppConstants.clientSecretValue,
     );
     final response = await _dio.post(
-      "${ApiConstants.baseUrl}/token",
+      "${AppConstants.baseUrl}/token",
       data: requestDto.toJson(),
     );
 

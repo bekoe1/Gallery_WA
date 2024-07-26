@@ -1,10 +1,10 @@
 part of "../sign_in_module.dart";
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  final SignInRepo _signInRepo;
-  final UserTokenRepo _tokenRepo;
+  final SignInRepo signInRepo;
+  final UserTokenRepo tokenRepo;
 
-  SignInBloc(this._signInRepo, this._tokenRepo) : super(const SignInState()) {
+  SignInBloc({required this.signInRepo, required this.tokenRepo}) : super(const SignInState()) {
     on<_SignIn>(_onSignInPressed);
   }
 
@@ -12,7 +12,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     emit(
       state.copyWith(
         validationError: {},
-        currentState: BlocStatesEnum.loading,
+        status: BlocStatesEnum.loading,
       ),
     );
 
@@ -24,37 +24,37 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       return emit(
         state.copyWith(
           validationError: errors,
-          currentState: BlocStatesEnum.validationError,
+          status: BlocStatesEnum.validationError,
         ),
       );
     }
     try {
-      final tokenModel = await _signInRepo.signIn(
+      final tokenModel = await signInRepo.signIn(
         email: event.email,
         password: event.password,
       );
 
       if (tokenModel != null) {
-        _tokenRepo.saveTokens(tokenModel);
+        tokenRepo.saveTokens(tokenModel);
         emit(
-          state.copyWith(currentState: BlocStatesEnum.success),
+          state.copyWith(status: BlocStatesEnum.success),
         );
       } else {
         emit(
-          state.copyWith(currentState: BlocStatesEnum.requestError),
+          state.copyWith(status: BlocStatesEnum.requestError),
         );
       }
     } on ApiExceptions catch (e) {
       emit(
         state.copyWith(
-          currentState: BlocStatesEnum.requestError,
+          status: BlocStatesEnum.requestError,
           requestError: e.message,
         ),
       );
     } catch (e) {
       emit(
         state.copyWith(
-          currentState: BlocStatesEnum.requestError,
+          status: BlocStatesEnum.requestError,
           requestError: e.toString(),
         ),
       );

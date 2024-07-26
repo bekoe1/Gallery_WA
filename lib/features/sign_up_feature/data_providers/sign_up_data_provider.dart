@@ -8,16 +8,16 @@ class SignUpDataProvider implements SignUpRepo {
   @override
   Future<UserModel?> createNewUser({required RequestUserSignUpDto dto}) async {
     final response = await dio.post(
-      "${ApiConstants.baseUrl}/users",
+      "${AppConstants.baseUrl}/users",
       options: Options(
-        contentType: ApiConstants.contentType,
+        contentType: AppConstants.contentType,
       ),
       data: {
-        ApiConstants.displayedName: dto.displayName,
-        ApiConstants.birthday: dto.birthday.toString(),
-        ApiConstants.plainPassword: dto.password,
-        ApiConstants.email: dto.email,
-        ApiConstants.phone: dto.phone,
+        AppConstants.displayedName: dto.displayName,
+        AppConstants.birthday: dto.birthday.toString(),
+        AppConstants.plainPassword: dto.password,
+        AppConstants.email: dto.email,
+        AppConstants.phone: dto.phone,
       },
     );
 

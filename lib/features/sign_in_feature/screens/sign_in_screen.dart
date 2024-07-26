@@ -11,8 +11,8 @@ class SignInScreen extends StatefulWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (_) => SignInBloc(
-        getIt<SignInRepo>(),
-        getIt<UserTokenRepo>(),
+        signInRepo: getIt<SignInRepo>(),
+        tokenRepo: getIt<UserTokenRepo>(),
       ),
       child: this,
     );
@@ -34,7 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<SignInBloc, SignInState>(
       listener: (context, state) {
-        if (state.currentState == BlocStatesEnum.requestError) {
+        if (state.status == BlocStatesEnum.requestError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -43,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
           );
         }
-        if (state.currentState == BlocStatesEnum.success) {
+        if (state.status == BlocStatesEnum.success) {
           //TODO in next feature - Route to the main screen
         }
       },
@@ -94,7 +94,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: UiKitTextFormField(
                       controller: _emailController,
                       errorText: state.validationError[FieldTypesEnum.emailField]?.currentError(context),
-                      hintText: ApiConstants.email,
+                      hintText: AppConstants.email,
                       icon: SvgPicture.asset(
                         AppIcons.messageIcon,
                       ),
@@ -107,7 +107,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     controller: _passController,
                     errorText: state.validationError[FieldTypesEnum.passwordField]?.currentError(context),
                     obscuringText: _obscuringPass,
-                    hintText: ApiConstants.passwordQuery,
+                    hintText: AppConstants.passwordQuery,
                     icon: GestureDetector(
                       child: SvgPicture.asset(
                         _obscuringPass ? AppIcons.visibleOffIcon : AppIcons.visibleOnIcon,
@@ -123,7 +123,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: SizedBox(
                     width: 163,
                     child: UiKitFilledButton(
-                      isLoading: state.currentState == BlocStatesEnum.loading,
+                      isLoading: state.status.isLoading(),
                       text: context.localization.signIn,
                       onPressed: () {
                         context.read<SignInBloc>().add(
@@ -139,7 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 SizedBox(
                   width: 163,
                   child: UiKitTextButton(
-                    isLoading: state.currentState == BlocStatesEnum.loading,
+                    isLoading: state.status.isLoading(),
                     text: context.localization.signUp,
                     onPressed: () {
                       context.router.push(

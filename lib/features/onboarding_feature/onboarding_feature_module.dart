@@ -8,16 +8,14 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:imagegalery/code_kit/di/injection.dart';
+import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
 import 'package:imagegalery/code_kit/resources/enums.dart';
 import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
 import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';
 import 'package:imagegalery/code_kit/routing/app_router.gr.dart';
-import 'package:imagegalery/extensions/localization_extension.dart';
-import 'package:imagegalery/features/extensions/token_dto_extension.dart';
+import 'package:imagegalery/extensions/extensions_module.dart';
 import 'package:imagegalery/features/sign_up_feature/sign_up_module.dart';
 import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';
-
-import '../../code_kit/resources/constants/api_constants.dart';
 
 part 'bloc/onboarding_bloc.dart';
 part 'bloc/onboarding_event.dart';

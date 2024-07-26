@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:imagegalery/extensions/localization_extension.dart';
-
-import '../../code_kit/resources/enums.dart';
+part of 'features_extensions_module.dart';
 
 extension FieldErrorExtension on FieldErrorEnum {
   String currentError(BuildContext context) {

@@ -44,10 +44,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpBloc, SignUpState>(
       listener: (context, state) {
-        if (state.currentState == BlocStatesEnum.success) {
-          context.router.push(const SignInRoute());
+        if (state.status == BlocStatesEnum.success) {
+          context.router.push(
+            const SignInRoute(),
+          );
         }
-        if (state.currentState == BlocStatesEnum.requestError) {
+        if (state.status == BlocStatesEnum.requestError) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -90,7 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _usernameController,
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.next,
-                      hintText: ApiConstants.usernameQuery,
+                      hintText: AppConstants.usernameQuery,
                       icon: SvgPicture.asset(
                         AppIcons.personIcon,
                       ),
@@ -104,7 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _birthdayController,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.datetime,
-                    hintText: ApiConstants.birthday,
+                    hintText: AppConstants.birthday,
                     icon: SvgPicture.asset(
                       AppIcons.calendarIcon,
                     ),
@@ -114,7 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         firstDate: DateTime(1950, DateTime.january, 1),
                         lastDate: DateTime.now(),
                       );
-                      final regExp = RegExp(ApiConstants.dateOnScreenRegExp);
+                      final regExp = RegExp(AppConstants.dateOnScreenRegExp);
                       if (data != null) {
                         _birthdayController.text = regExp.stringMatch(
                           data.toString(),
@@ -131,7 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
-                    hintText: ApiConstants.email,
+                    hintText: AppConstants.email,
                     icon: SvgPicture.asset(
                       AppIcons.messageIcon,
                     ),
@@ -145,7 +147,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.next,
                     obscuringText: _obscuringPass,
-                    hintText: ApiConstants.passwordQuery,
+                    hintText: AppConstants.passwordQuery,
                     icon: GestureDetector(
                       child: SvgPicture.asset(
                         _obscuringPass ? AppIcons.visibleOffIcon : AppIcons.visibleOnIcon,
@@ -164,7 +166,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.done,
                     obscuringText: _obscuringConfirmedPass,
-                    hintText: ApiConstants.confirmPas,
+                    hintText: AppConstants.confirmPas,
                     icon: GestureDetector(
                       child: SvgPicture.asset(
                         _obscuringConfirmedPass ? AppIcons.visibleOffIcon : AppIcons.visibleOnIcon,
@@ -180,7 +182,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: SizedBox(
                     width: 163,
                     child: UiKitFilledButton(
-                      isLoading: state.currentState == BlocStatesEnum.loading,
+                      isLoading: state.status.isLoading(),
                       text: context.localization.signUp,
                       onPressed: () {
                         context.read<SignUpBloc>().add(
@@ -201,7 +203,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: SizedBox(
                     width: 163,
                     child: UiKitTextButton(
-                      isLoading: state.currentState == BlocStatesEnum.loading,
+                      isLoading: state.status.isLoading(),
                       text: context.localization.signIn,
                       onPressed: () {
                         context.router.push(

@@ -12,10 +12,10 @@ class UserTokenProvider implements UserTokenRepo {
   @override
   Future<TokenModel?> getTokenFromStorage() async {
     final accessToken = await _storage.read(
-      key: ApiConstants.accessTokenStorageName,
+      key: AppConstants.accessTokenStorageName,
     );
     final refreshToken = await _storage.read(
-      key: ApiConstants.refreshTokenStorageName,
+      key: AppConstants.refreshTokenStorageName,
     );
 
     return (refreshToken != null && accessToken != null)
@@ -41,21 +41,21 @@ class UserTokenProvider implements UserTokenRepo {
   @override
   Future<void> deleteAccessToken() async {
     _storage.delete(
-      key: ApiConstants.accessTokenStorageName,
+      key: AppConstants.accessTokenStorageName,
     );
   }
 
   @override
   Future<void> deleteRefreshToken() async {
     _storage.delete(
-      key: ApiConstants.refreshTokenStorageName,
+      key: AppConstants.refreshTokenStorageName,
     );
   }
 
   @override
   Future<void> saveAccessToken(String accessToken) async {
     _storage.write(
-      key: ApiConstants.accessTokenStorageName,
+      key: AppConstants.accessTokenStorageName,
       value: accessToken,
     );
   }
@@ -63,7 +63,7 @@ class UserTokenProvider implements UserTokenRepo {
   @override
   Future<void> saveRefreshToken(String refreshToken) async {
     _storage.write(
-      key: ApiConstants.accessTokenStorageName,
+      key: AppConstants.accessTokenStorageName,
       value: refreshToken,
     );
   }
@@ -74,13 +74,13 @@ class UserTokenProvider implements UserTokenRepo {
     final refreshToken = token?.accessToken;
     if (refreshToken == null) return null;
     final response = await dio.post(
-      "${ApiConstants.baseUrl}/token",
+      "${AppConstants.baseUrl}/token",
       data: {
         RequestRefreshTokenDto(
-          grantType: ApiConstants.refreshTokenQueryValue,
+          grantType: AppConstants.refreshTokenQueryValue,
           refreshToken: refreshToken,
-          clientId: ApiConstants.clientIdValue,
-          clientSecret: ApiConstants.clientSecretValue,
+          clientId: AppConstants.clientIdValue,
+          clientSecret: AppConstants.clientSecretValue,
         ).toJson()
       },
     );
