@@ -12,6 +12,7 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       surfaceTintColor: UiKitColors.white,
+      forceMaterialTransparency: true,
       backgroundColor: UiKitColors.white,
       leadingWidth: 100,
       toolbarHeight: 50,

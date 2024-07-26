@@ -17,6 +17,12 @@ class AppInterceptor extends Interceptor {
     }
   }
 
+  Future<TokenModel?> _refreshToken() async {
+    await tokenRepo.deleteAccessToken();
+    final newToken = await tokenRepo.refreshAccessToken();
+    return newToken;
+  }
+
   AppInterceptor({required this.tokenRepo});
 
   @override
@@ -47,8 +53,7 @@ class AppInterceptor extends Interceptor {
     switch (err.response?.statusCode) {
       case (401):
         try {
-          await tokenRepo.deleteAccessToken();
-          final newToken = await tokenRepo.refreshAccessToken();
+          final newToken = await _refreshToken();
           options.headers['Authorization'] = "Bearer ${newToken?.accessToken}";
           final request = await Dio().fetch(options);
 
