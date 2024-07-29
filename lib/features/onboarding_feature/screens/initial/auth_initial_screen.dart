@@ -8,6 +8,7 @@ class AuthInitialScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 170),
           Center(
@@ -18,18 +19,23 @@ class AuthInitialScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 36),
-          Text(
-            "Welcome to Gallery!",
-            style: AppTextStyles.h1,
+          Center(
+            child: Text(
+              context.localization.welcomeText,
+              style: AppTextStyles.h1,
+              textAlign: TextAlign.center,
+            ),
           ),
           const SizedBox(height: 80),
           SizedBox(
             width: 343,
             height: 40,
             child: UiKitFilledButton(
-              text: "Create an account",
+              text: context.localization.createAccount,
               onPressed: () {
-                //TODO signIn screen in next feature
+                context.router.push(
+                  const SignUpRoute(),
+                );
               },
             ),
           ),
@@ -38,9 +44,11 @@ class AuthInitialScreen extends StatelessWidget {
             width: 343,
             height: 40,
             child: UiKitOutlinedButton(
-              text: "I already have an account",
+              text: context.localization.alreadyHaveAcc,
               onPressed: () {
-                //TODO signUp screen in next feature
+                context.router.push(
+                  const SignInRoute(),
+                );
               },
             ),
           ),

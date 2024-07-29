@@ -1,4 +1,4 @@
-part of 'onboarding_bloc.dart';
+part of '../onboarding_feature_module.dart';
 
 @freezed
 class OnboardingEvent with _$OnboardingEvent {

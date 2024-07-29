@@ -1,4 +1,4 @@
-import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
+part of "../onboarding_feature_module.dart";
 
 abstract class UserTokenRepo {
   Future<TokenModel?> getTokenFromStorage();
@@ -8,4 +8,5 @@ abstract class UserTokenRepo {
   Future<void> deleteTokens();
   Future<void> deleteAccessToken();
   Future<void> deleteRefreshToken();
+  Future<TokenModel?> refreshAccessToken();
 }

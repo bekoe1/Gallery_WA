@@ -7,7 +7,11 @@ class OnboardingScreen extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) => OnboardingBloc(getIt<UserTokenRepo>())..add(const OnboardingEvent.checkToken()),
+      create: (_) => OnboardingBloc(
+        getIt<UserTokenRepo>(),
+      )..add(
+          const OnboardingEvent.checkToken(),
+        ),
       child: this,
     );
   }
@@ -16,8 +20,12 @@ class OnboardingScreen extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return BlocListener<OnboardingBloc, OnboardingState>(
       listener: (context, state) {
-        if (state.currentState == OnboardingStates.tokenExistsState) {
-          log("main screen entered");
+        if (state.status == BlocStatesEnum.success) {
+          context.router.replaceAll(
+            [
+              const TemporaryMainRoute(),
+            ],
+          );
         } else {
           context.router.replaceAll(
             [

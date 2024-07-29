@@ -1,24 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:imagegalery/code_kit/di/injection.config.dart';
-import 'package:imagegalery/code_kit/di/injection.dart';
-import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
-import 'package:imagegalery/code_kit/routing/app_router.dart';
-import 'package:imagegalery/generated/l10n.dart';
-
-final _appRouter = AppRouter();
+part of 'main_module.dart';
 
 void main() {
-  runApp(const MyApp());
+  getIt.init();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final _appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    getIt.init();
     return MaterialApp.router(
       localizationsDelegates: const [
         S.delegate,

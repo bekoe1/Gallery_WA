@@ -7,6 +7,7 @@ class UiKitFilledButton extends StatelessWidget {
     this.onPressed,
     this.isLoading = false,
   });
+
   final VoidCallback? onPressed;
   final bool isLoading;
   final String text;
@@ -14,9 +15,9 @@ class UiKitFilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      style: (isLoading && onPressed != null)
+      style: (onPressed != null)
           ? ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(UiKitColors.black),
+              backgroundColor: isLoading ? const WidgetStatePropertyAll(UiKitColors.black) : null,
               textStyle: WidgetStateProperty.resolveWith(
                 (states) {
                   if (states.contains(WidgetState.disabled)) {
@@ -37,7 +38,10 @@ class UiKitFilledButton extends StatelessWidget {
           ? const UiKitCircleLoadingIndicator(
               color: Colors.white,
             )
-          : Text(text),
+          : Text(
+              text,
+              maxLines: 1,
+            ),
     );
   }
 }
