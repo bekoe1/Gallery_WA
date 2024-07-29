@@ -48,9 +48,8 @@ class AppInterceptor extends Interceptor {
     switch (err.response?.statusCode) {
       case 401:
         try {
-          log("401 --  ${err.response.toString()}");
           final newToken = await _refreshToken();
-          options.headers['Authorization'] = "Bearer ${newToken?.accessToken}";
+          options.headers[AppConstants.authorizationHeader] = "${AppConstants.bearerToken} ${newToken?.accessToken}";
           final request = await Dio().fetch(options);
 
           return handler.resolve(request);
@@ -63,15 +62,13 @@ class AppInterceptor extends Interceptor {
           );
         }
       case 400:
-        log("400 --  ${err.response.toString()}");
-
         final responseData = err.response!.data;
-        final error = responseData['error'];
-        if (error == "invalid_grant") {
+        final error = responseData[AppConstants.error];
+        if (error == AppConstants.invalidGrantError) {
           return handler.reject(
             ApiExceptions(
               requestOptions: options,
-              errorMessage: responseData["message"].toString(),
+              errorMessage: responseData[AppConstants.responseMessage].toString(),
             ),
           );
         }

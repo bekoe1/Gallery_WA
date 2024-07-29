@@ -7,7 +7,10 @@ class AppConstants {
   static const clientSecretQuery = "client_secret";
   static const usernameQuery = "username";
   static const email = "email";
+  static const error = "error";
   static const birthday = "birthday";
+  static const bearerToken = "Bearer";
+  static const authorizationHeader = "Authorization";
   static const displayedName = "displayName";
   static const contentType = "application/ld+json";
   static const passwordQuery = "password";
