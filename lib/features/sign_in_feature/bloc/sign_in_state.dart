@@ -4,7 +4,7 @@ part of "../sign_in_module.dart";
 class SignInState with _$SignInState {
   const factory SignInState({
     @Default(BlocStatesEnum.initial) BlocStatesEnum status,
-    @Default(null) String? requestError,
+    String? requestError,
     @Default({}) Map<FieldTypesEnum, FieldErrorEnum> validationError,
   }) = _SignInState;
 }
