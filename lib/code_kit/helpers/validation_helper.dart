@@ -1,5 +1,4 @@
-import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
-import 'package:imagegalery/code_kit/resources/enums.dart';
+part of 'helpers_module.dart';
 
 class ValidationHelper {
   static Map<FieldTypesEnum, FieldErrorEnum> validateEmail(String email) {

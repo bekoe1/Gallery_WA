@@ -3,16 +3,6 @@ part of 'interceptors_module.dart';
 class AppInterceptor extends Interceptor {
   final UserTokenRepo tokenRepo;
 
-  // TODO: Вынести в Helper
-  Future<bool> _hasNetwork() async {
-    try {
-      final foo = await InternetAddress.lookup('google.com');
-      return foo.isNotEmpty && foo[0].rawAddress.isNotEmpty;
-    } on SocketException catch (_) {
-      return false;
-    }
-  }
-
   Future<TokenModel?> _refreshToken() async {
     await tokenRepo.deleteAccessToken();
     final newToken = await tokenRepo.refreshAccessToken();
@@ -23,7 +13,7 @@ class AppInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    final connectedToNetwork = await _hasNetwork();
+    final connectedToNetwork = await InterceptorHelper.hasNetwork();
 
     if (connectedToNetwork) {
       final token = await tokenRepo.getTokenFromStorage();

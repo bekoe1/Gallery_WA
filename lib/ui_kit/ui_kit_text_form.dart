@@ -15,9 +15,12 @@ class UiKitTextFormField extends StatefulWidget {
     this.onTap,
     this.readonly = false,
     this.inputFormatters,
+    this.additionalHint,
+    this.dateSelected = false,
   });
 
   final String? hintText;
+  final Text? additionalHint;
   final bool? isEnabled;
   final String? errorText;
   final VoidCallback? onTap;
@@ -29,6 +32,7 @@ class UiKitTextFormField extends StatefulWidget {
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
+  final bool? dateSelected;
   @override
   State<UiKitTextFormField> createState() => _UiKitTextFormFieldState();
 }
@@ -36,24 +40,44 @@ class UiKitTextFormField extends StatefulWidget {
 class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
   @override
   Widget build(BuildContext context) {
+    log(widget.controller!.text + widget.dateSelected.toString());
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
-      child: TextFormField(
-        inputFormatters: widget.inputFormatters,
-        textInputAction: widget.textInputAction,
-        controller: widget.controller,
-        onFieldSubmitted: (text) {},
-        focusNode: widget.focusNode,
-        cursorWidth: 1,
-        readOnly: widget.readonly!,
-        enabled: widget.isEnabled ?? true,
-        onTap: widget.onTap,
-        cursorColor: Colors.black,
-        obscureText: widget.obscuringText ?? false,
-        cursorErrorColor: UiKitColors.black,
-        decoration: buildInputDecoration(),
-        keyboardType: widget.keyboardType,
-      ),
+      child: Stack(children: [
+        TextFormField(
+          inputFormatters: widget.inputFormatters,
+          textInputAction: widget.textInputAction,
+          controller: widget.controller,
+          focusNode: widget.focusNode,
+          cursorWidth: 1,
+          readOnly: widget.readonly!,
+          enabled: widget.isEnabled ?? true,
+          onTap: () {
+            widget.onTap?.call();
+          },
+          onChanged: (text) {
+            setState(() {});
+          },
+          cursorColor: Colors.black,
+          obscureText: widget.obscuringText ?? false,
+          cursorErrorColor: UiKitColors.black,
+          decoration: buildInputDecoration(),
+          keyboardType: widget.keyboardType,
+        ),
+        if (widget.additionalHint != null) ...[
+          Positioned(
+            left: CalculateTextSizeHelper.calculateTextSize(
+                  text: widget.hintText ?? AppConstants.empty,
+                  style: AppTextStyles.h4,
+                ) +
+                15,
+            top: 9,
+            child: widget.controller!.text.isEmpty && !widget.dateSelected!
+                ? widget.additionalHint!
+                : const SizedBox.shrink(),
+          ),
+        ]
+      ]),
     );
   }
 
@@ -67,6 +91,7 @@ class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
     }
 
     return InputDecoration(
+      alignLabelWithHint: true,
       hintStyle: AppTextStyles.h4.copyWith(color: hintAndIconColor),
       hintText: widget.hintText,
       suffixIconColor: widget.errorText != null ? hintAndIconColor : UiKitColors.grayLight,

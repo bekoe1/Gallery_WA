@@ -21,6 +21,11 @@
   "tokenExpired": "Ваш токен истек",
   "lostConnection": "Вы не подключены к сети или у вас слабый интернет",
   "userIsTooYoung": "Возрастные ограничения - не моложе 10 лет",
-  "incorrectPhone": "номер телефона введен некорректно"
-
+  "incorrectPhone": "номер телефона введен некорректно",
+  "passwordHint" : "Пароль",
+  "emailHint" : "Электронная почта",
+  "birthdayHint" : "Дата рождения",
+  "confirmPasswordHint" : "Подтвердите пароль",
+  "usernameHint" : "Имя пользователя",
+  "phoneHint" : "Номер телефона"
 }

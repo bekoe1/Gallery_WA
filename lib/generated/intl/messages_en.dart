@@ -24,9 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAcc":
             MessageLookupByLibrary.simpleMessage("I already have an account"),
+        "birthdayHint": MessageLookupByLibrary.simpleMessage("Birthday"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirmPasswordHint":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
+        "emailHint": MessageLookupByLibrary.simpleMessage("Email"),
         "emptyDate":
             MessageLookupByLibrary.simpleMessage("date cannot be empty"),
         "emptyEmail":
@@ -46,8 +50,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "lostConnection": MessageLookupByLibrary.simpleMessage(
             "You are not connected to the network or your internet is weak"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordsAreNotEqual":
             MessageLookupByLibrary.simpleMessage("passwords do not match"),
+        "phoneHint": MessageLookupByLibrary.simpleMessage("Phone"),
         "shortPas":
             MessageLookupByLibrary.simpleMessage("password is too short"),
         "shortUsername":
@@ -61,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your token expired"),
         "userIsTooYoung": MessageLookupByLibrary.simpleMessage(
             "Age restrictions - at least 10 years old"),
+        "usernameHint": MessageLookupByLibrary.simpleMessage("User name"),
         "welcomeText":
             MessageLookupByLibrary.simpleMessage("Welcome to Gallery!")
       };

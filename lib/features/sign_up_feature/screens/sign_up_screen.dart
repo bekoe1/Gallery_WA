@@ -19,9 +19,9 @@ class SignUpScreen extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  bool _obscuringPass = false;
-  bool _obscuringConfirmedPass = false;
-
+  bool _obscuringPass = true;
+  bool _obscuringConfirmedPass = true;
+  bool _dateSelected = false;
   final _emailController = TextEditingController();
   final _birthdayController = TextEditingController();
   final _usernameController = TextEditingController();
@@ -91,7 +91,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         controller: _usernameController,
                         keyboardType: TextInputType.name,
                         textInputAction: TextInputAction.next,
-                        hintText: AppConstants.usernameQuery,
+                        additionalHint: Text(
+                          AppConstants.additionalHintStar,
+                          style: AppTextStyles.h4.copyWith(
+                            color: UiKitColors.errorRed,
+                          ),
+                        ),
+                        hintText: context.localization.usernameHint,
                         icon: SvgPicture.asset(
                           AppIcons.personIcon,
                         ),
@@ -101,11 +107,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     width: 343,
                     child: UiKitTextFormField(
+                      dateSelected: _dateSelected,
                       errorText: state.validationError[FieldTypesEnum.birthdayField]?.currentError(context),
                       controller: _birthdayController,
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.datetime,
-                      hintText: AppConstants.birthday,
+                      hintText: context.localization.birthdayHint,
+                      additionalHint: Text(
+                        AppConstants.additionalHintStar,
+                        style: AppTextStyles.h4.copyWith(
+                          color: UiKitColors.errorRed,
+                        ),
+                      ),
                       icon: SvgPicture.asset(
                         AppIcons.calendarIcon,
                       ),
@@ -115,6 +128,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           firstDate: DateTime(1950, DateTime.january, 1),
                           lastDate: DateTime.now(),
                         );
+                        setState(() {
+                          _dateSelected = true;
+                        });
                         final regExp = RegExp(AppConstants.dateOnScreenRegExp);
                         if (data != null) {
                           _birthdayController.text = regExp.stringMatch(
@@ -132,9 +148,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
-                      hintText: AppConstants.email,
+                      hintText: context.localization.emailHint,
                       icon: SvgPicture.asset(
                         AppIcons.messageIcon,
+                      ),
+                      additionalHint: Text(
+                        AppConstants.additionalHintStar,
+                        style: AppTextStyles.h4.copyWith(
+                          color: UiKitColors.errorRed,
+                        ),
                       ),
                     ),
                   ),
@@ -148,7 +170,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ],
                       keyboardType: TextInputType.phone,
                       textInputAction: TextInputAction.next,
-                      hintText: AppConstants.phone,
+                      hintText: context.localization.phoneHint,
+                      additionalHint: Text(
+                        AppConstants.additionalHintStar,
+                        style: AppTextStyles.h4.copyWith(
+                          color: UiKitColors.errorRed,
+                        ),
+                      ),
                       icon: SvgPicture.asset(
                         AppIcons.phoneIcon,
                       ),
@@ -162,7 +190,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.next,
                       obscuringText: _obscuringPass,
-                      hintText: AppConstants.passwordQuery,
+                      hintText: context.localization.passwordHint,
+                      additionalHint: Text(
+                        AppConstants.additionalHintStar,
+                        style: AppTextStyles.h4.copyWith(
+                          color: UiKitColors.errorRed,
+                        ),
+                      ),
                       icon: GestureDetector(
                         child: SvgPicture.asset(
                           _obscuringPass ? AppIcons.visibleOffIcon : AppIcons.visibleOnIcon,
@@ -179,9 +213,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       errorText: state.validationError[FieldTypesEnum.confirmPasField]?.currentError(context),
                       controller: _confirmPassController,
                       keyboardType: TextInputType.text,
+                      additionalHint: Text(
+                        AppConstants.additionalHintStar,
+                        style: AppTextStyles.h4.copyWith(
+                          color: UiKitColors.errorRed,
+                        ),
+                      ),
                       textInputAction: TextInputAction.done,
                       obscuringText: _obscuringConfirmedPass,
-                      hintText: AppConstants.confirmPas,
+                      hintText: context.localization.confirmPasswordHint,
                       icon: GestureDetector(
                         child: SvgPicture.asset(
                           _obscuringConfirmedPass ? AppIcons.visibleOffIcon : AppIcons.visibleOnIcon,

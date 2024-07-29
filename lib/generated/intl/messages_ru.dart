@@ -24,9 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAcc":
             MessageLookupByLibrary.simpleMessage("У меня уже есть аккаунт"),
+        "birthdayHint": MessageLookupByLibrary.simpleMessage("Дата рождения"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
+        "confirmPasswordHint":
+            MessageLookupByLibrary.simpleMessage("Подтвердите пароль"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Создать аккаунт"),
+        "emailHint": MessageLookupByLibrary.simpleMessage("Электронная почта"),
         "emptyDate":
             MessageLookupByLibrary.simpleMessage("дата не может быть пустой"),
         "emptyEmail": MessageLookupByLibrary.simpleMessage(
@@ -46,8 +50,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),
         "lostConnection": MessageLookupByLibrary.simpleMessage(
             "Вы не подключены к сети или у вас слабый интернет"),
+        "passwordHint": MessageLookupByLibrary.simpleMessage("Пароль"),
         "passwordsAreNotEqual":
             MessageLookupByLibrary.simpleMessage("пароли не совпадают"),
+        "phoneHint": MessageLookupByLibrary.simpleMessage("Номер телефона"),
         "shortPas":
             MessageLookupByLibrary.simpleMessage("пароль слишком короткий"),
         "shortUsername": MessageLookupByLibrary.simpleMessage(
@@ -60,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tokenExpired": MessageLookupByLibrary.simpleMessage("Ваш токен истек"),
         "userIsTooYoung": MessageLookupByLibrary.simpleMessage(
             "Возрастные ограничения - не моложе 10 лет"),
+        "usernameHint":
+            MessageLookupByLibrary.simpleMessage("Имя пользователя"),
         "welcomeText":
             MessageLookupByLibrary.simpleMessage("Добро пожаловать в галерею!")
       };

@@ -22,6 +22,9 @@ class OnboardingScreen extends StatelessWidget implements AutoRouteWrapper {
       listener: (context, state) {
         if (state.status == BlocStatesEnum.success) {
           // TODO main screen entering
+          context.router.push(
+            const TemporaryMainRoute(),
+          );
         } else {
           context.router.replaceAll(
             [

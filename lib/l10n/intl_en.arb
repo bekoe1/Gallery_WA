@@ -21,6 +21,11 @@
   "tokenExpired" : "Your token expired",
   "lostConnection": "You are not connected to the network or your internet is weak",
   "userIsTooYoung": "Age restrictions - at least 10 years old",
-  "incorrectPhone": "phone number is incorrect"
-
+  "incorrectPhone": "phone number is incorrect",
+  "passwordHint" : "Password",
+  "emailHint" : "Email",
+  "birthdayHint" : "Birthday",
+  "confirmPasswordHint" : "Confirm password",
+  "usernameHint" : "User name",
+  "phoneHint" : "Phone"
 }

@@ -1,5 +1,4 @@
-import 'package:flutter/services.dart';
-import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
+part of 'helpers_module.dart';
 
 class PhoneFormatter extends TextInputFormatter {
   String _formattedNumber = '';

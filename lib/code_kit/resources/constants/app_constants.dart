@@ -30,4 +30,5 @@ class AppConstants {
   static const responseDescription = "hydra:description";
   static const phoneValidatingRegExp = r'^[87]\d{10}$';
   static const symbolsRegExp = r'\D';
+  static const additionalHintStar = "*";
 }

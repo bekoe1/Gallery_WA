@@ -20,7 +20,7 @@ class SignInScreen extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  bool _obscuringPass = false;
+  bool _obscuringPass = true;
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
 
@@ -45,6 +45,9 @@ class _SignInScreenState extends State<SignInScreen> {
         }
         if (state.status == BlocStatesEnum.success) {
           //TODO in next feature - Route to the main screen
+          context.router.push(
+            const TemporaryMainRoute(),
+          );
         }
       },
       builder: (context, state) {
@@ -79,9 +82,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: UiKitTextFormField(
                       controller: _emailController,
                       errorText: state.validationError[FieldTypesEnum.emailField]?.currentError(context),
-                      hintText: AppConstants.email,
+                      hintText: context.localization.emailHint,
                       icon: SvgPicture.asset(
                         AppIcons.messageIcon,
+                      ),
+                      additionalHint: Text(
+                        AppConstants.additionalHintStar,
+                        style: AppTextStyles.h4.copyWith(
+                          color: UiKitColors.errorRed,
+                        ),
                       ),
                     ),
                   ),
@@ -92,7 +101,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     controller: _passController,
                     errorText: state.validationError[FieldTypesEnum.passwordField]?.currentError(context),
                     obscuringText: _obscuringPass,
-                    hintText: AppConstants.passwordQuery,
+                    hintText: context.localization.passwordHint,
+                    additionalHint: Text(
+                      AppConstants.additionalHintStar,
+                      style: AppTextStyles.h4.copyWith(
+                        color: UiKitColors.errorRed,
+                      ),
+                    ),
                     icon: GestureDetector(
                       child: SvgPicture.asset(
                         _obscuringPass ? AppIcons.visibleOffIcon : AppIcons.visibleOnIcon,
