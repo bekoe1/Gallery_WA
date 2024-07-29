@@ -35,7 +35,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       );
 
       if (tokenModel != null) {
-        tokenRepo.saveTokens(tokenModel);
+        await tokenRepo.saveTokens(tokenModel);
         emit(
           state.copyWith(status: BlocStatesEnum.success),
         );

@@ -17,7 +17,6 @@ class UserTokenProvider implements UserTokenRepo {
     final refreshToken = await _storage.read(
       key: AppConstants.refreshTokenStorageName,
     );
-
     return (refreshToken != null && accessToken != null)
         ? TokenModel(
             refreshToken: refreshToken,
@@ -54,17 +53,19 @@ class UserTokenProvider implements UserTokenRepo {
 
   @override
   Future<void> saveAccessToken(String accessToken) async {
-    _storage.write(
+    await _storage.write(
       key: AppConstants.accessTokenStorageName,
       value: accessToken,
+      aOptions: AndroidOptions(),
     );
   }
 
   @override
   Future<void> saveRefreshToken(String refreshToken) async {
-    _storage.write(
-      key: AppConstants.accessTokenStorageName,
+    await _storage.write(
+      key: AppConstants.refreshTokenStorageName,
       value: refreshToken,
+      aOptions: AndroidOptions(),
     );
   }
 

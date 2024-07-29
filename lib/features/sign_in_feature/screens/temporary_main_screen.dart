@@ -6,10 +6,22 @@ class TemporaryMainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text(
-          "Вы вошли в приложение",
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              "Вы вошли в приложение",
+            ),
+            FilledButton(
+              onPressed: () async {
+                final token = await getIt<UserTokenRepo>().getTokenFromStorage();
+                log(token.toString());
+              },
+              child: const Text("see tokens"),
+            ),
+          ],
         ),
       ),
     );

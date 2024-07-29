@@ -7,8 +7,8 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   }
 
   _onCheckTokenEvent(_CheckToken event, Emitter<OnboardingState> emit) async {
-    final tokenExists = await tokenRepo.getTokenFromStorage();
-    if (tokenExists == null) {
+    final token = await tokenRepo.getTokenFromStorage();
+    if (token == null) {
       emit(
         state.copyWith(
           status: BlocStatesEnum.error,

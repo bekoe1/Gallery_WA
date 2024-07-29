@@ -80,6 +80,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: SizedBox(
                     width: 343,
                     child: UiKitTextFormField(
+                      textInputAction: TextInputAction.next,
                       controller: _emailController,
                       errorText: state.validationError[FieldTypesEnum.emailField]?.currentError(context),
                       hintText: context.localization.emailHint,

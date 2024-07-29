@@ -40,7 +40,6 @@ class UiKitTextFormField extends StatefulWidget {
 class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
   @override
   Widget build(BuildContext context) {
-    log(widget.controller!.text + widget.dateSelected.toString());
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Stack(children: [
