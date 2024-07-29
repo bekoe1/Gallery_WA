@@ -131,8 +131,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       onPressed: () {
                         context.read<SignInBloc>().add(
                               SignInEvent.signIn(
-                                email: _emailController.text,
-                                password: _passController.text,
+                                email: _emailController.text.trim(),
+                                password: _passController.text.trim(),
                               ),
                             );
                       },

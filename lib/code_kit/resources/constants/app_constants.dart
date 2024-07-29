@@ -28,6 +28,7 @@ class AppConstants {
   static const tokenExpired = "Token expired";
   static const someError = "Error occupied";
   static const responseDescription = "hydra:description";
+  static const responseMessage = "message";
   static const phoneValidatingRegExp = r'^[87]\d{10}$';
   static const symbolsRegExp = r'\D';
   static const additionalHintStar = "*";

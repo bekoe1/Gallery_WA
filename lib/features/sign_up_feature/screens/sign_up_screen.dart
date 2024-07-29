@@ -246,10 +246,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 SignUpEvent.signUp(
                                   phone: _phoneController.text.replaceAll(RegExp(AppConstants.symbolsRegExp), ""),
                                   birthday: _birthdayController.text,
-                                  username: _usernameController.text,
-                                  password: _passController.text,
-                                  email: _emailController.text,
-                                  confirmedPas: _confirmPassController.text,
+                                  username: _usernameController.text.trim(),
+                                  password: _passController.text.trim(),
+                                  email: _emailController.text.trim(),
+                                  confirmedPas: _confirmPassController.text.trim(),
                                 ),
                               );
                         },

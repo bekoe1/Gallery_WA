@@ -11,15 +11,12 @@ class TemporaryMainScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "Вы вошли в приложение",
-            ),
             FilledButton(
               onPressed: () async {
-                final token = await getIt<UserTokenRepo>().getTokenFromStorage();
-                log(token.toString());
+                await getIt<UserTokenRepo>().deleteTokens();
+                exit(0);
               },
-              child: const Text("see tokens"),
+              child: const Text("logout"),
             ),
           ],
         ),

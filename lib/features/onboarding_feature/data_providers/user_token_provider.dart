@@ -39,14 +39,14 @@ class UserTokenProvider implements UserTokenRepo {
 
   @override
   Future<void> deleteAccessToken() async {
-    _storage.delete(
+    await _storage.delete(
       key: AppConstants.accessTokenStorageName,
     );
   }
 
   @override
   Future<void> deleteRefreshToken() async {
-    _storage.delete(
+    await _storage.delete(
       key: AppConstants.refreshTokenStorageName,
     );
   }
