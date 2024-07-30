@@ -5,4 +5,5 @@ part '../app_button_themes.dart';
 part '../app_input_decoration_theme.dart';
 part '../app_main_themes.dart';
 part '../app_snackbar_theme.dart';
+part '../app_tab_bar_theme.dart';
 part '../app_text_styles.dart';

@@ -46,7 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
         if (state.status == BlocStatesEnum.success) {
           //TODO in next feature - Route to the main screen
           context.router.push(
-            const TemporaryMainRoute(),
+            const MainRoute(),
           );
         }
       },

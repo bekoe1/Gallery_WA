@@ -9,6 +9,9 @@ class AppConstants {
   static const email = "email";
   static const error = "error";
   static const birthday = "birthday";
+  static const signInEndPoint = "/token";
+  static const newTab = "New";
+  static const popularTab = "Popular";
   static const bearerToken = "Bearer";
   static const authorizationHeader = "Authorization";
   static const displayedName = "displayName";
@@ -27,6 +30,7 @@ class AppConstants {
   static const phone = "phone";
   static const dateOnScreenRegExp = r'^.{0,10}';
   static const signUpEndPoint = "/users";
+  static const getImagesEndPoint = "/photos";
   static const lostConnection = "Lost connection to network";
   static const tokenExpired = "Token expired";
   static const someError = "Error occupied";

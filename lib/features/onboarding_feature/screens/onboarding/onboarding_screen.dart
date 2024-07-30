@@ -23,7 +23,7 @@ class OnboardingScreen extends StatelessWidget implements AutoRouteWrapper {
         if (state.status == BlocStatesEnum.success) {
           context.router.replaceAll(
             [
-              const TemporaryMainRoute(),
+              const MainRoute(),
             ],
           );
         } else {

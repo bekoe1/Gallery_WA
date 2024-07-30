@@ -1,28 +1,35 @@
 part of '../sign_in_module.dart';
 
 class SignInDataProvider implements SignInRepo {
-  final Dio _dio;
+  final SignInClient signInClient;
 
-  SignInDataProvider({required Dio dio}) : _dio = dio;
+  SignInDataProvider({required this.signInClient});
 
   @override
   Future<TokenModel?> signIn({
     required String email,
     required String password,
   }) async {
-    final requestDto = RequestUserDto(
-      grantType: AppConstants.passwordQuery,
-      username: email,
-      password: password,
-      clientId: AppConstants.clientIdValue,
-      clientSecret: AppConstants.clientSecretValue,
-    );
-    final response = await _dio.post(
-      "${AppConstants.baseUrl}/token",
-      data: requestDto.toJson(),
-    );
+    try {
+      final requestDto = RequestUserDto(
+        grantType: AppConstants.passwordQuery,
+        username: email,
+        password: password,
+        clientId: AppConstants.clientIdValue,
+        clientSecret: AppConstants.clientSecretValue,
+      );
 
-    final tokenModel = TokenDto.fromJson(response.data).toModel();
-    return tokenModel;
+      final response = await signInClient.signIn(
+        userDto: requestDto.toJson(),
+      );
+
+      if (response != null) {
+        return response.toModel();
+      }
+      return null;
+    } on DioException catch (e) {
+      log(e.response.toString());
+      rethrow;
+    }
   }
 }

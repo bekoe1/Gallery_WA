@@ -1,6 +1,7 @@
 library SignInModule;
 
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
@@ -23,10 +24,12 @@ import 'package:imagegalery/features/extensions/features_extensions_module.dart'
 import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
 import 'package:imagegalery/features/sign_up_feature/sign_up_module.dart';
 import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';
+import 'package:retrofit/http.dart';
 
 part 'bloc/sign_in_bloc.dart';
 part 'bloc/sign_in_event.dart';
 part 'bloc/sign_in_state.dart';
+part 'client/sign_in_client.dart';
 part 'data_provider/sign_in_data_provider.dart';
 part 'models/dto/request/request_user_dto.dart';
 part 'repo/sign_in_repo.dart';

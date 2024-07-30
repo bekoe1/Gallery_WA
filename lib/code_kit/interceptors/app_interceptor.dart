@@ -19,7 +19,7 @@ class AppInterceptor extends Interceptor {
       final token = await tokenRepo.getTokenFromStorage();
 
       if (token?.accessToken != null) {
-        options.headers['Authorization'] = "Bearer ${token?.accessToken}";
+        options.headers[AppConstants.authorizationHeader] = "${AppConstants.bearerToken} ${token?.accessToken}";
       }
 
       return handler.next(options);

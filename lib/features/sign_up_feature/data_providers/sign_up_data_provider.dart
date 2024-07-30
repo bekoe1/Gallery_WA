@@ -1,26 +1,23 @@
 part of '../sign_up_module.dart';
 
 class SignUpDataProvider implements SignUpRepo {
-  final Dio dio;
+  final SignUpClient signUpClient;
 
-  SignUpDataProvider({required this.dio});
+  SignUpDataProvider({required this.signUpClient});
 
   @override
   Future<UserModel?> createNewUser({required RequestUserSignUpDto dto}) async {
-    final response = await dio.post(
-      "${AppConstants.baseUrl}/users",
-      options: Options(
-        contentType: AppConstants.contentType,
-      ),
-      data: {
-        AppConstants.displayedName: dto.displayName,
-        AppConstants.birthday: dto.birthday.toString(),
-        AppConstants.plainPassword: dto.password,
-        AppConstants.email: dto.email,
-        AppConstants.phone: dto.phone,
-      },
-    );
-
-    return ResponseUserDto.fromJson(response.data).toModel();
+    try {
+      final response = await signUpClient.createUser(
+        userDto: dto.toJson(),
+      );
+      if (response != null) {
+        return response.toModel();
+      }
+      return null;
+    } on DioException catch (error) {
+      log(error.response.toString());
+      rethrow;
+    }
   }
 }

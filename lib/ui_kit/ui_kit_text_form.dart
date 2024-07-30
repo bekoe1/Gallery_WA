@@ -52,6 +52,9 @@ class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
           readOnly: widget.readonly!,
           enabled: widget.isEnabled ?? true,
           onTap: widget.onTap,
+          onChanged: (t) {
+            setState(() {});
+          },
           cursorColor: Colors.black,
           obscureText: widget.obscuringText ?? false,
           cursorErrorColor: UiKitColors.black,
