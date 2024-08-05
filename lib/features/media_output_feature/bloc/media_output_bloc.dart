@@ -23,31 +23,35 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
           ),
         );
         final receivedImages = await _loadingResponse(
-          1,
-          AppConstants.imageLimit,
-          event.popularImages,
-          AppConstants.imageLimit,
+          page: 1,
+          imagesPerPage: AppConstants.imageLimit,
+          popular: event.popularImages,
+          limit: AppConstants.imageLimit,
+          search: event.searchName,
         );
         emit(
           state.copyWith(
             status: receivedImages.isNotEmpty ? BlocStatesEnum.loaded : BlocStatesEnum.noImages,
             images: receivedImages,
             firstFetch: false,
+            search: event.searchName,
             reachedEnd: receivedImages.isNotEmpty ? false : true,
           ),
         );
       } else {
         final receivedImages = await _loadingResponse(
-          imagesPage + 1,
-          AppConstants.imageLimit,
-          event.popularImages,
-          AppConstants.imageLimit,
+          page: imagesPage + 1,
+          imagesPerPage: AppConstants.imageLimit,
+          popular: event.popularImages,
+          limit: AppConstants.imageLimit,
+          search: event.searchName,
         );
         final images = [...state.images, ...receivedImages];
         bool receivedImagesIsNotEmpty = receivedImages.isNotEmpty;
         emit(
           state.copyWith(
             firstFetch: false,
+            search: event.searchName,
             images: receivedImagesIsNotEmpty ? images : state.images,
             status: images.isNotEmpty ? BlocStatesEnum.loaded : BlocStatesEnum.noImages,
             reachedEnd: receivedImagesIsNotEmpty ? false : true,
@@ -64,16 +68,18 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
     }
   }
 
-  Future<List<ImageElementModel>> _loadingResponse(
-    int page,
-    int imagesPerPage,
-    bool popular,
-    int limit,
-  ) async {
+  Future<List<ImageElementModel>> _loadingResponse({
+    required int page,
+    required int imagesPerPage,
+    required bool popular,
+    required int limit,
+    String? search,
+  }) async {
     return await imageRepo.getImageData(
       limit: limit,
       popular: popular,
       page: page,
+      search: search,
       imagesPerPage: imagesPerPage,
     );
   }

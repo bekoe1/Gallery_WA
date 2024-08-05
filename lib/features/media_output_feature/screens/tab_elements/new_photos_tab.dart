@@ -6,9 +6,11 @@ class NewPhotosTab extends StatefulWidget {
     super.key,
     required this.shouldScrollToTop,
     required this.bloc,
+    required this.controller,
   });
   final MediaOutputBloc bloc;
   final bool shouldScrollToTop;
+  final TextEditingController controller;
 
   @override
   State<NewPhotosTab> createState() => _NewPhotosTabState();
@@ -44,10 +46,12 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
     if (_scrollController.offset > _scrollController.position.maxScrollExtent) {
       if (widget.bloc.state.status != BlocStatesEnum.loading && !widget.bloc.state.reachedEnd) {
         widget.bloc.add(
-          const MediaOutputEvent.fetchData(
+          MediaOutputEvent.fetchData(
             popularImages: false,
             newImages: true,
-            searchName: AppConstants.empty,
+            searchName: widget.controller.text,
+
+            ///TODO searchQuery Changing
           ),
         );
       }
@@ -79,45 +83,48 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
           return RefreshIndicator(
             onRefresh: () async {
               widget.bloc.add(
-                const MediaOutputEvent.fetchData(
-                  searchName: AppConstants.empty,
+                MediaOutputEvent.fetchData(
+                  searchName: widget.bloc.state.search,
                   newImages: true,
                   popularImages: false,
                   isRefreshing: true,
                 ),
               );
             },
-            child: CustomScrollView(
-              shrinkWrap: true,
-              controller: _scrollController,
-              slivers: <Widget>[
-                if (state.status == BlocStatesEnum.loaded || state.status == BlocStatesEnum.loading) ...[
-                  ImagesListWidget(
-                    images: state.images,
-                  ),
-                  SliverToBoxAdapter(
-                    child: !state.reachedEnd
-                        ? const SizedBox(
-                            height: 70,
-                            child: Center(
-                              child: UiKitCircleLoadingIndicator(
-                                color: UiKitColors.gray,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: CustomScrollView(
+                shrinkWrap: true,
+                controller: _scrollController,
+                slivers: <Widget>[
+                  if (state.status == BlocStatesEnum.loaded || state.status == BlocStatesEnum.loading) ...[
+                    ImagesListWidget(
+                      images: state.images,
+                    ),
+                    SliverToBoxAdapter(
+                      child: !state.reachedEnd
+                          ? const SizedBox(
+                              height: 70,
+                              child: Center(
+                                child: UiKitCircleLoadingIndicator(
+                                  color: UiKitColors.gray,
+                                ),
                               ),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  )
-                ] else if (state.status == BlocStatesEnum.noImages && state.reachedEnd != true) ...[
-                  const NoImagesWidget(),
-                ] else ...[
-                  const SliverToBoxAdapter(
-                    child: SizedBox.shrink(),
-                  ),
+                            )
+                          : const SizedBox.shrink(),
+                    )
+                  ] else if (state.status == BlocStatesEnum.noImages && state.reachedEnd != true) ...[
+                    const NoImagesWidget(),
+                  ] else ...[
+                    const SliverToBoxAdapter(
+                      child: SizedBox.shrink(),
+                    ),
+                  ],
                 ],
-              ],
-              physics: state.status != BlocStatesEnum.noImages
-                  ? const BouncingScrollPhysics()
-                  : const AlwaysScrollableScrollPhysics(),
+                physics: state.status != BlocStatesEnum.noImages
+                    ? const BouncingScrollPhysics()
+                    : const AlwaysScrollableScrollPhysics(),
+              ),
             ),
           );
         }

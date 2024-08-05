@@ -10,10 +10,53 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final _controller = TextEditingController();
+  final _searchController = TextEditingController();
   int _scrollToTopPage = 0;
-  final MediaOutputBloc newImagesBloc = MediaOutputBloc(getIt<ImageRepo>());
-  final MediaOutputBloc popularImagesBloc = MediaOutputBloc(getIt<ImageRepo>());
+  final MediaOutputBloc newImagesBloc = MediaOutputBloc(
+    getIt<ImageRepo>(),
+  );
+  final MediaOutputBloc popularImagesBloc = MediaOutputBloc(
+    getIt<ImageRepo>(),
+  );
+
+  Timer? _debounce;
+
+  void _onSearchChanged(String text) {
+    log("zapros otpravlen");
+    final index = _tabController.index;
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(
+      const Duration(milliseconds: 500),
+      () {
+        if (index == 0) {
+          newImagesBloc.add(
+            MediaOutputEvent.fetchData(
+              isRefreshing: true,
+              popularImages: false,
+              newImages: true,
+              searchName: text,
+            ),
+          );
+        }
+        if (index == 1) {
+          popularImagesBloc.add(
+            MediaOutputEvent.fetchData(
+              popularImages: true,
+              isRefreshing: true,
+              newImages: false,
+              searchName: text,
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _debounce!.cancel();
+  }
 
   @override
   void initState() {
@@ -32,6 +75,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         NewPhotosRoute(
           shouldScrollToTop: false,
           bloc: newImagesBloc,
+          controller: _searchController,
         ),
         PopularPhotosRoute(
           shouldScrollToTop: false,
@@ -43,7 +87,8 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         return Scaffold(
           appBar: AppBar(
             title: UiKitSearchField(
-              controller: _controller,
+              onChanged: _onSearchChanged,
+              controller: _searchController,
             ),
             bottom: TabBar(
               onTap: (index) {
@@ -80,20 +125,21 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
               NewPhotosTab(
                 bloc: newImagesBloc
                   ..add(
-                    const MediaOutputEvent.fetchData(
-                      searchName: AppConstants.empty,
+                    MediaOutputEvent.fetchData(
+                      searchName: _searchController.text,
                       popularImages: false,
                       newImages: true,
                       isRefreshing: false,
                     ),
                   ),
                 shouldScrollToTop: _scrollToTopPage == 0,
+                controller: _searchController,
               ),
               PopularPhotosTab(
                 bloc: popularImagesBloc
                   ..add(
-                    const MediaOutputEvent.fetchData(
-                      searchName: AppConstants.empty,
+                    MediaOutputEvent.fetchData(
+                      searchName: _searchController.text,
                       popularImages: true,
                       newImages: false,
                       isRefreshing: false,

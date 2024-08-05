@@ -12,6 +12,7 @@ class ImageDataProvider implements ImageRepo {
     required int imagesPerPage,
     required bool popular,
     required int limit,
+    String? search,
   }) async {
     try {
       final TokenModel? token = await tokenRepo.getTokenFromStorage();
@@ -21,6 +22,7 @@ class ImageDataProvider implements ImageRepo {
         page: page,
         popularPics: popular,
         newPics: !popular,
+        search: search,
         itemsPerPage: imagesPerPage,
       );
       final images = response.data.toList();

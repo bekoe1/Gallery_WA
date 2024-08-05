@@ -6,5 +6,6 @@ abstract class ImageRepo {
     required bool popular,
     required int imagesPerPage,
     required int limit,
+    String? search,
   });
 }

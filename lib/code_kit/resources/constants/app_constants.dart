@@ -44,9 +44,9 @@ class AppConstants {
   static const popularQuery = "popular";
   static const newQuery = "new";
   static const imageLimit = 10;
-  static const maxImagesPerPage = 30;
   static const limit = "limit";
   static const imageNotFound = "no image";
   static const imagesList = "imagesList";
   static const lastPage = "lastPage";
+  static const searchImageQuery = "name";
 }
