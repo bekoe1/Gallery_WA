@@ -11,10 +11,10 @@ class UiKitCircleLoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 22,
-      height: 22,
+      width: 40,
+      height: 40,
       child: CircularProgressIndicator(
-        strokeWidth: 1,
+        strokeWidth: 2,
         color: color,
       ),
     );

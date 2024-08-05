@@ -27,5 +27,8 @@
   "birthdayHint" : "Birthday",
   "confirmPasswordHint" : "Confirm password",
   "usernameHint" : "User name",
-  "phoneHint" : "Phone"
+  "phoneHint" : "Phone",
+  "sorry" : "Sorry",
+  "noPicture" : "There is no picture",
+  "comeBackLater" : "Please come back later"
 }

@@ -20,6 +20,8 @@ enum BlocStatesEnum {
   loading,
   loaded,
   error,
+  initialLoading,
+  noImages,
   validationError,
   requestError,
 }

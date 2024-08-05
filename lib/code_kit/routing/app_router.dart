@@ -23,11 +23,11 @@ class AppRouter extends $AppRouter {
           page: MainRoute.page,
           children: [
             AutoRoute(
-              page: PopularTab.page,
+              page: NewPhotosRoute.page,
             ),
             AutoRoute(
-              page: NewTab.page,
-            ),
+              page: PopularPhotosRoute.page,
+            )
           ],
         ),
       ];

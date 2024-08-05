@@ -24,6 +24,7 @@ class SignInDataProvider implements SignInRepo {
       );
 
       if (response != null) {
+        log(response.toString());
         return response.toModel();
       }
       return null;

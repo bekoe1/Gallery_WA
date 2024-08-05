@@ -1,7 +1,15 @@
 part of 'main_module.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   getIt.init();
+
+  getIt<Dio>().interceptors.add(
+        AppInterceptor(
+          tokenRepo: getIt<UserTokenRepo>(),
+        ),
+      );
 
   runApp(MyApp());
 }
@@ -27,7 +35,7 @@ class MyApp extends StatelessWidget {
       ],
       routerConfig: _appRouter.config(),
       title: 'Flutter Demo',
-      theme: AppMainThemes.standardTheme,
+      theme: AppMainThemes.lightTheme,
     );
   }
 }

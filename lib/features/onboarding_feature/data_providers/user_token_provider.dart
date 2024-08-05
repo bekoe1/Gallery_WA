@@ -56,7 +56,6 @@ class UserTokenProvider implements UserTokenRepo {
     await _storage.write(
       key: AppConstants.accessTokenStorageName,
       value: accessToken,
-      aOptions: AndroidOptions(),
     );
   }
 
@@ -65,25 +64,24 @@ class UserTokenProvider implements UserTokenRepo {
     await _storage.write(
       key: AppConstants.refreshTokenStorageName,
       value: refreshToken,
-      aOptions: AndroidOptions(),
     );
   }
 
+  ///Done
   @override
   Future<TokenModel?> refreshAccessToken() async {
     final token = await getTokenFromStorage();
-    final refreshToken = token?.accessToken;
+    final refreshToken = token?.refreshToken;
+    await deleteTokens();
     if (refreshToken == null) return null;
     final response = await dio.post(
       "${AppConstants.baseUrl}/token",
-      data: {
-        RequestRefreshTokenDto(
-          grantType: AppConstants.refreshTokenQueryValue,
-          refreshToken: refreshToken,
-          clientId: AppConstants.clientIdValue,
-          clientSecret: AppConstants.clientSecretValue,
-        ).toJson()
-      },
+      data: RequestRefreshTokenDto(
+        grantType: AppConstants.refreshTokenQueryValue,
+        refreshToken: refreshToken,
+        clientId: AppConstants.clientIdValue,
+        clientSecret: AppConstants.clientSecretValue,
+      ).toJson(),
     );
 
     if (response.data != null) {

@@ -10,8 +10,10 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final controller = TextEditingController();
-  int _selectedIndex = 0;
+  final _controller = TextEditingController();
+  int _scrollToTopPage = 0;
+  final MediaOutputBloc newImagesBloc = MediaOutputBloc(getIt<ImageRepo>());
+  final MediaOutputBloc popularImagesBloc = MediaOutputBloc(getIt<ImageRepo>());
 
   @override
   void initState() {
@@ -25,18 +27,32 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter.tabBar(
-      routes: const [
-        NewTab(),
-        PopularTab(),
+      routes: [
+        ///TODO FIX after adding real routes
+        NewPhotosRoute(
+          shouldScrollToTop: false,
+          bloc: newImagesBloc,
+        ),
+        PopularPhotosRoute(
+          shouldScrollToTop: false,
+          bloc: popularImagesBloc,
+        ),
       ],
       builder: (context, child, tabsRouter) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
           appBar: AppBar(
             title: UiKitSearchField(
-              controller: controller,
+              controller: _controller,
             ),
             bottom: TabBar(
+              onTap: (index) {
+                if (!_tabController.indexIsChanging) {
+                  setState(() {
+                    _scrollToTopPage = index;
+                  });
+                }
+              },
               padding: const EdgeInsets.only(
                 left: 16,
                 right: 16,
@@ -60,31 +76,62 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
           ),
           body: TabBarView(
             controller: _tabController,
-            children: const [
-              NewPhotosTab(),
-              PopularPhotosTab(),
+            children: [
+              NewPhotosTab(
+                bloc: newImagesBloc
+                  ..add(
+                    const MediaOutputEvent.fetchData(
+                      searchName: AppConstants.empty,
+                      popularImages: false,
+                      newImages: true,
+                      isRefreshing: false,
+                    ),
+                  ),
+                shouldScrollToTop: _scrollToTopPage == 0,
+              ),
+              PopularPhotosTab(
+                bloc: popularImagesBloc
+                  ..add(
+                    const MediaOutputEvent.fetchData(
+                      searchName: AppConstants.empty,
+                      popularImages: true,
+                      newImages: false,
+                      isRefreshing: false,
+                    ),
+                  ),
+                shouldScrollToTop: _scrollToTopPage == 1,
+              ),
             ],
           ),
-          // bottomNavigationBar: BottomNavigationBar(
-          //   currentIndex: _selectedIndex,
-          //   items: [
-          //     BottomNavigationBarItem(
-          //       icon: SvgPicture.asset(
-          //         AppIcons.homeIcon,
-          //       ),
-          //     ),
-          //     BottomNavigationBarItem(
-          //       icon: SvgPicture.asset(
-          //         AppIcons.cameraIcon,
-          //       ),
-          //     ),
-          //     BottomNavigationBarItem(
-          //       icon: SvgPicture.asset(
-          //         AppIcons.personFilledIcon,
-          //       ),
-          //     ),
-          //   ],
-          // ),
+          bottomNavigationBar: BottomNavigationBar(
+            onTap: (index) {
+              tabsRouter.setActiveIndex(index);
+            },
+            currentIndex: tabsRouter.activeIndex,
+            items: [
+              BottomNavigationBarItem(
+                label: AppConstants.empty,
+                icon: SvgPicture.asset(
+                  AppIcons.homeIcon,
+                  color: tabsRouter.activeIndex == 0 ? UiKitColors.main : UiKitColors.gray,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: AppConstants.empty,
+                icon: SvgPicture.asset(
+                  AppIcons.cameraIcon,
+                  color: tabsRouter.activeIndex == 1 ? UiKitColors.main : UiKitColors.gray,
+                ),
+              ),
+              BottomNavigationBarItem(
+                label: AppConstants.empty,
+                icon: SvgPicture.asset(
+                  AppIcons.personFilledIcon,
+                  color: tabsRouter.activeIndex == 2 ? UiKitColors.main : UiKitColors.gray,
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
