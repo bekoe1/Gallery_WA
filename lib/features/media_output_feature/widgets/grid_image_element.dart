@@ -13,27 +13,31 @@ class GridImageElement extends StatefulWidget {
 }
 
 class _GridImageElementState extends State<GridImageElement> {
-  bool _loading = true;
+  Uint8List? imageBlob;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _loadImage(widget.imageData);
-  }
-
-  void _loadImage(ImageElementModel image) async {
+  Future<void> _loadImage(ImageElementModel imageElement) async {
     try {
-      await precacheImage(
-        NetworkImage(
-          "${AppConstants.baseUrl}/get_files/${image.file!.path}",
-        ),
-        context,
+      final imageData = await getIt<Dio>().get(
+        "${AppConstants.baseUrl}/get_file/${widget.imageData.file!.path}",
+        options: Options(responseType: ResponseType.bytes),
       );
-    } finally {
+      if (mounted) {
+        setState(() {
+          imageBlob = (imageData.data);
+        });
+      }
+      return;
+    } catch (e) {
       setState(() {
-        _loading = false;
+        imageBlob = Uint8List(3);
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadImage(widget.imageData);
   }
 
   @override
@@ -41,37 +45,35 @@ class _GridImageElementState extends State<GridImageElement> {
     return SizedBox(
       height: 164,
       width: 164,
-      child: _loading
-          ? Shimmer.fromColors(
-              baseColor: UiKitColors.white,
-              highlightColor: UiKitColors.grayLight,
-              child: Container(
-                height: 164,
-                color: UiKitColors.white,
-                width: 164,
-              ),
-            )
-          : FadeInImage.memoryNetwork(
-              imageCacheHeight: 164,
-              imageCacheWidth: 164,
-              placeholder: kTransparentImage,
-              image: "${AppConstants.baseUrl}/get_files/${widget.imageData.file!.path}",
-              imageErrorBuilder: (context, error, stackTrace) {
-                return Container(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: imageBlob == null
+            ? Shimmer.fromColors(
+                baseColor: UiKitColors.gray,
+                highlightColor: UiKitColors.grayLight,
+                child: Container(
+                  height: 164,
+                  width: 164,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: UiKitColors.grayLight,
+                    color: UiKitColors.white,
                   ),
-                  child: Center(
+                ),
+              )
+            : Image.memory(
+                imageBlob!,
+                fit: BoxFit.fill,
+                errorBuilder: (context, error, stackTrace) {
+                  return Center(
                     child: SvgPicture.asset(
                       AppIcons.errorIcon,
                       height: 50,
                       width: 50,
                     ),
-                  ),
-                );
-              },
-            ),
+                  );
+                },
+              ),
+      ),
     );
   }
 }

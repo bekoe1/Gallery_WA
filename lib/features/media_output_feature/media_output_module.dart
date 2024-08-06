@@ -1,10 +1,10 @@
 library MediaOutputModule;
 
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart' hide Headers;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,7 +21,6 @@ import 'package:imagegalery/features/onboarding_feature/onboarding_feature_modul
 import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';
 import 'package:retrofit/http.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 part 'bloc/media_output_bloc.dart';
 part 'bloc/media_output_event.dart';
