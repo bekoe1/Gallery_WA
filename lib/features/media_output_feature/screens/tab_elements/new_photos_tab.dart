@@ -81,6 +81,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
         } else {
           return RefreshIndicator(
             onRefresh: () async {
+              widget.focusNode.unfocus();
               widget.bloc.add(
                 MediaOutputEvent.fetchData(
                   searchName: widget.bloc.state.search,
