@@ -4,8 +4,9 @@ class ImagesListWidget extends StatelessWidget {
   const ImagesListWidget({
     super.key,
     required this.images,
+    required this.focusNode,
   });
-
+  final FocusNode focusNode;
   final List<ImageElementModel> images;
 
   @override
@@ -15,8 +16,13 @@ class ImagesListWidget extends StatelessWidget {
         (context, index) {
           return Padding(
             padding: const EdgeInsets.only(top: 15),
-            child: GridImageElement(
-              imageData: images[index],
+            child: GestureDetector(
+              onTap: () {
+                focusNode.unfocus();
+              },
+              child: GridImageElement(
+                imageData: images[index],
+              ),
             ),
           );
         },

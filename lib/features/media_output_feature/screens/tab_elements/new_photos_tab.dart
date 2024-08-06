@@ -6,18 +6,19 @@ class NewPhotosTab extends StatefulWidget {
     super.key,
     required this.shouldScrollToTop,
     required this.bloc,
-    required this.controller,
+    required this.focusNode,
   });
+
   final MediaOutputBloc bloc;
   final bool shouldScrollToTop;
-  final TextEditingController controller;
-
+  final FocusNode focusNode;
   @override
   State<NewPhotosTab> createState() => _NewPhotosTabState();
 }
 
 class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClientMixin {
   final _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
@@ -49,9 +50,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
           MediaOutputEvent.fetchData(
             popularImages: false,
             newImages: true,
-            searchName: widget.controller.text,
-
-            ///TODO searchQuery Changing
+            searchName: widget.bloc.state.search,
           ),
         );
       }
@@ -94,11 +93,13 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: CustomScrollView(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 shrinkWrap: true,
                 controller: _scrollController,
                 slivers: <Widget>[
                   if (state.status == BlocStatesEnum.loaded || state.status == BlocStatesEnum.loading) ...[
                     ImagesListWidget(
+                      focusNode: widget.focusNode,
                       images: state.images,
                     ),
                     SliverToBoxAdapter(

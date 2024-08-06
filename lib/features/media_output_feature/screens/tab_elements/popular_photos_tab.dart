@@ -6,11 +6,12 @@ class PopularPhotosTab extends StatefulWidget {
     super.key,
     required this.shouldScrollToTop,
     required this.bloc,
+    required this.focusNode,
   });
 
   final MediaOutputBloc bloc;
   final bool shouldScrollToTop;
-
+  final FocusNode focusNode;
   @override
   State<PopularPhotosTab> createState() => _PopularPhotosTabState();
 }
@@ -46,13 +47,12 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
     if (_scrollController.offset > _scrollController.position.maxScrollExtent) {
       if (widget.bloc.state.status != BlocStatesEnum.loading && !widget.bloc.state.reachedEnd) {
         widget.bloc.add(
-          const MediaOutputEvent.fetchData(
+          MediaOutputEvent.fetchData(
             popularImages: true,
             newImages: false,
-            searchName: AppConstants.empty,
+            searchName: widget.bloc.state.search,
           ),
         );
-        log("reached");
       }
     }
   }
@@ -82,8 +82,8 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
           return RefreshIndicator(
             onRefresh: () async {
               widget.bloc.add(
-                const MediaOutputEvent.fetchData(
-                  searchName: AppConstants.empty,
+                MediaOutputEvent.fetchData(
+                  searchName: widget.bloc.state.search,
                   newImages: false,
                   popularImages: true,
                   isRefreshing: true,
@@ -91,11 +91,13 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
               );
             },
             child: CustomScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               shrinkWrap: true,
               controller: _scrollController,
               slivers: <Widget>[
                 if (state.status == BlocStatesEnum.loaded || state.status == BlocStatesEnum.loading) ...[
                   ImagesListWidget(
+                    focusNode: widget.focusNode,
                     images: state.images,
                   ),
                   SliverToBoxAdapter(

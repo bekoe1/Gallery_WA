@@ -20,6 +20,7 @@ import 'package:imagegalery/extensions/extensions_module.dart';
 import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
 import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';
 import 'package:retrofit/http.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 part 'bloc/media_output_bloc.dart';

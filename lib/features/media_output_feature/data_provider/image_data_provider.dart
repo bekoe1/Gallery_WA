@@ -18,7 +18,7 @@ class ImageDataProvider implements ImageRepo {
       final TokenModel? token = await tokenRepo.getTokenFromStorage();
       final response = await mediaOutputClient.getImageData(
         limit: limit,
-        accessToken: "Bearer ${token?.accessToken}",
+        accessToken: "${AppConstants.bearerToken} ${token?.accessToken}",
         page: page,
         popularPics: popular,
         newPics: !popular,

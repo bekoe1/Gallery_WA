@@ -10,8 +10,13 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
   late TabController _tabController;
+
   final _searchController = TextEditingController();
+
+  final focusNode = FocusNode();
+
   int _scrollToTopPage = 0;
+
   final MediaOutputBloc newImagesBloc = MediaOutputBloc(
     getIt<ImageRepo>(),
   );
@@ -22,7 +27,6 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   Timer? _debounce;
 
   void _onSearchChanged(String text) {
-    log("zapros otpravlen");
     final index = _tabController.index;
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(
@@ -73,11 +77,12 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
       routes: [
         ///TODO FIX after adding real routes
         NewPhotosRoute(
+          focusNode: focusNode,
           shouldScrollToTop: false,
           bloc: newImagesBloc,
-          controller: _searchController,
         ),
         PopularPhotosRoute(
+          focusNode: focusNode,
           shouldScrollToTop: false,
           bloc: popularImagesBloc,
         ),
@@ -87,6 +92,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         return Scaffold(
           appBar: AppBar(
             title: UiKitSearchField(
+              focusNode: focusNode,
               onChanged: _onSearchChanged,
               controller: _searchController,
             ),
@@ -123,6 +129,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
             controller: _tabController,
             children: [
               NewPhotosTab(
+                focusNode: focusNode,
                 bloc: newImagesBloc
                   ..add(
                     MediaOutputEvent.fetchData(
@@ -133,9 +140,9 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                     ),
                   ),
                 shouldScrollToTop: _scrollToTopPage == 0,
-                controller: _searchController,
               ),
               PopularPhotosTab(
+                focusNode: focusNode,
                 bloc: popularImagesBloc
                   ..add(
                     MediaOutputEvent.fetchData(

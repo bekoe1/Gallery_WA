@@ -14,6 +14,7 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
           status: BlocStatesEnum.loading,
         ),
       );
+
       final imagesPage = (state.images.length / AppConstants.imageLimit).round();
 
       if (event.isRefreshing) {
@@ -46,8 +47,11 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
           limit: AppConstants.imageLimit,
           search: event.searchName,
         );
+
         final images = [...state.images, ...receivedImages];
+
         bool receivedImagesIsNotEmpty = receivedImages.isNotEmpty;
+
         emit(
           state.copyWith(
             firstFetch: false,
@@ -61,6 +65,7 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
     } on DioException catch (e) {
       emit(
         state.copyWith(
+          search: event.searchName,
           status: BlocStatesEnum.requestError,
           requestError: e.response?.data[AppConstants.responseMessage],
         ),
