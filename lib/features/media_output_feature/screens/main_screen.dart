@@ -18,10 +18,12 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
   int _scrollToTopPage = 0;
 
   final MediaOutputBloc newImagesBloc = MediaOutputBloc(
-    getIt<ImageRepo>(),
+    imageRepo: getIt<ImageRepo>(),
+    tokenRepo: getIt<UserTokenRepo>(),
   );
   final MediaOutputBloc popularImagesBloc = MediaOutputBloc(
-    getIt<ImageRepo>(),
+    imageRepo: getIt<ImageRepo>(),
+    tokenRepo: getIt<UserTokenRepo>(),
   );
 
   Timer? _debounce;
@@ -136,7 +138,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                       searchName: _searchController.text,
                       popularImages: false,
                       newImages: true,
-                      isRefreshing: false,
+                      isRefreshing: true,
                     ),
                   ),
                 shouldScrollToTop: _scrollToTopPage == 0,
@@ -149,7 +151,7 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
                       searchName: _searchController.text,
                       popularImages: true,
                       newImages: false,
-                      isRefreshing: false,
+                      isRefreshing: true,
                     ),
                   ),
                 shouldScrollToTop: _scrollToTopPage == 1,

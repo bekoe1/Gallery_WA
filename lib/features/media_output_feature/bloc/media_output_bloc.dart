@@ -2,8 +2,9 @@ part of '../media_output_module.dart';
 
 class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
   final ImageRepo imageRepo;
+  final UserTokenRepo tokenRepo;
 
-  MediaOutputBloc(this.imageRepo) : super(const MediaOutputState.initial()) {
+  MediaOutputBloc({required this.imageRepo, required this.tokenRepo}) : super(const MediaOutputState.initial()) {
     on<_FetchData>(_onFetchData);
   }
 
@@ -12,56 +13,36 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
       emit(
         state.copyWith(
           status: BlocStatesEnum.loading,
+          firstFetch: event.isRefreshing,
         ),
       );
+      final token = await tokenRepo.getTokenFromStorage();
 
-      final imagesPage = (state.images.length / AppConstants.imageLimit).round();
+      final imagesPage = 1 + (state.images.length / AppConstants.imageLimit).round();
 
-      if (event.isRefreshing) {
-        emit(
-          state.copyWith(
-            firstFetch: true,
-          ),
-        );
-        final receivedImages = await _loadingResponse(
-          page: 1,
-          imagesPerPage: AppConstants.imageLimit,
-          popular: event.popularImages,
-          limit: AppConstants.imageLimit,
+      final receivedImages = await _loadingResponse(
+        page: event.isRefreshing ? 1 : imagesPage,
+        imagesPerPage: AppConstants.imageLimit,
+        popular: event.popularImages,
+        limit: AppConstants.imageLimit,
+        search: event.searchName,
+      );
+
+      emit(
+        state.copyWith(
+          status: BlocStatesEnum.loaded,
+          firstFetch: false,
           search: event.searchName,
-        );
-        emit(
-          state.copyWith(
-            status: receivedImages.isNotEmpty ? BlocStatesEnum.loaded : BlocStatesEnum.noImages,
-            images: receivedImages,
-            firstFetch: false,
-            search: event.searchName,
-            reachedEnd: receivedImages.isNotEmpty ? false : true,
-          ),
-        );
-      } else {
-        final receivedImages = await _loadingResponse(
-          page: imagesPage + 1,
-          imagesPerPage: AppConstants.imageLimit,
-          popular: event.popularImages,
-          limit: AppConstants.imageLimit,
-          search: event.searchName,
-        );
-
-        final images = [...state.images, ...receivedImages];
-
-        bool receivedImagesIsNotEmpty = receivedImages.isNotEmpty;
-
-        emit(
-          state.copyWith(
-            firstFetch: false,
-            search: event.searchName,
-            images: receivedImagesIsNotEmpty ? images : state.images,
-            status: images.isNotEmpty ? BlocStatesEnum.loaded : BlocStatesEnum.noImages,
-            reachedEnd: receivedImagesIsNotEmpty ? false : true,
-          ),
-        );
-      }
+          token: token!.accessToken,
+          reachedEnd: receivedImages.isEmpty,
+          images: event.isRefreshing
+              ? receivedImages
+              : [
+                  ...state.images,
+                  ...receivedImages.isNotEmpty ? receivedImages : [],
+                ],
+        ),
+      );
     } on DioException catch (e) {
       emit(
         state.copyWith(

@@ -1,7 +1,6 @@
 library sign_up_feature;
 
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart' hide Headers;
@@ -29,12 +28,12 @@ part '../../ui_kit/ui_kit_auth_bar.dart';
 part 'bloc/sign_up_bloc.dart';
 part 'bloc/sign_up_event.dart';
 part 'bloc/sign_up_state.dart';
-part 'client/sign_up_client.dart';
 part 'data_providers/sign_up_data_provider.dart';
 part 'models/dto/request/request_user_dto.dart';
 part 'models/dto/request/token_refresh_dto.dart';
 part 'models/dto/sign_up_user_dto.dart';
 part 'models/dto/token_dto.dart';
+part 'repo/sign_up_repo_impl.dart';
 part 'screens/sign_up_screen.dart';
 part 'sign_up_module.freezed.dart';
 part 'sign_up_module.g.dart';

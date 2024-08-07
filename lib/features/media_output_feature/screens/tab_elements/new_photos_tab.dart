@@ -44,7 +44,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
   }
 
   _onScroll() {
-    if (_scrollController.offset > _scrollController.position.maxScrollExtent) {
+    if (_scrollController.offset == _scrollController.position.maxScrollExtent) {
       if (widget.bloc.state.status != BlocStatesEnum.loading && !widget.bloc.state.reachedEnd) {
         widget.bloc.add(
           MediaOutputEvent.fetchData(
@@ -100,6 +100,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
                 slivers: <Widget>[
                   if (state.status == BlocStatesEnum.loaded || state.status == BlocStatesEnum.loading) ...[
                     ImagesListWidget(
+                      token: state.token,
                       focusNode: widget.focusNode,
                       images: state.images,
                     ),
@@ -115,7 +116,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
                             )
                           : const SizedBox.shrink(),
                     )
-                  ] else if (state.status == BlocStatesEnum.noImages && state.reachedEnd != true) ...[
+                  ] else if (state.images.isEmpty && state.reachedEnd != true) ...[
                     const NoImagesWidget(),
                   ] else ...[
                     const SliverToBoxAdapter(
@@ -123,9 +124,8 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
                     ),
                   ],
                 ],
-                physics: state.status != BlocStatesEnum.noImages
-                    ? const BouncingScrollPhysics()
-                    : const AlwaysScrollableScrollPhysics(),
+                physics:
+                    state.images.isNotEmpty ? const BouncingScrollPhysics() : const AlwaysScrollableScrollPhysics(),
               ),
             ),
           );

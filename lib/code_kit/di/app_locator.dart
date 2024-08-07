@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:imagegalery/code_kit/di/injection.dart';
+import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
 import 'package:imagegalery/features/media_output_feature/media_output_module.dart';
 import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
 import 'package:imagegalery/features/sign_in_feature/sign_in_module.dart';
@@ -20,35 +21,42 @@ abstract class AppModule {
     return Dio(
       BaseOptions(
         receiveDataWhenStatusError: true,
+        baseUrl: AppConstants.baseUrl,
       ),
     );
   }
 
   @Singleton()
   UserTokenRepo tokenRepo() {
-    return UserTokenProvider(
+    return UserTokenRepoImpl(
+      tokenProvider: UserTokenProvider(getIt<Dio>()),
       storage: getIt<FlutterSecureStorage>(),
-      dio: getIt<Dio>(),
     );
   }
 
   @Singleton()
   SignInRepo signInRepo() {
-    return SignInDataProvider(
-      signInClient: SignInClient(getIt<Dio>()),
+    return SignInRepoImpl(
+      signInDataProvider: SignInDataProvider(
+        getIt<Dio>(),
+      ),
     );
   }
 
   @Singleton()
   SignUpRepo signUpRepo() {
-    return SignUpDataProvider(
-      signUpClient: SignUpClient(getIt<Dio>()),
+    return SignUpRepoImpl(
+      signUpDataProvider: SignUpDataProvider(
+        getIt<Dio>(),
+      ),
     );
   }
 
   ImageRepo imageRepo() {
-    return ImageDataProvider(
-      mediaOutputClient: MediaOutputClient(getIt<Dio>()),
+    return ImageRepoImpl(
+      imageDataProvider: ImageDataProvider(
+        getIt<Dio>(),
+      ),
     );
   }
 }

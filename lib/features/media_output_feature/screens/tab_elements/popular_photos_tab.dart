@@ -12,6 +12,7 @@ class PopularPhotosTab extends StatefulWidget {
   final MediaOutputBloc bloc;
   final bool shouldScrollToTop;
   final FocusNode focusNode;
+
   @override
   State<PopularPhotosTab> createState() => _PopularPhotosTabState();
 }
@@ -44,7 +45,7 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
   }
 
   _onScroll() {
-    if (_scrollController.offset > _scrollController.position.maxScrollExtent) {
+    if (_scrollController.offset == _scrollController.position.maxScrollExtent) {
       if (widget.bloc.state.status != BlocStatesEnum.loading && !widget.bloc.state.reachedEnd) {
         widget.bloc.add(
           MediaOutputEvent.fetchData(
@@ -96,8 +97,10 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
               shrinkWrap: true,
               controller: _scrollController,
               slivers: <Widget>[
-                if (state.status == BlocStatesEnum.loaded || state.status == BlocStatesEnum.loading) ...[
+                if ((state.status == BlocStatesEnum.loaded || state.status == BlocStatesEnum.loading) &&
+                    state.images.isNotEmpty) ...[
                   ImagesListWidget(
+                    token: state.token,
                     focusNode: widget.focusNode,
                     images: state.images,
                   ),
@@ -113,7 +116,7 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
                           )
                         : const SizedBox.shrink(),
                   )
-                ] else if (state.status == BlocStatesEnum.noImages) ...[
+                ] else if (state.images.isEmpty) ...[
                   const NoImagesWidget(),
                 ] else ...[
                   const SliverToBoxAdapter(
@@ -121,9 +124,7 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
                   ),
                 ],
               ],
-              physics: state.status != BlocStatesEnum.noImages
-                  ? const BouncingScrollPhysics()
-                  : const AlwaysScrollableScrollPhysics(),
+              physics: state.images.isNotEmpty ? const BouncingScrollPhysics() : const AlwaysScrollableScrollPhysics(),
             ),
           );
         }

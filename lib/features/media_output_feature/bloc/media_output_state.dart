@@ -8,6 +8,7 @@ class MediaOutputState with _$MediaOutputState {
     @Default(false) bool reachedEnd,
     @Default(true) bool firstFetch,
     @Default(AppConstants.empty) String search,
+    @Default("") String token,
     @Default(BlocStatesEnum.initial) BlocStatesEnum status,
   }) = _Initial;
 }

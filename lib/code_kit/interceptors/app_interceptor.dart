@@ -12,7 +12,6 @@ class AppInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    log(options.queryParameters.toString());
     final connectedToNetwork = await InterceptorHelper.hasNetwork();
     if (options.path == "${AppConstants.baseUrl}/token") return handler.next(options);
     if (connectedToNetwork) {
@@ -35,8 +34,6 @@ class AppInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // TODO: implement onResponse
-    // log(response.data.toString());
     super.onResponse(response, handler);
   }
 

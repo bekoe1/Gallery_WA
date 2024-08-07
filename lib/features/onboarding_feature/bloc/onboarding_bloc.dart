@@ -15,7 +15,6 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
         ),
       );
     } else {
-      log(token.accessToken);
       emit(
         state.copyWith(
           status: BlocStatesEnum.success,

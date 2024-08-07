@@ -1,7 +1,6 @@
 library SignInModule;
 
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
@@ -28,10 +27,10 @@ import 'package:retrofit/http.dart';
 part 'bloc/sign_in_bloc.dart';
 part 'bloc/sign_in_event.dart';
 part 'bloc/sign_in_state.dart';
-part 'client/sign_in_client.dart';
 part 'data_provider/sign_in_data_provider.dart';
 part 'models/dto/request/request_user_dto.dart';
 part 'repo/sign_in_repo.dart';
+part 'repo/sign_in_repo_impl.dart';
 part 'screens/sign_in_screen.dart';
 part 'sign_in_module.freezed.dart';
 part 'sign_in_module.g.dart';

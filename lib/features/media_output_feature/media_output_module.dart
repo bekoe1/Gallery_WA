@@ -1,6 +1,7 @@
 library MediaOutputModule;
 
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart' hide Headers;
@@ -25,19 +26,17 @@ import 'package:shimmer/shimmer.dart';
 part 'bloc/media_output_bloc.dart';
 part 'bloc/media_output_event.dart';
 part 'bloc/media_output_state.dart';
-part 'client/media_output_client.dart';
 part 'data_provider/image_data_provider.dart';
 part 'media_output_module.freezed.dart';
 part 'media_output_module.g.dart';
 part 'models/dto/image_data_dto.dart';
 part 'models/dto/image_element_dto.dart';
 part 'models/dto/media_output_response_dto.dart';
-part 'models/dto/view_dto.dart';
 part 'models/models/image_data_model.dart';
 part 'models/models/image_element_model.dart';
 part 'models/models/media_output_response_model.dart';
-part 'models/models/view_model.dart';
 part 'repo/image_repo.dart';
+part 'repo/image_repo_impl.dart';
 part 'screens/main_screen.dart';
 part 'screens/tab_elements/new_photos_tab.dart';
 part 'screens/tab_elements/popular_photos_tab.dart';
