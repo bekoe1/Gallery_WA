@@ -35,8 +35,12 @@ class UiKitFilledButton extends StatelessWidget {
           : null,
       onPressed: isLoading ? null : onPressed,
       child: isLoading
-          ? const UiKitCircleLoadingIndicator(
-              color: Colors.white,
+          ? SizedBox(
+              height: 22,
+              width: 22,
+              child: AppIndicator.appIndicator(
+                UiKitColors.white,
+              ),
             )
           : Text(
               text,

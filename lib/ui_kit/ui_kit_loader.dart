@@ -16,10 +16,7 @@ class UiKitLoader extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircularProgressIndicator(
-            color: indicatorColor,
-            strokeWidth: 2,
-          ),
+          AppIndicator.appIndicator(indicatorColor),
           Text(
             S.of(context).loading,
             style: AppTextStyles.h4.copyWith(

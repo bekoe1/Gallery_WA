@@ -106,11 +106,11 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
                   ),
                   SliverToBoxAdapter(
                     child: !state.reachedEnd
-                        ? const SizedBox(
+                        ? SizedBox(
                             height: 70,
                             child: Center(
-                              child: UiKitCircleLoadingIndicator(
-                                color: UiKitColors.gray,
+                              child: AppIndicator.appIndicator(
+                                UiKitColors.gray,
                               ),
                             ),
                           )

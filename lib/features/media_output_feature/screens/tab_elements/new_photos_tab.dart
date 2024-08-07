@@ -12,6 +12,7 @@ class NewPhotosTab extends StatefulWidget {
   final MediaOutputBloc bloc;
   final bool shouldScrollToTop;
   final FocusNode focusNode;
+
   @override
   State<NewPhotosTab> createState() => _NewPhotosTabState();
 }
@@ -106,11 +107,11 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
                     ),
                     SliverToBoxAdapter(
                       child: !state.reachedEnd
-                          ? const SizedBox(
+                          ? SizedBox(
                               height: 70,
                               child: Center(
-                                child: UiKitCircleLoadingIndicator(
-                                  color: UiKitColors.gray,
+                                child: AppIndicator.appIndicator(
+                                  UiKitColors.gray,
                                 ),
                               ),
                             )

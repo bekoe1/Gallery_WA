@@ -7,6 +7,7 @@ class UiKitTextButton extends StatelessWidget {
     this.onPressed,
     this.isLoading = false,
   });
+
   final VoidCallback? onPressed;
   final bool isLoading;
   final String text;
@@ -23,8 +24,12 @@ class UiKitTextButton extends StatelessWidget {
           : null,
       onPressed: isLoading ? null : onPressed,
       child: isLoading
-          ? const UiKitCircleLoadingIndicator(
-              color: UiKitColors.black,
+          ? SizedBox(
+              height: 22,
+              width: 22,
+              child: AppIndicator.appIndicator(
+                UiKitColors.black,
+              ),
             )
           : Text(text),
     );

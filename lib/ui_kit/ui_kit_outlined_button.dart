@@ -11,6 +11,7 @@ class UiKitOutlinedButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final bool isLoading;
   final String text;
+
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
@@ -32,8 +33,12 @@ class UiKitOutlinedButton extends StatelessWidget {
           : null,
       onPressed: isLoading ? null : onPressed,
       child: isLoading
-          ? const UiKitCircleLoadingIndicator(
-              color: UiKitColors.black,
+          ? SizedBox(
+              height: 22,
+              width: 22,
+              child: AppIndicator.appIndicator(
+                UiKitColors.black,
+              ),
             )
           : Text(text),
     );
