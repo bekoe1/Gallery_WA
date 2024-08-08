@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("I already have an account"),
         "birthdayHint": MessageLookupByLibrary.simpleMessage("Birthday"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "comeBackLater":
+            MessageLookupByLibrary.simpleMessage("Please come back later"),
         "confirmPasswordHint":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
         "createAccount":
@@ -50,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "lostConnection": MessageLookupByLibrary.simpleMessage(
             "You are not connected to the network or your internet is weak"),
+        "noPicture":
+            MessageLookupByLibrary.simpleMessage("There is no picture"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordsAreNotEqual":
             MessageLookupByLibrary.simpleMessage("passwords do not match"),
@@ -61,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "someError": MessageLookupByLibrary.simpleMessage("Error occupied"),
+        "sorry": MessageLookupByLibrary.simpleMessage("Sorry"),
         "successSignIn":
             MessageLookupByLibrary.simpleMessage("Sign in success"),
         "tokenExpired":

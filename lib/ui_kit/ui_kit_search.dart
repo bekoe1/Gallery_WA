@@ -6,11 +6,13 @@ class UiKitSearchField extends StatefulWidget {
     required this.controller,
     this.isEnabled = true,
     this.focusNode,
+    this.onChanged,
   });
 
   final TextEditingController controller;
   final bool isEnabled;
   final FocusNode? focusNode;
+  final void Function(String)? onChanged;
 
   @override
   _UiKitSearchFieldState createState() => _UiKitSearchFieldState();
@@ -27,6 +29,7 @@ class _UiKitSearchFieldState extends State<UiKitSearchField> {
       child: IgnorePointer(
         ignoring: !widget.isEnabled,
         child: CupertinoSearchTextField(
+          onChanged: widget.onChanged,
           focusNode: widget.focusNode,
           itemColor: widget.isEnabled ? UiKitColors.gray : UiKitColors.grayLight,
           padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),

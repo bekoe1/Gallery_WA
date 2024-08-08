@@ -55,7 +55,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(
         state.copyWith(
           status: BlocStatesEnum.requestError,
-          requestError: e.response?.data[AppConstants.responseMessage].toString(),
+          requestError: e.response?.data[AppConstants.responseMessage],
         ),
       );
     } catch (e) {

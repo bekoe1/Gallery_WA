@@ -19,6 +19,16 @@ class AppRouter extends $AppRouter {
         AutoRoute(
           page: SignUpRoute.page,
         ),
-        AutoRoute(page: TemporaryMainRoute.page),
+        AutoRoute(
+          page: MainRoute.page,
+          children: [
+            AutoRoute(
+              page: NewPhotosRoute.page,
+            ),
+            AutoRoute(
+              page: PopularPhotosRoute.page,
+            )
+          ],
+        ),
       ];
 }

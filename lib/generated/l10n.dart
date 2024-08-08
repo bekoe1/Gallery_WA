@@ -339,6 +339,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Sorry`
+  String get sorry {
+    return Intl.message(
+      'Sorry',
+      name: 'sorry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is no picture`
+  String get noPicture {
+    return Intl.message(
+      'There is no picture',
+      name: 'noPicture',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please come back later`
+  String get comeBackLater {
+    return Intl.message(
+      'Please come back later',
+      name: 'comeBackLater',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,0 +1,45 @@
+library MediaOutputModule;
+
+import 'dart:async';
+import 'dart:developer';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart' hide Headers;
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:imagegalery/code_kit/di/injection.dart';
+import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
+import 'package:imagegalery/code_kit/resources/enums.dart';
+import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
+import 'package:imagegalery/code_kit/resources/themes_data/app_colors.dart';
+import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';
+import 'package:imagegalery/code_kit/routing/app_router.gr.dart';
+import 'package:imagegalery/extensions/extensions_module.dart';
+import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
+import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';
+import 'package:retrofit/http.dart';
+import 'package:shimmer/shimmer.dart';
+
+part 'bloc/media_output_bloc.dart';
+part 'bloc/media_output_event.dart';
+part 'bloc/media_output_state.dart';
+part 'data_provider/image_data_provider.dart';
+part 'media_output_module.freezed.dart';
+part 'media_output_module.g.dart';
+part 'models/dto/image_data_dto.dart';
+part 'models/dto/image_element_dto.dart';
+part 'models/dto/media_output_response_dto.dart';
+part 'models/models/image_data_model.dart';
+part 'models/models/image_element_model.dart';
+part 'models/models/media_output_response_model.dart';
+part 'repo/image_repo.dart';
+part 'repo/image_repo_impl.dart';
+part 'screens/main_screen.dart';
+part 'screens/tab_elements/new_photos_tab.dart';
+part 'screens/tab_elements/popular_photos_tab.dart';
+part 'widgets/grid_image_element.dart';
+part 'widgets/images_list_widget.dart';
+part 'widgets/no_images_widget.dart';

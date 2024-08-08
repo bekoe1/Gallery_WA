@@ -35,9 +35,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       final date = DateTime.parse(event.birthday);
       final requestDto = RequestUserSignUpDto(
         email: event.email,
-        birthday: date,
+        birthday: date.toString(),
         displayName: event.username,
-        password: event.password,
+        plainPassword: event.password,
         phone: event.phone,
       );
 
@@ -56,21 +56,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         );
       }
     } on DioException catch (e) {
-      if (e.response?.statusCode == 400) {
-        emit(
-          state.copyWith(
-            status: BlocStatesEnum.requestError,
-            requestError: e.response?.data[AppConstants.responseDescription],
-          ),
-        );
-      } else {
-        emit(
-          state.copyWith(
-            status: BlocStatesEnum.requestError,
-            requestError: e.error.toString(),
-          ),
-        );
-      }
+      emit(
+        state.copyWith(
+          status: BlocStatesEnum.requestError,
+          requestError: e.response?.data[AppConstants.responseDescription],
+        ),
+      );
     } catch (e) {
       emit(
         state.copyWith(

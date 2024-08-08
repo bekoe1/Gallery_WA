@@ -27,5 +27,8 @@
   "birthdayHint" : "Дата рождения",
   "confirmPasswordHint" : "Подтвердите пароль",
   "usernameHint" : "Имя пользователя",
-  "phoneHint" : "Номер телефона"
+  "phoneHint" : "Номер телефона",
+  "sorry" : "Извините",
+  "noPicture" : "Нет изображений",
+  "comeBackLater" : "Пожалуйста, зайдите позже"
 }

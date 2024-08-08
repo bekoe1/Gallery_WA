@@ -15,5 +15,6 @@ class AppIcons {
   static const String arrowRightIcon = "assets/icons/arrow_right_icon.svg";
   static const String plusIcon = "assets/icons/plus_icon.svg";
   static const String phoneIcon = "assets/icons/phone_icon.svg";
+  static const String noImageLogo = "assets/icons/no_images_logo.svg";
   static const String webantSvgLogo = 'assets/images/webant_logo.svg';
 }

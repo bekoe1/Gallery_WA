@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("У меня уже есть аккаунт"),
         "birthdayHint": MessageLookupByLibrary.simpleMessage("Дата рождения"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
+        "comeBackLater":
+            MessageLookupByLibrary.simpleMessage("Пожалуйста, зайдите позже"),
         "confirmPasswordHint":
             MessageLookupByLibrary.simpleMessage("Подтвердите пароль"),
         "createAccount":
@@ -50,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),
         "lostConnection": MessageLookupByLibrary.simpleMessage(
             "Вы не подключены к сети или у вас слабый интернет"),
+        "noPicture": MessageLookupByLibrary.simpleMessage("Нет изображений"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("Пароль"),
         "passwordsAreNotEqual":
             MessageLookupByLibrary.simpleMessage("пароли не совпадают"),
@@ -61,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signIn": MessageLookupByLibrary.simpleMessage("Войти"),
         "signUp": MessageLookupByLibrary.simpleMessage("Зарегистрироваться"),
         "someError": MessageLookupByLibrary.simpleMessage("Возникла ошибка"),
+        "sorry": MessageLookupByLibrary.simpleMessage("Извините"),
         "successSignIn": MessageLookupByLibrary.simpleMessage(
             "Вы успешно зарегестрировались"),
         "tokenExpired": MessageLookupByLibrary.simpleMessage("Ваш токен истек"),

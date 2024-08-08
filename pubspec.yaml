@@ -31,6 +31,14 @@ dependencies:
   json_serializable: ^6.8.0
   flutter_native_splash: ^2.4.1
   dio: ^5.5.0+1
+  retrofit: ^4.1.0
+  retrofit_generator: ^8.1.2
+  shimmer: ^3.0.0
+  transparent_image: ^2.0.1
+  flutter_shimmer: ^2.1.2
+  dio_cache_interceptor: ^3.5.0
+  dio_cache_interceptor_file_store: ^1.2.3
+
 
 dev_dependencies:
   flutter_test:
@@ -57,3 +65,4 @@ flutter_native_splash:
   android_gravity: center
   android_12:
     image: assets/images/webant_logo.png
+

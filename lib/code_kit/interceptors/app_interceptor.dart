@@ -4,7 +4,6 @@ class AppInterceptor extends Interceptor {
   final UserTokenRepo tokenRepo;
 
   Future<TokenModel?> _refreshToken() async {
-    await tokenRepo.deleteAccessToken();
     final newToken = await tokenRepo.refreshAccessToken();
     return newToken;
   }
@@ -14,14 +13,14 @@ class AppInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     final connectedToNetwork = await InterceptorHelper.hasNetwork();
-
+    if (options.path == "${AppConstants.baseUrl}/token") return handler.next(options);
     if (connectedToNetwork) {
       final token = await tokenRepo.getTokenFromStorage();
 
       if (token?.accessToken != null) {
-        options.headers['Authorization'] = "Bearer ${token?.accessToken}";
+        options.headers[AppConstants.authorizationHeader] = "Bearer ${token?.accessToken}";
+        return handler.next(options);
       }
-
       return handler.next(options);
     } else {
       return handler.reject(
@@ -35,7 +34,6 @@ class AppInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // TODO: implement onResponse
     super.onResponse(response, handler);
   }
 
@@ -45,8 +43,16 @@ class AppInterceptor extends Interceptor {
       baseUrl: AppConstants.baseUrl,
     );
 
+    if (err.response?.data == null) {
+      final newToken = await _refreshToken();
+      options.headers[AppConstants.authorizationHeader] = "${AppConstants.bearerToken} ${newToken?.accessToken}";
+      final request = await Dio().fetch(options);
+
+      return handler.resolve(request);
+    }
+
     switch (err.response?.statusCode) {
-      case 401:
+      case (401):
         try {
           final newToken = await _refreshToken();
           options.headers[AppConstants.authorizationHeader] = "${AppConstants.bearerToken} ${newToken?.accessToken}";
@@ -61,7 +67,7 @@ class AppInterceptor extends Interceptor {
             ),
           );
         }
-      case 400:
+      case (400):
         final responseData = err.response!.data;
         final error = responseData[AppConstants.error];
         if (error == AppConstants.invalidGrantError) {
@@ -72,6 +78,10 @@ class AppInterceptor extends Interceptor {
             ),
           );
         }
+      case (404):
+        return handler.reject(
+          ApiExceptions(requestOptions: options, errorMessage: AppConstants.imageNotFound),
+        );
     }
     return handler.next(err);
   }
