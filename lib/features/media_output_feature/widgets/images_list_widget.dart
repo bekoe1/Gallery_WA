@@ -30,8 +30,8 @@ class ImagesListWidget extends StatelessWidget {
         },
         childCount: images.length,
       ),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+        maxCrossAxisExtent: 200,
         crossAxisSpacing: 15,
       ),
     );

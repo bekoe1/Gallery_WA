@@ -30,5 +30,8 @@ class AppRouter extends RootStackRouter {
             )
           ],
         ),
+        AutoRoute(
+          page: ImageViewRoute.page,
+        ),
       ];
 }

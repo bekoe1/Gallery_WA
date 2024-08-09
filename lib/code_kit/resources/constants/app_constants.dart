@@ -11,6 +11,7 @@ class AppConstants {
   static const birthday = "birthday";
   static const signInEndPoint = "/token";
   static const newTab = "New";
+  static const id = "id";
   static const popularTab = "Popular";
   static const bearerToken = "Bearer";
   static const authorizationHeader = "Authorization";
@@ -31,6 +32,7 @@ class AppConstants {
   static const dateOnScreenRegExp = r'^.{0,10}';
   static const signUpEndPoint = "/users";
   static const getImagesEndPoint = "/photos";
+  static const getImagesByIdEndPoint = "/photos/{id}";
   static const lostConnection = "Lost connection to network";
   static const tokenExpired = "Token expired";
   static const someError = "Error occupied";

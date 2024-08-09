@@ -30,5 +30,7 @@
   "phoneHint" : "Phone",
   "sorry" : "Sorry",
   "noPicture" : "There is no picture",
-  "comeBackLater" : "Please come back later"
+  "comeBackLater" : "Please come back later",
+  "back" : "Back",
+  "edit" : "Edit"
 }

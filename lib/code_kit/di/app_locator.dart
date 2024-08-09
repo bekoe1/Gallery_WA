@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:imagegalery/code_kit/interceptors/interceptors_module.dart';
 import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
+import 'package:imagegalery/features/image_view/image_view_module.dart';
 import 'package:imagegalery/features/media_output_feature/media_output_module.dart';
 import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
 import 'package:imagegalery/features/sign_in_feature/sign_in_module.dart';
@@ -50,6 +51,12 @@ void setUpLocator() {
           getIt<Dio>(),
         ),
       ),
+    )
+    ..registerSingleton<ImageViewRepo>(
+      ImageViewRepoImpl(
+          imageViewDataProvider: ImageViewDataProvider(
+        getIt<Dio>(),
+      )),
     );
 
   getIt<Dio>().interceptors.add(

@@ -3,7 +3,6 @@ part of '../../media_output_module.dart';
 @Freezed(genericArgumentFactories: true)
 class OutputPhotosDtoWrapper<T> with _$OutputPhotosDtoWrapper<T> {
   const factory OutputPhotosDtoWrapper({
-    @JsonKey(name: "hydra:totalItems") required int totalItems,
     @JsonKey(name: "hydra:member") required List<T> data,
   }) = _OutputPhotosDtoWrapper;
 
@@ -16,7 +15,6 @@ class OutputPhotosDtoWrapper<T> with _$OutputPhotosDtoWrapper<T> {
 
   MediaOutputResponseModel toModel() {
     return MediaOutputResponseModel(
-      totalItems: totalItems,
       data: data,
     );
   }
