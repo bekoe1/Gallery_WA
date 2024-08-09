@@ -1,15 +1,8 @@
 part of 'main_module.dart';
 
-void main() async {
+void main()  {
   WidgetsFlutterBinding.ensureInitialized();
-
-  getIt.init();
-
-  getIt<Dio>().interceptors.add(
-        AppInterceptor(
-          tokenRepo: getIt<UserTokenRepo>(),
-        ),
-      );
+  setUpLocator();
 
   runApp(MyApp());
 }

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:imagegalery/code_kit/di/injection.dart';
+import 'package:imagegalery/code_kit/di/app_locator.dart';
 import 'package:imagegalery/code_kit/helpers/helpers_module.dart';
 import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
 import 'package:imagegalery/code_kit/resources/enums.dart';

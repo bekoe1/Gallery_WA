@@ -43,6 +43,14 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
                 ],
         ),
       );
+    } on ApiExceptions catch (e) {
+      emit(
+        state.copyWith(
+          status: BlocStatesEnum.requestError,
+          search: event.searchName,
+          requestError: e.message,
+        ),
+      );
     } on DioException catch (e) {
       emit(
         state.copyWith(
