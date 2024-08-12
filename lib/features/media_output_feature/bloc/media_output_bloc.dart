@@ -17,7 +17,6 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
         ),
       );
       final token = await tokenRepo.getTokenFromStorage();
-
       final imagesPage = 1 + (state.images.length / AppConstants.imageLimit).round();
 
       final receivedImages = await _loadingResponse(
