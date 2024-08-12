@@ -1,6 +1,6 @@
 part of 'main_module.dart';
 
-void main()  {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setUpLocator();
 

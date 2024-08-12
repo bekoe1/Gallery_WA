@@ -45,12 +45,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpBloc, SignUpState>(
       listener: (context, state) {
-        if (state.status == BlocStatesEnum.success) {
+        if (state.status.isSuccess()) {
           context.router.push(
             const SignInRoute(),
           );
         }
-        if (state.status == BlocStatesEnum.requestError) {
+        if (state.status.hasRequestError()) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(

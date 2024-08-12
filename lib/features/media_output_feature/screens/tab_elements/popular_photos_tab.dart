@@ -64,7 +64,7 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
     return BlocConsumer<MediaOutputBloc, MediaOutputState>(
       bloc: widget.bloc,
       listener: (context, state) {
-        if (state == BlocStatesEnum.requestError) {
+        if (state.status.hasRequestError()) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -80,7 +80,7 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
             child: UiKitLoader(),
           );
         } else {
-          return RefreshIndicator(
+          return AppRefreshIndicator.appRefreshIndicator(
             onRefresh: () async {
               widget.focusNode.unfocus();
               widget.bloc.add(
@@ -97,8 +97,7 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
               shrinkWrap: true,
               controller: _scrollController,
               slivers: <Widget>[
-                if ((state.status == BlocStatesEnum.loaded || state.status == BlocStatesEnum.loading) &&
-                    state.images.isNotEmpty) ...[
+                if ((state.status.isLoaded() || state.status.isLoading()) && state.images.isNotEmpty) ...[
                   ImagesListWidget(
                     token: state.token,
                     focusNode: widget.focusNode,
@@ -109,7 +108,7 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
                         ? SizedBox(
                             height: 70,
                             child: Center(
-                              child: AppIndicator.appIndicator(
+                              child: AppLoadingIndicator.appLoadingIndicator(
                                 UiKitColors.gray,
                               ),
                             ),

@@ -34,7 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<SignInBloc, SignInState>(
       listener: (context, state) {
-        if (state.status == BlocStatesEnum.requestError) {
+        if (state.status.hasRequestError()) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -43,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
           );
         }
-        if (state.status == BlocStatesEnum.success) {
+        if (state.status.isSuccess()) {
           context.router.push(
             const MainRoute(),
           );
