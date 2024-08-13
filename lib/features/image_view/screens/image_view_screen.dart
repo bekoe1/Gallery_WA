@@ -35,7 +35,15 @@ class ImageViewScreen extends StatelessWidget {
         ),
         body: BlocConsumer<ImageViewBloc, ImageViewState>(
           listener: (context, state) {
-            // TODO: implement listener
+            if (state.status.hasRequestError()) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    state.requestError ?? context.localization.someError,
+                  ),
+                ),
+              );
+            }
           },
           builder: (context, state) {
             return AppRefreshIndicator.appRefreshIndicator(
@@ -45,13 +53,14 @@ class ImageViewScreen extends StatelessWidget {
                     );
               },
               child: SingleChildScrollView(
+                padding: const EdgeInsets.only(bottom: 30),
                 child: SizedBox(
                   height: MediaQuery.sizeOf(context).height,
                   child: Column(
                     crossAxisAlignment:
                         (state.status.isLoaded()) ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                     children: [
-                      if (state.status.isLoaded()) ...[
+                      if (state.status.isLoaded() || state.status.isLoading()) ...[
                         SizedBox(
                           height: MediaQuery.sizeOf(context).height,
                           child: Stack(
@@ -59,7 +68,6 @@ class ImageViewScreen extends StatelessWidget {
                               Positioned(
                                 top: 265,
                                 right: 16,
-                                bottom: 30,
                                 left: 16,
                                 child: Skeletonizer(
                                   enabled: state.status.isLoading(),
@@ -109,35 +117,41 @@ class ImageViewScreen extends StatelessWidget {
                                   constraints: BoxConstraints(
                                     maxHeight: MediaQuery.sizeOf(context).height / 3,
                                   ),
-                                  child: PhotoView(
-                                    basePosition: Alignment.center,
-                                    minScale: PhotoViewComputedScale.contained,
-                                    maxScale: PhotoViewComputedScale.covered * 2,
-                                    backgroundDecoration: const BoxDecoration(
-                                      color: Colors.transparent,
-                                    ),
-                                    imageProvider: NetworkImage(
-                                      "${AppConstants.baseUrl}/get_file/${state.imageUrl}",
-                                      headers: {AppConstants.authorizationHeader: "Bearer ${state.token}"},
-                                    ),
-                                    loadingBuilder: (context, loadingProgress) {
-                                      return ShimmerExtension.baseShimmer(
-                                        child: Container(
-                                          width: MediaQuery.of(context).size.width,
-                                          color: UiKitColors.white,
+                                  child: state.status.isLoaded()
+                                      ? PhotoView(
+                                          basePosition: Alignment.center,
+                                          minScale: PhotoViewComputedScale.contained,
+                                          maxScale: PhotoViewComputedScale.covered * 2,
+                                          backgroundDecoration: const BoxDecoration(
+                                            color: Colors.transparent,
+                                          ),
+                                          imageProvider: NetworkImage(
+                                            "${AppConstants.baseUrl}/get_file/${state.imageUrl}",
+                                            headers: {AppConstants.authorizationHeader: "Bearer ${state.token}"},
+                                          ),
+                                          loadingBuilder: (context, loadingProgress) {
+                                            return ShimmerExtension.baseShimmer(
+                                              child: Container(
+                                                width: MediaQuery.of(context).size.width,
+                                                color: UiKitColors.white,
+                                              ),
+                                            );
+                                          },
+                                          errorBuilder: (context, error, stackTrace) {
+                                            return Center(
+                                              child: SvgPicture.asset(
+                                                AppIcons.errorIcon,
+                                                height: 50,
+                                                width: 50,
+                                              ),
+                                            );
+                                          },
+                                        )
+                                      : ShimmerExtension.baseShimmer(
+                                          child: Container(
+                                            color: UiKitColors.white,
+                                          ),
                                         ),
-                                      );
-                                    },
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Center(
-                                        child: SvgPicture.asset(
-                                          AppIcons.errorIcon,
-                                          height: 50,
-                                          width: 50,
-                                        ),
-                                      );
-                                    },
-                                  ),
                                 ),
                               ),
                             ],
