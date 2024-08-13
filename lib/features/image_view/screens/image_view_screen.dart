@@ -1,13 +1,37 @@
 part of '../image_view_module.dart';
 
 @RoutePage()
-class ImageViewScreen extends StatelessWidget {
+class ImageViewScreen extends StatefulWidget {
   const ImageViewScreen({
     super.key,
     required this.id,
   });
 
   final int id;
+
+  @override
+  State<ImageViewScreen> createState() => _ImageViewScreenState();
+}
+
+class _ImageViewScreenState extends State<ImageViewScreen> {
+  final _photoViewController = PhotoViewController();
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    _photoViewController.reset();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.removeListener(_onScroll);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +41,7 @@ class ImageViewScreen extends StatelessWidget {
         tokenRepo: getIt<UserTokenRepo>(),
       )..add(
           ImageViewEvent.fetchData(
-            id: id,
+            id: widget.id,
           ),
         ),
       child: Scaffold(
@@ -49,10 +73,11 @@ class ImageViewScreen extends StatelessWidget {
             return AppRefreshIndicator.appRefreshIndicator(
               onRefresh: () async {
                 context.read<ImageViewBloc>().add(
-                      ImageViewEvent.fetchData(id: id),
+                      ImageViewEvent.fetchData(id: widget.id),
                     );
               },
               child: SingleChildScrollView(
+                controller: _scrollController,
                 padding: const EdgeInsets.only(bottom: 30),
                 child: SizedBox(
                   height: MediaQuery.sizeOf(context).height,
@@ -119,6 +144,15 @@ class ImageViewScreen extends StatelessWidget {
                                   ),
                                   child: state.status.isLoaded()
                                       ? PhotoView(
+                                          initialScale: 0.0,
+                                          controller: _photoViewController,
+                                          onScaleEnd: (
+                                            BuildContext context,
+                                            ScaleEndDetails details,
+                                            PhotoViewControllerValue controllerValue,
+                                          ) {
+                                            _photoViewController.reset();
+                                          },
                                           basePosition: Alignment.center,
                                           minScale: PhotoViewComputedScale.contained,
                                           maxScale: PhotoViewComputedScale.covered * 2,
