@@ -70,7 +70,9 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
             }
           },
           builder: (context, state) {
-            return AppRefreshIndicator.appRefreshIndicator(
+            return RefreshIndicator(
+              strokeWidth: AppConstants.indicatorWidth,
+              color: UiKitColors.gray,
               onRefresh: () async {
                 context.read<ImageViewBloc>().add(
                       ImageViewEvent.fetchData(id: widget.id),
@@ -80,14 +82,14 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
                 controller: _scrollController,
                 padding: const EdgeInsets.only(bottom: 30),
                 child: SizedBox(
-                  height: MediaQuery.sizeOf(context).height,
+                  height: context.size?.height,
                   child: Column(
                     crossAxisAlignment:
                         (state.status.isLoaded()) ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                     children: [
                       if (state.status.isLoaded() || state.status.isLoading()) ...[
                         SizedBox(
-                          height: MediaQuery.sizeOf(context).height,
+                          height: context.size?.height,
                           child: Stack(
                             children: [
                               Positioned(
@@ -117,9 +119,7 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
                                             ),
                                             Text(
                                               state.status.isLoaded()
-                                                  ? "${DateFormat.yMMMd().format(
-                                                      state.creatingDate ?? DateTime.now(),
-                                                    )} "
+                                                  ? state.creatingDate!.toFormattedString()
                                                   : BoneMock.date,
                                               style: AppTextStyles.p.copyWith(color: UiKitColors.gray),
                                             )
@@ -138,9 +138,9 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
                                 top: 0,
                                 child: Container(
                                   height: 250,
-                                  width: MediaQuery.sizeOf(context).width,
+                                  width: context.size!.width,
                                   constraints: BoxConstraints(
-                                    maxHeight: MediaQuery.sizeOf(context).height / 3,
+                                    maxHeight: context.size!.height / 3,
                                   ),
                                   child: state.status.isLoaded()
                                       ? PhotoView(
@@ -166,7 +166,7 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
                                           loadingBuilder: (context, loadingProgress) {
                                             return ShimmerExtension.baseShimmer(
                                               child: Container(
-                                                width: MediaQuery.of(context).size.width,
+                                                width: context.size?.width,
                                                 color: UiKitColors.white,
                                               ),
                                             );

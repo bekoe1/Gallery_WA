@@ -80,7 +80,9 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
             child: UiKitLoader(),
           );
         } else {
-          return AppRefreshIndicator.appRefreshIndicator(
+          return RefreshIndicator(
+            strokeWidth: AppConstants.indicatorWidth,
+            color: UiKitColors.gray,
             onRefresh: () async {
               widget.focusNode.unfocus();
               widget.bloc.add(

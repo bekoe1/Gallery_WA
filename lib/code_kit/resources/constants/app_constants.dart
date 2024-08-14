@@ -51,4 +51,5 @@ class AppConstants {
   static const imagesList = "imagesList";
   static const lastPage = "lastPage";
   static const searchImageQuery = "name";
+  static const indicatorWidth = 1.67;
 }

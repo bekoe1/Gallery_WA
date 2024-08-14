@@ -80,7 +80,9 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
             child: UiKitLoader(),
           );
         } else {
-          return AppRefreshIndicator.appRefreshIndicator(
+          return RefreshIndicator(
+            strokeWidth: AppConstants.indicatorWidth,
+            color: UiKitColors.gray,
             onRefresh: () async {
               widget.focusNode.unfocus();
               widget.bloc.add(
@@ -99,7 +101,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
                 shrinkWrap: true,
                 controller: _scrollController,
                 slivers: <Widget>[
-                  if (state.status.isLoaded() || state.status.isLoading()) ...[
+                  if (state.status.isLoaded() || state.status.isLoading() && state.images.isNotEmpty) ...[
                     ImagesListWidget(
                       token: state.token,
                       focusNode: widget.focusNode,
@@ -117,7 +119,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
                             )
                           : const SizedBox.shrink(),
                     )
-                  ] else if (state.images.isEmpty && state.reachedEnd != true) ...[
+                  ] else if (state.images.isEmpty) ...[
                     const NoImagesWidget(),
                   ] else ...[
                     const SliverToBoxAdapter(
