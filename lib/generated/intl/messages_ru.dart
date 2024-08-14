@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAcc":
             MessageLookupByLibrary.simpleMessage("У меня уже есть аккаунт"),
+        "back": MessageLookupByLibrary.simpleMessage("Обратно"),
         "birthdayHint": MessageLookupByLibrary.simpleMessage("Дата рождения"),
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "comeBackLater":
@@ -32,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Подтвердите пароль"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Создать аккаунт"),
+        "edit": MessageLookupByLibrary.simpleMessage("Изменить"),
         "emailHint": MessageLookupByLibrary.simpleMessage("Электронная почта"),
         "emptyDate":
             MessageLookupByLibrary.simpleMessage("дата не может быть пустой"),

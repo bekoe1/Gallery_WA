@@ -36,7 +36,7 @@ class UiKitOutlinedButton extends StatelessWidget {
           ? SizedBox(
               height: 22,
               width: 22,
-              child: AppIndicator.appIndicator(
+              child: AppLoadingIndicator.appLoadingIndicator(
                 UiKitColors.black,
               ),
             )

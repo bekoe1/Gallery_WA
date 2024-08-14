@@ -64,7 +64,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
     return BlocConsumer<MediaOutputBloc, MediaOutputState>(
       bloc: widget.bloc,
       listener: (context, state) {
-        if (state == BlocStatesEnum.requestError) {
+        if (state.status.hasRequestError()) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -81,6 +81,8 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
           );
         } else {
           return RefreshIndicator(
+            strokeWidth: AppConstants.indicatorWidth,
+            color: UiKitColors.gray,
             onRefresh: () async {
               widget.focusNode.unfocus();
               widget.bloc.add(
@@ -99,7 +101,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
                 shrinkWrap: true,
                 controller: _scrollController,
                 slivers: <Widget>[
-                  if (state.status == BlocStatesEnum.loaded || state.status == BlocStatesEnum.loading) ...[
+                  if (state.status.isLoaded() || state.status.isLoading() && state.images.isNotEmpty) ...[
                     ImagesListWidget(
                       token: state.token,
                       focusNode: widget.focusNode,
@@ -110,14 +112,14 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
                           ? SizedBox(
                               height: 70,
                               child: Center(
-                                child: AppIndicator.appIndicator(
+                                child: AppLoadingIndicator.appLoadingIndicator(
                                   UiKitColors.gray,
                                 ),
                               ),
                             )
                           : const SizedBox.shrink(),
                     )
-                  ] else if (state.images.isEmpty && state.reachedEnd != true) ...[
+                  ] else if (state.images.isEmpty) ...[
                     const NoImagesWidget(),
                   ] else ...[
                     const SliverToBoxAdapter(

@@ -38,17 +38,8 @@ class _UiKitSearchAppBarState extends State<UiKitSearchAppBar> {
     return AppBar(
       actions: [
         if (_focusNode.hasFocus) ...[
-          TextButton(
-            onPressed: () {
-              _focusNode.unfocus();
-            },
-            child: Text(
-              S.of(context).cancel,
-              style: AppTextStyles.caption.copyWith(
-                color: Colors.blue,
-                fontSize: 17,
-              ),
-            ),
+          UiKitBackButton(
+            onTap: _focusNode.unfocus,
           ),
         ]
       ],

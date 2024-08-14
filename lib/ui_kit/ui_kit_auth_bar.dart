@@ -15,12 +15,15 @@ class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: UiKitColors.white,
       forceMaterialTransparency: true,
       backgroundColor: UiKitColors.white,
-      leadingWidth: 100,
+      leadingWidth: 150,
       toolbarHeight: 50,
-      leading: UiKitBackButton(
-        onTap: () {
-          context.router.replaceAll([pageToPop]);
-        },
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 9),
+        child: UiKitBackButton(
+          onTap: () {
+            context.router.replaceAll([pageToPop]);
+          },
+        ),
       ),
       bottom: const PreferredSize(
         preferredSize: Size.fromHeight(

@@ -9,6 +9,7 @@ class UiKitBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.translucent,
       onTap: onTap,
       child: Row(
         children: [
@@ -18,7 +19,7 @@ class UiKitBackButton extends StatelessWidget {
           ),
           const SizedBox(width: 5),
           Text(
-            S.of(context).cancel,
+            S.of(context).back,
             style: AppTextStyles.h3.copyWith(
               color: UiKitColors.blue,
             ),

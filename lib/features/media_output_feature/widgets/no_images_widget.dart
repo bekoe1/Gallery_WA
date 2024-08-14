@@ -12,34 +12,32 @@ class NoImagesWidget extends StatelessWidget {
 
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.only(top: 197),
-        child: Center(
-          child: SizedBox(
-            height: 160,
-            width: 127,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  AppIcons.noImageLogo,
-                  height: 78,
-                  width: 74,
-                  color: Colors.grey,
+        padding: EdgeInsets.only(top: context.size!.height / 4),
+        child: SizedBox(
+          height: 160,
+          width: 127,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                AppIcons.noImageLogo,
+                height: 78,
+                width: 74,
+                color: Colors.grey,
+              ),
+              Text(
+                pStyleSorryText,
+                style: AppTextStyles.p.copyWith(color: UiKitColors.gray),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                captionStyleSorryText,
+                style: AppTextStyles.caption.copyWith(
+                  color: UiKitColors.gray,
                 ),
-                Text(
-                  pStyleSorryText,
-                  style: AppTextStyles.p.copyWith(color: UiKitColors.gray),
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  captionStyleSorryText,
-                  style: AppTextStyles.caption.copyWith(
-                    color: UiKitColors.gray,
-                  ),
-                  textAlign: TextAlign.center,
-                )
-              ],
-            ),
+                textAlign: TextAlign.center,
+              )
+            ],
           ),
         ),
       ),

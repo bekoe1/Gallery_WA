@@ -17,7 +17,6 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
         ),
       );
       final token = await tokenRepo.getTokenFromStorage();
-
       final imagesPage = 1 + (state.images.length / AppConstants.imageLimit).round();
 
       final receivedImages = await _loadingResponse(
@@ -41,6 +40,14 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
                   ...state.images,
                   ...receivedImages.isNotEmpty ? receivedImages : [],
                 ],
+        ),
+      );
+    } on ApiExceptions catch (e) {
+      emit(
+        state.copyWith(
+          status: BlocStatesEnum.requestError,
+          search: event.searchName,
+          requestError: e.message,
         ),
       );
     } on DioException catch (e) {

@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' hide Options;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:imagegalery/code_kit/di/injection.dart';
+import 'package:imagegalery/code_kit/di/app_locator.dart';
 import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
 import 'package:imagegalery/code_kit/resources/enums.dart';
 import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
