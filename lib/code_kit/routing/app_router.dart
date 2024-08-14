@@ -23,11 +23,19 @@ class AppRouter extends RootStackRouter {
           page: MainRoute.page,
           children: [
             AutoRoute(
-              page: NewPhotosRoute.page,
+              page: HomeRoute.page,
+              children: [
+                AutoRoute(
+                  page: NewPhotosRoute.page,
+                ),
+                AutoRoute(
+                  page: PopularPhotosRoute.page,
+                ),
+              ],
             ),
             AutoRoute(
-              page: PopularPhotosRoute.page,
-            )
+              page: AddImageRoute.page,
+            ),
           ],
         ),
         AutoRoute(

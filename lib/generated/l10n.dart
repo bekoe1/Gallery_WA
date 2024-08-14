@@ -389,6 +389,36 @@ class S {
       args: [],
     );
   }
+
+  /// `All photos`
+  String get allPhotos {
+    return Intl.message(
+      'All photos',
+      name: 'allPhotos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get nextPage {
+    return Intl.message(
+      'Next',
+      name: 'nextPage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select photo`
+  String get selectPhoto {
+    return Intl.message(
+      'Select photo',
+      name: 'selectPhoto',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

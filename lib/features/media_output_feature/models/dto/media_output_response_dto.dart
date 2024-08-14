@@ -11,11 +11,4 @@ class OutputPhotosDtoWrapper<T> with _$OutputPhotosDtoWrapper<T> {
         json,
         fromJson,
       );
-  const OutputPhotosDtoWrapper._();
-
-  MediaOutputResponseModel toModel() {
-    return MediaOutputResponseModel(
-      data: data,
-    );
-  }
 }

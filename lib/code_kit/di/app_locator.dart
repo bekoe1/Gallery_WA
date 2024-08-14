@@ -3,6 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:imagegalery/code_kit/interceptors/interceptors_module.dart';
 import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
+import 'package:imagegalery/features/add_image_feature/add_image_module.dart';
 import 'package:imagegalery/features/image_view/image_view_module.dart';
 import 'package:imagegalery/features/media_output_feature/media_output_module.dart';
 import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
@@ -10,10 +11,10 @@ import 'package:imagegalery/features/sign_in_feature/sign_in_module.dart';
 import 'package:imagegalery/features/sign_up_feature/repo/sign_up_repo.dart';
 import 'package:imagegalery/features/sign_up_feature/sign_up_module.dart';
 
-final getIt = GetIt.instance;
+final injection = GetIt.instance;
 
 void setUpLocator() {
-  getIt
+  injection
     ..registerSingleton<FlutterSecureStorage>(
       const FlutterSecureStorage(),
     )
@@ -27,41 +28,48 @@ void setUpLocator() {
     )
     ..registerSingleton<UserTokenRepo>(
       UserTokenRepoImpl(
-        tokenProvider: UserTokenProvider(getIt<Dio>()),
-        storage: getIt<FlutterSecureStorage>(),
+        tokenProvider: UserTokenProvider(injection<Dio>()),
+        storage: injection<FlutterSecureStorage>(),
       ),
     )
     ..registerSingleton<SignInRepo>(
       SignInRepoImpl(
         signInDataProvider: SignInDataProvider(
-          getIt<Dio>(),
+          injection<Dio>(),
         ),
       ),
     )
     ..registerSingleton<SignUpRepo>(
       SignUpRepoImpl(
         signUpDataProvider: SignUpDataProvider(
-          getIt<Dio>(),
+          injection<Dio>(),
         ),
       ),
     )
     ..registerSingleton<ImageRepo>(
       ImageRepoImpl(
         imageDataProvider: ImageDataProvider(
-          getIt<Dio>(),
+          injection<Dio>(),
         ),
       ),
     )
     ..registerSingleton<ImageViewRepo>(
       ImageViewRepoImpl(
           imageViewDataProvider: ImageViewDataProvider(
-        getIt<Dio>(),
+        injection<Dio>(),
       )),
+    )
+    ..registerSingleton<AddImageRepo>(
+      AddImageRepoImpl(
+        dataProvider: AddImageDataProvider(
+          injection<Dio>(),
+        ),
+      ),
     );
 
-  getIt<Dio>().interceptors.add(
+  injection<Dio>().interceptors.add(
         AppInterceptor(
-          tokenRepo: getIt<UserTokenRepo>(),
+          tokenRepo: injection<UserTokenRepo>(),
         ),
       );
 }

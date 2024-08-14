@@ -37,8 +37,8 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ImageViewBloc(
-        imageViewRepo: getIt<ImageViewRepo>(),
-        tokenRepo: getIt<UserTokenRepo>(),
+        imageViewRepo: injection<ImageViewRepo>(),
+        tokenRepo: injection<UserTokenRepo>(),
       )..add(
           ImageViewEvent.fetchData(
             id: widget.id,

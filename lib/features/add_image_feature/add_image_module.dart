@@ -1,0 +1,33 @@
+library AddImageModule;
+
+import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';
+import 'package:imagegalery/code_kit/resources/enums.dart';
+import 'package:imagegalery/code_kit/resources/themes/module/theme_module.dart';
+import 'package:imagegalery/code_kit/resources/themes_data/app_colors.dart';
+import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';
+import 'package:imagegalery/extensions/extensions_module.dart';
+import 'package:imagegalery/features/media_output_feature/media_output_module.dart';
+import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
+import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';
+import 'package:retrofit/http.dart';
+
+part 'add_image_module.freezed.dart';
+part 'add_image_module.g.dart';
+part 'bloc/add_image_bloc.dart';
+part 'bloc/add_image_event.dart';
+part 'bloc/add_image_state.dart';
+part 'data_provider/add_image_data_provider.dart';
+part 'models/dto/file_dto.dart';
+part 'models/file_model.dart';
+part 'repo/add_image_repo.dart';
+part 'repo/add_image_repo_impl.dart';
+part 'screens/add_image_screen.dart';
+part 'widgets/grid_image_widget.dart';

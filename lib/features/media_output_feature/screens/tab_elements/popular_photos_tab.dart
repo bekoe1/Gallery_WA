@@ -7,12 +7,13 @@ class PopularPhotosTab extends StatefulWidget {
     required this.shouldScrollToTop,
     required this.bloc,
     required this.focusNode,
+    required this.searchController,
   });
 
   final MediaOutputBloc bloc;
   final bool shouldScrollToTop;
   final FocusNode focusNode;
-
+  final TextEditingController searchController;
   @override
   State<PopularPhotosTab> createState() => _PopularPhotosTabState();
 }
@@ -29,7 +30,7 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
   @override
   void didUpdateWidget(covariant PopularPhotosTab oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (_scrollController.hasClients && _scrollController.hasClients) {
+    if (_scrollController.hasClients && widget.shouldScrollToTop) {
       _scrollController.animateTo(
         0.0,
         duration: const Duration(milliseconds: 500),
@@ -62,7 +63,15 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
   Widget build(BuildContext context) {
     super.build(context);
     return BlocConsumer<MediaOutputBloc, MediaOutputState>(
-      bloc: widget.bloc,
+      bloc: widget.bloc
+        ..add(
+          MediaOutputEvent.fetchData(
+            searchName: widget.searchController.text,
+            popularImages: true,
+            newImages: false,
+            isRefreshing: true,
+          ),
+        ),
       listener: (context, state) {
         if (state.status.hasRequestError()) {
           ScaffoldMessenger.of(context).showSnackBar(

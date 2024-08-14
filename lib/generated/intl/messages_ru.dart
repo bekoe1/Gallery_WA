@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "allPhotos": MessageLookupByLibrary.simpleMessage("Все изображения"),
         "alreadyHaveAcc":
             MessageLookupByLibrary.simpleMessage("У меня уже есть аккаунт"),
         "back": MessageLookupByLibrary.simpleMessage("Обратно"),
@@ -54,11 +55,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),
         "lostConnection": MessageLookupByLibrary.simpleMessage(
             "Вы не подключены к сети или у вас слабый интернет"),
+        "nextPage": MessageLookupByLibrary.simpleMessage("Далее"),
         "noPicture": MessageLookupByLibrary.simpleMessage("Нет изображений"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("Пароль"),
         "passwordsAreNotEqual":
             MessageLookupByLibrary.simpleMessage("пароли не совпадают"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Номер телефона"),
+        "selectPhoto":
+            MessageLookupByLibrary.simpleMessage("Выберите изображение"),
         "shortPas":
             MessageLookupByLibrary.simpleMessage("пароль слишком короткий"),
         "shortUsername": MessageLookupByLibrary.simpleMessage(

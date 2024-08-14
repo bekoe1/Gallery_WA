@@ -32,5 +32,8 @@
   "noPicture" : "There is no picture",
   "comeBackLater" : "Please come back later",
   "back" : "Back",
-  "edit" : "Edit"
+  "edit" : "Edit",
+  "allPhotos" : "All photos",
+  "nextPage" : "Next",
+  "selectPhoto" : "Select photo"
 }

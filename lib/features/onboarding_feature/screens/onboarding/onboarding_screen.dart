@@ -8,7 +8,7 @@ class OnboardingScreen extends StatelessWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (_) => OnboardingBloc(
-        getIt<UserTokenRepo>(),
+        injection<UserTokenRepo>(),
       )..add(
           const OnboardingEvent.checkToken(),
         ),

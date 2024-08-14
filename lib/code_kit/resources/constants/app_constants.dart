@@ -52,4 +52,5 @@ class AppConstants {
   static const lastPage = "lastPage";
   static const searchImageQuery = "name";
   static const indicatorWidth = 1.67;
+  static const filesLimit = 15;
 }

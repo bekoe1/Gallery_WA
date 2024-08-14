@@ -11,8 +11,8 @@ class SignInScreen extends StatefulWidget implements AutoRouteWrapper {
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (_) => SignInBloc(
-        signInRepo: getIt<SignInRepo>(),
-        tokenRepo: getIt<UserTokenRepo>(),
+        signInRepo: injection<SignInRepo>(),
+        tokenRepo: injection<UserTokenRepo>(),
       ),
       child: this,
     );

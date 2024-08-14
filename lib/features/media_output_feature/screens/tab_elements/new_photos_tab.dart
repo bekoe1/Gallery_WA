@@ -7,12 +7,13 @@ class NewPhotosTab extends StatefulWidget {
     required this.shouldScrollToTop,
     required this.bloc,
     required this.focusNode,
+    required this.searchController,
   });
 
   final MediaOutputBloc bloc;
   final bool shouldScrollToTop;
   final FocusNode focusNode;
-
+  final TextEditingController searchController;
   @override
   State<NewPhotosTab> createState() => _NewPhotosTabState();
 }
@@ -62,7 +63,15 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
   Widget build(BuildContext context) {
     super.build(context);
     return BlocConsumer<MediaOutputBloc, MediaOutputState>(
-      bloc: widget.bloc,
+      bloc: widget.bloc
+        ..add(
+          MediaOutputEvent.fetchData(
+            searchName: widget.searchController.text,
+            popularImages: false,
+            newImages: true,
+            isRefreshing: true,
+          ),
+        ),
       listener: (context, state) {
         if (state.status.hasRequestError()) {
           ScaffoldMessenger.of(context).showSnackBar(
