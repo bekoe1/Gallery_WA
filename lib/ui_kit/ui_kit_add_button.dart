@@ -1,7 +1,7 @@
 part of 'module/ui_kit_widgets_module.dart';
 
-class AddButton extends StatefulWidget {
-  const AddButton({
+class UiKitIconButton extends StatefulWidget {
+  const UiKitIconButton({
     super.key,
     this.onPressed,
     required this.child,
@@ -12,13 +12,14 @@ class AddButton extends StatefulWidget {
   final VoidCallback? onPressed;
 
   @override
-  State<AddButton> createState() => _AddButtonState();
+  State<UiKitIconButton> createState() => _UiKitIconButtonState();
 }
 
-class _AddButtonState extends State<AddButton> {
+class _UiKitIconButtonState extends State<UiKitIconButton> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: null,
       onPressed: widget.onPressed,
       backgroundColor: widget.onPressed == null ? UiKitColors.grayLight : UiKitColors.black,
       foregroundColor: widget.onPressed == null ? UiKitColors.grayLight : UiKitColors.white,

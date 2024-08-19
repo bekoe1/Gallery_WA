@@ -1,4 +1,4 @@
-part of 'features_extensions_module.dart';
+part of 'extensions_module.dart';
 
 extension FieldErrorExtension on FieldErrorEnum {
   String currentError(BuildContext context) {
@@ -25,6 +25,12 @@ extension FieldErrorExtension on FieldErrorEnum {
         return context.localization.userIsTooYoung;
       case FieldErrorEnum.incorrectPhoneNumber:
         return context.localization.incorrectPhone;
+      case FieldErrorEnum.incorrectName:
+        return context.localization.incorrectName;
+      case FieldErrorEnum.emptyName:
+        return context.localization.emptyField;
+      case FieldErrorEnum.emptyDescription:
+        return context.localization.emptyField;
     }
   }
 }

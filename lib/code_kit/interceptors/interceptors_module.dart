@@ -1,5 +1,7 @@
 library InterceptorsModule;
 
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:imagegalery/code_kit/helpers/helpers_module.dart';
 import 'package:imagegalery/code_kit/resources/constants/app_constants.dart';

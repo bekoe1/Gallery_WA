@@ -1,4 +1,4 @@
-part of '../../add_image_module.dart';
+part of '../../../add_image_module.dart';
 
 @freezed
 class FileDto with _$FileDto {

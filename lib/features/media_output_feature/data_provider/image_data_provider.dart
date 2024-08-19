@@ -12,6 +12,7 @@ abstract class ImageDataProvider {
     @Query(AppConstants.pageQuery) required int page,
     @Query(AppConstants.popularQuery) bool? popularPics,
     @Query(AppConstants.newQuery) bool? newPics,
+    @Query(AppConstants.orderQuery) required String order,
     @Query(AppConstants.limit) required int limit,
     @Query(AppConstants.searchImageQuery) String? search,
     @Query(AppConstants.itemsPerPageQuery) required int itemsPerPage,

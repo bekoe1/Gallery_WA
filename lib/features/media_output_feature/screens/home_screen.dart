@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     imageRepo: injection<ImageRepo>(),
     tokenRepo: injection<UserTokenRepo>(),
   );
+
   int _scrollToTopPage = 0;
   final _searchController = TextEditingController();
   final _focusNode = FocusNode();
@@ -33,24 +34,22 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       const Duration(milliseconds: 500),
       () {
         if (index == 0) {
-          newImagesBloc.add(
-            MediaOutputEvent.fetchData(
-              isRefreshing: true,
-              popularImages: false,
-              newImages: true,
-              searchName: text,
-            ),
-          );
+          context.read<MediaOutputBloc>().add(
+                MediaOutputEvent.fetchData(
+                  isRefreshing: true,
+                  popularImages: false,
+                  searchName: text,
+                ),
+              );
         }
         if (index == 1) {
-          popularImagesBloc.add(
-            MediaOutputEvent.fetchData(
-              popularImages: true,
-              isRefreshing: true,
-              newImages: false,
-              searchName: text,
-            ),
-          );
+          context.read<MediaOutputBloc>().add(
+                MediaOutputEvent.fetchData(
+                  popularImages: true,
+                  isRefreshing: true,
+                  searchName: text,
+                ),
+              );
         }
       },
     );
@@ -126,7 +125,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 MediaOutputEvent.fetchData(
                   searchName: _searchController.text,
                   popularImages: true,
-                  newImages: false,
                   isRefreshing: true,
                 ),
               ),

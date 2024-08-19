@@ -11,6 +11,7 @@ class AppConstants {
   static const birthday = "birthday";
   static const signInEndPoint = "/token";
   static const newTab = "New";
+  static const descOrder = "desc";
   static const id = "id";
   static const popularTab = "Popular";
   static const bearerToken = "Bearer";
@@ -48,9 +49,13 @@ class AppConstants {
   static const imageLimit = 8;
   static const limit = "limit";
   static const imageNotFound = "no image";
+  static const orderQuery = "order[id]";
   static const imagesList = "imagesList";
   static const lastPage = "lastPage";
+  static const originalName = "originalName";
+  static const file = "file";
   static const searchImageQuery = "name";
   static const indicatorWidth = 1.67;
   static const filesLimit = 15;
+  static const contentTypeHeader = "content-type";
 }

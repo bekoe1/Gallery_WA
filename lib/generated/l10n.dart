@@ -419,6 +419,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New`
+  String get newImages {
+    return Intl.message(
+      'New',
+      name: 'newImages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular`
+  String get popularImages {
+    return Intl.message(
+      'Popular',
+      name: 'popularImages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmation`
+  String get confirmation {
+    return Intl.message(
+      'Confirmation',
+      name: 'confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to exit?`
+  String get exitConfirmation {
+    return Intl.message(
+      'Are you sure you want to exit?',
+      name: 'exitConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The entered data will be lost`
+  String get dataLostConfirmation {
+    return Intl.message(
+      'The entered data will be lost',
+      name: 'dataLostConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exit`
+  String get exit {
+    return Intl.message(
+      'Exit',
+      name: 'exit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please, pick image`
+  String get pickImageError {
+    return Intl.message(
+      'Please, pick image',
+      name: 'pickImageError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Field can not be empty`
+  String get emptyField {
+    return Intl.message(
+      'Field can not be empty',
+      name: 'emptyField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is too short or incorrect`
+  String get incorrectName {
+    return Intl.message(
+      'Name is too short or incorrect',
+      name: 'incorrectName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Photo uploaded successfully`
+  String get imageUploaded {
+    return Intl.message(
+      'Photo uploaded successfully',
+      name: 'imageUploaded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

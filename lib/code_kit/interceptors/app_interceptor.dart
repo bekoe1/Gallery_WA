@@ -16,9 +16,10 @@ class AppInterceptor extends Interceptor {
     if (options.path == "${AppConstants.baseUrl}/token") return handler.next(options);
     if (connectedToNetwork) {
       final token = await tokenRepo.getTokenFromStorage();
-
       if (token?.accessToken != null) {
-        options.headers[AppConstants.authorizationHeader] = "Bearer ${token?.accessToken}";
+        log(token!.accessToken);
+        options.headers[AppConstants.authorizationHeader] = "Bearer ${token.accessToken}";
+        options.headers[AppConstants.contentTypeHeader] = AppConstants.contentType;
         return handler.next(options);
       }
       return handler.next(options);
@@ -42,7 +43,6 @@ class AppInterceptor extends Interceptor {
     final options = RequestOptions(
       baseUrl: AppConstants.baseUrl,
     );
-
     if (err.response?.data == null) {
       final newToken = await _refreshToken();
       options.headers[AppConstants.authorizationHeader] = "${AppConstants.bearerToken} ${newToken?.accessToken}";

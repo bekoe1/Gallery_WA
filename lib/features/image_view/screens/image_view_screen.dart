@@ -82,14 +82,14 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
                 controller: _scrollController,
                 padding: const EdgeInsets.only(bottom: 30),
                 child: SizedBox(
-                  height: context.size?.height,
+                  height: context.mediaQuery.size.height,
                   child: Column(
                     crossAxisAlignment:
                         (state.status.isLoaded()) ? CrossAxisAlignment.start : CrossAxisAlignment.center,
                     children: [
                       if (state.status.isLoaded() || state.status.isLoading()) ...[
                         SizedBox(
-                          height: context.size?.height,
+                          height: context.mediaQuery.size.height,
                           child: Stack(
                             children: [
                               Positioned(
@@ -138,48 +138,15 @@ class _ImageViewScreenState extends State<ImageViewScreen> {
                                 top: 0,
                                 child: Container(
                                   height: 250,
-                                  width: context.size!.width,
+                                  width: context.mediaQuery.size.width,
                                   constraints: BoxConstraints(
-                                    maxHeight: context.size!.height / 3,
+                                    maxHeight: context.mediaQuery.size.height / 3,
                                   ),
                                   child: state.status.isLoaded()
-                                      ? PhotoView(
-                                          initialScale: 0.0,
-                                          controller: _photoViewController,
-                                          onScaleEnd: (
-                                            BuildContext context,
-                                            ScaleEndDetails details,
-                                            PhotoViewControllerValue controllerValue,
-                                          ) {
-                                            _photoViewController.reset();
-                                          },
-                                          basePosition: Alignment.center,
-                                          minScale: PhotoViewComputedScale.contained,
+                                      ? UiKitScalingImage(
+                                          imageUrl: state.imageUrl!,
+                                          token: state.token ?? "",
                                           maxScale: PhotoViewComputedScale.covered * 2,
-                                          backgroundDecoration: const BoxDecoration(
-                                            color: Colors.transparent,
-                                          ),
-                                          imageProvider: NetworkImage(
-                                            "${AppConstants.baseUrl}/get_file/${state.imageUrl}",
-                                            headers: {AppConstants.authorizationHeader: "Bearer ${state.token}"},
-                                          ),
-                                          loadingBuilder: (context, loadingProgress) {
-                                            return ShimmerExtension.baseShimmer(
-                                              child: Container(
-                                                width: context.size?.width,
-                                                color: UiKitColors.white,
-                                              ),
-                                            );
-                                          },
-                                          errorBuilder: (context, error, stackTrace) {
-                                            return Center(
-                                              child: SvgPicture.asset(
-                                                AppIcons.errorIcon,
-                                                height: 50,
-                                                width: 50,
-                                              ),
-                                            );
-                                          },
                                         )
                                       : ShimmerExtension.baseShimmer(
                                           child: Container(

@@ -17,10 +17,10 @@ class ImagesListWidget extends StatelessWidget {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: GestureDetector(
-              onTap: focusNode.unfocus,
+          return GestureDetector(
+            onTap: focusNode.unfocus,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 15),
               child: GridImageElement(
                 imageData: images[index],
                 token: token,

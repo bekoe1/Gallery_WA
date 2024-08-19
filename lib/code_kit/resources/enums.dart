@@ -1,4 +1,13 @@
-enum FieldTypesEnum { emailField, passwordField, usernameField, birthdayField, confirmPasField, phoneField }
+enum FieldTypesEnum {
+  emailField,
+  passwordField,
+  usernameField,
+  birthdayField,
+  confirmPasField,
+  phoneField,
+  nameField,
+  descriptionField,
+}
 
 enum FieldErrorEnum {
   tooYoungUser,
@@ -12,6 +21,9 @@ enum FieldErrorEnum {
   incorrectPhoneNumber,
   shortPas,
   incorrectBirthday,
+  emptyName,
+  emptyDescription,
+  incorrectName,
 }
 
 enum BlocStatesEnum {
@@ -20,6 +32,7 @@ enum BlocStatesEnum {
   loading,
   loaded,
   error,
+  noImage,
   initialLoading,
   validationError,
   requestError,

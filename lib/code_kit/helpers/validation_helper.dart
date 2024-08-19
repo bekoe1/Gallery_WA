@@ -15,6 +15,29 @@ class ValidationHelper {
     return {};
   }
 
+  static Map<FieldTypesEnum, FieldErrorEnum> validateDescription(String value) {
+    if (value.isEmpty) {
+      return {
+        FieldTypesEnum.descriptionField: FieldErrorEnum.emptyDescription,
+      };
+    } else {
+      return {};
+    }
+  }
+
+  static Map<FieldTypesEnum, FieldErrorEnum> validateName(String value) {
+    if (value.isEmpty) {
+      return {
+        FieldTypesEnum.nameField: FieldErrorEnum.emptyName,
+      };
+    } else if (value.length < 6) {
+      return {
+        FieldTypesEnum.nameField: FieldErrorEnum.incorrectName,
+      };
+    }
+    return {};
+  }
+
   static Map<FieldTypesEnum, FieldErrorEnum> validatePhoneNumber(String value) {
     if (value.isEmpty || !RegExp(AppConstants.phoneValidatingRegExp).hasMatch(value)) {
       return {

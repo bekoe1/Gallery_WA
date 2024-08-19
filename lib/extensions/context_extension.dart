@@ -5,5 +5,5 @@ extension ContextExtension on BuildContext {
     return S.of(this);
   }
 
-  Size get size => MediaQuery.of(this).size;
+  MediaQueryData get mediaQuery => MediaQuery.of(this);
 }

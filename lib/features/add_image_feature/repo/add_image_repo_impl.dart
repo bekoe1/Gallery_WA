@@ -6,10 +6,19 @@ class AddImageRepoImpl implements AddImageRepo {
   AddImageRepoImpl({required this.dataProvider});
 
   @override
-  Future<List<FilesModel>> getFiles({required int page}) async {
-    final response = await dataProvider.getFiles(filesPerPage: AppConstants.filesLimit, page: page);
+  Future<FilesModel> createFile({required File file, required String name}) async {
+    final response = await dataProvider.createFile(file: file, name: name);
+    return response.toModel();
+  }
 
-    final files = response.data.map((e) => e.toModel()).toList();
-    return files;
+  @override
+  Future<void> createImage({required RequestImageCreationDto imageDto}) async {
+    await dataProvider.createImage(imageDto: imageDto);
+  }
+
+  @override
+  Future<FullUserInfoModel> getCurrentUserFullInfo() async {
+    final info = await dataProvider.getCurrentUserFullInfo();
+    return info.toModel();
   }
 }

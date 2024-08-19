@@ -9,6 +9,7 @@ import 'package:imagegalery/code_kit/resources/themes_data/app_colors.dart';
 import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';
 import 'package:imagegalery/extensions/extensions_module.dart';
 import 'package:imagegalery/generated/l10n.dart';
+import 'package:photo_view/photo_view.dart';
 
 part '../ui_kit_add_button.dart';
 part '../ui_kit_app_bar.dart';
@@ -17,6 +18,8 @@ part '../ui_kit_divider_under_text.dart';
 part '../ui_kit_filled_button.dart';
 part '../ui_kit_loader.dart';
 part '../ui_kit_outlined_button.dart';
+part '../ui_kit_scaling_image.dart';
 part '../ui_kit_search.dart';
+part '../ui_kit_snack_bar.dart';
 part '../ui_kit_text_button.dart';
 part '../ui_kit_text_form.dart';

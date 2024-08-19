@@ -20,6 +20,7 @@ import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';
 import 'package:imagegalery/code_kit/routing/app_router.gr.dart';
 import 'package:imagegalery/extensions/extensions_module.dart';
 import 'package:imagegalery/features/add_image_feature/add_image_module.dart';
+import 'package:imagegalery/features/image_view/image_view_module.dart';
 import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
 import 'package:imagegalery/ui_kit/module/ui_kit_widgets_module.dart';
 import 'package:retrofit/http.dart';

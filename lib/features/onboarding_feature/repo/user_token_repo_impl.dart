@@ -57,16 +57,13 @@ class UserTokenRepoImpl implements UserTokenRepo {
   Future<TokenModel?> refreshAccessToken() async {
     final token = await getTokenFromStorage();
     final refreshToken = token?.refreshToken;
-    await deleteTokens();
     if (refreshToken == null) return null;
 
     final response = await tokenProvider.refreshAccessToken(
-      requestTokenJson: RequestRefreshTokenDto(
-        grantType: AppConstants.refreshTokenQueryValue,
-        refreshToken: refreshToken,
-        clientId: AppConstants.clientIdValue,
-        clientSecret: AppConstants.clientSecretValue,
-      ),
+      grantType: AppConstants.refreshTokenQueryValue,
+      refreshToken: refreshToken,
+      clientId: AppConstants.clientIdValue,
+      clientSecret: AppConstants.clientSecretValue,
     );
     if (response == null) {
       return null;

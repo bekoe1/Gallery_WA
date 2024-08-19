@@ -35,5 +35,18 @@
   "edit" : "Изменить",
   "allPhotos" : "Все изображения",
   "nextPage" : "Далее",
-  "selectPhoto" : "Выберите изображение"
+  "selectPhoto" : "Выберите изображение",
+  "description" : "Описание",
+  "name" : "Название",
+  "add" : "Добавить",
+  "newImages" : "Новые",
+  "popularImages" : "Популярные",
+  "confirmation" : "Предупреждение",
+  "exitConfirmation" : "Вы уверены, что хотите выйти?",
+  "dataLostConfirmation" : "Выбранные данные будут удалены",
+  "exit" : "Выйти",
+  "pickImageError" : "Пожалуйста, выберите изображение",
+  "emptyField" : "Поле не может быть пустым",
+  "incorrectName" : "Название слишком короткое или некорректно",
+  "imageUploaded" : "Изображение успешно загружено"
 }

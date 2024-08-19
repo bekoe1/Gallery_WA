@@ -12,7 +12,7 @@ class NoImagesWidget extends StatelessWidget {
 
     return SliverToBoxAdapter(
       child: Padding(
-        padding: EdgeInsets.only(top: context.size!.height / 4),
+        padding: EdgeInsets.only(top: context.mediaQuery.size.height / 4),
         child: SizedBox(
           height: 160,
           width: 127,

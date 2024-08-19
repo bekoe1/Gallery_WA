@@ -18,8 +18,9 @@ class ImageRepoImpl implements ImageRepo {
     final response = await imageDataProvider.getImageData(
       limit: limit,
       page: page,
+      order: AppConstants.descOrder,
       popularPics: popular,
-      newPics: !popular,
+      newPics: true,
       search: search,
       itemsPerPage: imagesPerPage,
     );

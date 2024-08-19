@@ -8,4 +8,6 @@ extension IsLoading on BlocStatesEnum {
   bool hasRequestError() => this == BlocStatesEnum.requestError;
 
   bool isSuccess() => this == BlocStatesEnum.success;
+
+  bool noImagePicked() => this == BlocStatesEnum.noImage;
 }

@@ -1,4 +1,4 @@
-part of '../image_view_module.dart';
+part of '../../image_view_module.dart';
 
 class ImageGetByIdModel {
   final String? context;

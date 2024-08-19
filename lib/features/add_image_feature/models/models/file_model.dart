@@ -1,4 +1,4 @@
-part of '../add_image_module.dart';
+part of '../../add_image_module.dart';
 
 class FilesModel {
   final String id;

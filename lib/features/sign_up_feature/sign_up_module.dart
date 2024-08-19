@@ -17,7 +17,6 @@ import 'package:imagegalery/code_kit/resources/themes_data/app_colors.dart';
 import 'package:imagegalery/code_kit/resources/themes_data/app_icons.dart';
 import 'package:imagegalery/code_kit/routing/app_router.gr.dart';
 import 'package:imagegalery/extensions/extensions_module.dart';
-import 'package:imagegalery/features/extensions/features_extensions_module.dart';
 import 'package:imagegalery/features/onboarding_feature/onboarding_feature_module.dart';
 import 'package:imagegalery/features/sign_up_feature/models/model/user_model.dart';
 import 'package:imagegalery/features/sign_up_feature/repo/sign_up_repo.dart';

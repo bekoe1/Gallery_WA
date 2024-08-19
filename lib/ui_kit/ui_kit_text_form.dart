@@ -17,6 +17,8 @@ class UiKitTextFormField extends StatefulWidget {
     this.inputFormatters,
     this.additionalHint,
     this.dateSelected = false,
+    this.maxLines,
+    this.onSaved,
   });
 
   final String? hintText;
@@ -33,6 +35,8 @@ class UiKitTextFormField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
   final bool? dateSelected;
+  final int? maxLines;
+  final void Function(String?)? onSaved;
   @override
   State<UiKitTextFormField> createState() => _UiKitTextFormFieldState();
 }
@@ -44,6 +48,7 @@ class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
       padding: const EdgeInsets.only(bottom: 20),
       child: Stack(children: [
         TextFormField(
+          maxLines: widget.maxLines ?? 1,
           inputFormatters: widget.inputFormatters,
           textInputAction: widget.textInputAction,
           controller: widget.controller,
@@ -55,6 +60,7 @@ class _UiKitTextFormFieldState extends State<UiKitTextFormField> {
           onChanged: (t) {
             setState(() {});
           },
+          onSaved: widget.onSaved,
           cursorColor: Colors.black,
           obscureText: widget.obscuringText ?? false,
           cursorErrorColor: UiKitColors.black,

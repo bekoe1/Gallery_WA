@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add": MessageLookupByLibrary.simpleMessage("Добавить"),
         "allPhotos": MessageLookupByLibrary.simpleMessage("Все изображения"),
         "alreadyHaveAcc":
             MessageLookupByLibrary.simpleMessage("У меня уже есть аккаунт"),
@@ -32,22 +33,35 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Пожалуйста, зайдите позже"),
         "confirmPasswordHint":
             MessageLookupByLibrary.simpleMessage("Подтвердите пароль"),
+        "confirmation": MessageLookupByLibrary.simpleMessage("Предупреждение"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Создать аккаунт"),
+        "dataLostConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Выбранные данные будут удалены"),
+        "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Изменить"),
         "emailHint": MessageLookupByLibrary.simpleMessage("Электронная почта"),
         "emptyDate":
             MessageLookupByLibrary.simpleMessage("дата не может быть пустой"),
         "emptyEmail": MessageLookupByLibrary.simpleMessage(
             "электронная почта не может быть пустой"),
+        "emptyField":
+            MessageLookupByLibrary.simpleMessage("Поле не может быть пустым"),
         "emptyPas":
             MessageLookupByLibrary.simpleMessage("пароль не может быть пустым"),
         "emptyUsername": MessageLookupByLibrary.simpleMessage(
             "имя пользователя не может быть пустым"),
+        "exit": MessageLookupByLibrary.simpleMessage("Выйти"),
+        "exitConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Вы уверены, что хотите выйти?"),
+        "imageUploaded": MessageLookupByLibrary.simpleMessage(
+            "Изображение успешно загружено"),
         "incorrectBirthday":
             MessageLookupByLibrary.simpleMessage("дата рождения некорректна"),
         "incorrectEmail": MessageLookupByLibrary.simpleMessage(
             "электронная почта некорректна"),
+        "incorrectName": MessageLookupByLibrary.simpleMessage(
+            "Название слишком короткое или некорректно"),
         "incorrectPhone": MessageLookupByLibrary.simpleMessage(
             "номер телефона введен некорректно"),
         "incorrectUsername": MessageLookupByLibrary.simpleMessage(
@@ -55,12 +69,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Загрузка..."),
         "lostConnection": MessageLookupByLibrary.simpleMessage(
             "Вы не подключены к сети или у вас слабый интернет"),
+        "name": MessageLookupByLibrary.simpleMessage("Название"),
+        "newImages": MessageLookupByLibrary.simpleMessage("Новые"),
         "nextPage": MessageLookupByLibrary.simpleMessage("Далее"),
         "noPicture": MessageLookupByLibrary.simpleMessage("Нет изображений"),
         "passwordHint": MessageLookupByLibrary.simpleMessage("Пароль"),
         "passwordsAreNotEqual":
             MessageLookupByLibrary.simpleMessage("пароли не совпадают"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Номер телефона"),
+        "pickImageError": MessageLookupByLibrary.simpleMessage(
+            "Пожалуйста, выберите изображение"),
+        "popularImages": MessageLookupByLibrary.simpleMessage("Популярные"),
         "selectPhoto":
             MessageLookupByLibrary.simpleMessage("Выберите изображение"),
         "shortPas":

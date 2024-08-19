@@ -23,6 +23,9 @@ class AppRouter extends RootStackRouter {
           page: MainRoute.page,
           children: [
             AutoRoute(
+              page: AddImageRoute.page,
+            ),
+            AutoRoute(
               page: HomeRoute.page,
               children: [
                 AutoRoute(
@@ -32,9 +35,6 @@ class AppRouter extends RootStackRouter {
                   page: PopularPhotosRoute.page,
                 ),
               ],
-            ),
-            AutoRoute(
-              page: AddImageRoute.page,
             ),
           ],
         ),

@@ -51,7 +51,6 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
         widget.bloc.add(
           MediaOutputEvent.fetchData(
             popularImages: true,
-            newImages: false,
             searchName: widget.bloc.state.search,
           ),
         );
@@ -68,7 +67,6 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
           MediaOutputEvent.fetchData(
             searchName: widget.searchController.text,
             popularImages: true,
-            newImages: false,
             isRefreshing: true,
           ),
         ),
@@ -97,44 +95,45 @@ class _PopularPhotosTabState extends State<PopularPhotosTab> with AutomaticKeepA
               widget.bloc.add(
                 MediaOutputEvent.fetchData(
                   searchName: widget.bloc.state.search,
-                  newImages: false,
                   popularImages: true,
                   isRefreshing: true,
                 ),
               );
             },
-            child: CustomScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              shrinkWrap: true,
-              controller: _scrollController,
-              slivers: <Widget>[
-                if ((state.status.isLoaded() || state.status.isLoading()) && state.images.isNotEmpty) ...[
-                  ImagesListWidget(
-                    token: state.token,
-                    focusNode: widget.focusNode,
-                    images: state.images,
-                  ),
-                  SliverToBoxAdapter(
-                    child: !state.reachedEnd
-                        ? SizedBox(
-                            height: 70,
-                            child: Center(
-                              child: AppLoadingIndicator.appLoadingIndicator(
-                                UiKitColors.gray,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: CustomScrollView(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                controller: _scrollController,
+                slivers: <Widget>[
+                  if ((state.status.isLoaded() || state.status.isLoading()) && state.images.isNotEmpty) ...[
+                    ImagesListWidget(
+                      token: state.token,
+                      focusNode: widget.focusNode,
+                      images: state.images,
+                    ),
+                    SliverToBoxAdapter(
+                      child: !state.reachedEnd
+                          ? SizedBox(
+                              height: 70,
+                              child: Center(
+                                child: AppLoadingIndicator.appLoadingIndicator(
+                                  UiKitColors.gray,
+                                ),
                               ),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  )
-                ] else if (state.images.isEmpty) ...[
-                  const NoImagesWidget(),
-                ] else ...[
-                  const SliverToBoxAdapter(
-                    child: SizedBox.shrink(),
-                  ),
+                            )
+                          : const SizedBox.shrink(),
+                    )
+                  ] else if (state.images.isEmpty) ...[
+                    const NoImagesWidget(),
+                  ] else ...[
+                    const SliverToBoxAdapter(
+                      child: SizedBox.shrink(),
+                    ),
+                  ],
                 ],
-              ],
-              physics: state.images.isNotEmpty ? const BouncingScrollPhysics() : const AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
+              ),
             ),
           );
         }

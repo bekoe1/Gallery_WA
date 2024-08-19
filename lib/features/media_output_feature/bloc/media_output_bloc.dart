@@ -17,7 +17,7 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
         ),
       );
       final token = await tokenRepo.getTokenFromStorage();
-      final imagesPage = 1 + (state.images.length / AppConstants.imageLimit).round();
+      final imagesPage = 1 + (state.images.length / AppConstants.imageLimit).ceil();
 
       final receivedImages = await _loadingResponse(
         page: event.isRefreshing ? 1 : imagesPage,
@@ -33,7 +33,7 @@ class MediaOutputBloc extends Bloc<MediaOutputEvent, MediaOutputState> {
           firstFetch: false,
           search: event.searchName,
           token: token!.accessToken,
-          reachedEnd: receivedImages.isEmpty,
+          reachedEnd: receivedImages.length < AppConstants.imageLimit,
           images: event.isRefreshing
               ? receivedImages
               : [

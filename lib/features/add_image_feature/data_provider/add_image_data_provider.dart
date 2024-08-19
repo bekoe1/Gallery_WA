@@ -7,9 +7,17 @@ abstract class AddImageDataProvider {
     String? baseUrl,
   }) = _AddImageDataProvider;
 
-  @GET("/files")
-  Future<OutputPhotosDtoWrapper<FileDto>> getFiles({
-    @Query(AppConstants.itemsPerPageQuery) required int filesPerPage,
-    @Query(AppConstants.pageQuery) required int page,
+  @POST("/files")
+  Future<FileDto> createFile({
+    @Part(name: "file") required File file,
+    @Part(name: "originalName") required String name,
   });
+
+  @POST("/photos")
+  Future<ImageGetByIdDto> createImage({
+    @Body() required RequestImageCreationDto imageDto,
+  });
+
+  @GET("/current")
+  Future<FullUserInfoDto> getCurrentUserFullInfo();
 }

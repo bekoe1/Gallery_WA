@@ -51,7 +51,6 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
         widget.bloc.add(
           MediaOutputEvent.fetchData(
             popularImages: false,
-            newImages: true,
             searchName: widget.bloc.state.search,
           ),
         );
@@ -68,7 +67,6 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
           MediaOutputEvent.fetchData(
             searchName: widget.searchController.text,
             popularImages: false,
-            newImages: true,
             isRefreshing: true,
           ),
         ),
@@ -97,7 +95,6 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
               widget.bloc.add(
                 MediaOutputEvent.fetchData(
                   searchName: widget.bloc.state.search,
-                  newImages: true,
                   popularImages: false,
                   isRefreshing: true,
                 ),
@@ -136,8 +133,7 @@ class _NewPhotosTabState extends State<NewPhotosTab> with AutomaticKeepAliveClie
                     ),
                   ],
                 ],
-                physics:
-                    state.images.isNotEmpty ? const BouncingScrollPhysics() : const AlwaysScrollableScrollPhysics(),
+                physics: const AlwaysScrollableScrollPhysics(),
               ),
             ),
           );

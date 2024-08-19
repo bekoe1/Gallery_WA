@@ -10,6 +10,7 @@ import 'package:imagegalery/features/onboarding_feature/onboarding_feature_modul
 import 'package:imagegalery/features/sign_in_feature/sign_in_module.dart';
 import 'package:imagegalery/features/sign_up_feature/repo/sign_up_repo.dart';
 import 'package:imagegalery/features/sign_up_feature/sign_up_module.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 final injection = GetIt.instance;
 
@@ -67,9 +68,13 @@ void setUpLocator() {
       ),
     );
 
-  injection<Dio>().interceptors.add(
-        AppInterceptor(
-          tokenRepo: injection<UserTokenRepo>(),
-        ),
-      );
+  injection<Dio>()
+    ..interceptors.add(
+      AppInterceptor(
+        tokenRepo: injection<UserTokenRepo>(),
+      ),
+    )
+    ..interceptors.add(
+      PrettyDioLogger(requestBody: true, requestHeader: true),
+    );
 }

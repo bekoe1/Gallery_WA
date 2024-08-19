@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add": MessageLookupByLibrary.simpleMessage("Add"),
         "allPhotos": MessageLookupByLibrary.simpleMessage("All photos"),
         "alreadyHaveAcc":
             MessageLookupByLibrary.simpleMessage("I already have an account"),
@@ -32,22 +33,35 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please come back later"),
         "confirmPasswordHint":
             MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "confirmation": MessageLookupByLibrary.simpleMessage("Confirmation"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
+        "dataLostConfirmation": MessageLookupByLibrary.simpleMessage(
+            "The entered data will be lost"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "emailHint": MessageLookupByLibrary.simpleMessage("Email"),
         "emptyDate":
             MessageLookupByLibrary.simpleMessage("date cannot be empty"),
         "emptyEmail":
             MessageLookupByLibrary.simpleMessage("email cannot be empty"),
+        "emptyField":
+            MessageLookupByLibrary.simpleMessage("Field can not be empty"),
         "emptyPas":
             MessageLookupByLibrary.simpleMessage("password cannot be empty"),
         "emptyUsername":
             MessageLookupByLibrary.simpleMessage("username cannot be empty"),
+        "exit": MessageLookupByLibrary.simpleMessage("Exit"),
+        "exitConfirmation": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to exit?"),
+        "imageUploaded":
+            MessageLookupByLibrary.simpleMessage("Photo uploaded successfully"),
         "incorrectBirthday":
             MessageLookupByLibrary.simpleMessage("birthday is incorrect"),
         "incorrectEmail":
             MessageLookupByLibrary.simpleMessage("email is incorrect"),
+        "incorrectName": MessageLookupByLibrary.simpleMessage(
+            "Name is too short or incorrect"),
         "incorrectPhone":
             MessageLookupByLibrary.simpleMessage("phone number is incorrect"),
         "incorrectUsername":
@@ -55,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loading": MessageLookupByLibrary.simpleMessage("Loading..."),
         "lostConnection": MessageLookupByLibrary.simpleMessage(
             "You are not connected to the network or your internet is weak"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "newImages": MessageLookupByLibrary.simpleMessage("New"),
         "nextPage": MessageLookupByLibrary.simpleMessage("Next"),
         "noPicture":
             MessageLookupByLibrary.simpleMessage("There is no picture"),
@@ -62,6 +78,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordsAreNotEqual":
             MessageLookupByLibrary.simpleMessage("passwords do not match"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Phone"),
+        "pickImageError":
+            MessageLookupByLibrary.simpleMessage("Please, pick image"),
+        "popularImages": MessageLookupByLibrary.simpleMessage("Popular"),
         "selectPhoto": MessageLookupByLibrary.simpleMessage("Select photo"),
         "shortPas":
             MessageLookupByLibrary.simpleMessage("password is too short"),
